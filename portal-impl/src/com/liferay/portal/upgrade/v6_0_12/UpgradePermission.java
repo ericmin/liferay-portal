@@ -36,10 +36,23 @@ public class UpgradePermission extends UpgradeProcess {
 	protected void doUpgrade() throws Exception {
 
 		// PermissionLocalServiceUtil.setContainerResourcePermissions()
-		// requires an updated Company table
+		// requires an updated Company and Role_ table
 
 		runSQL("alter table Company add active_ BOOLEAN");
 		runSQL("update Company set active_ = TRUE");
+
+		runSQL(
+			"update Role_ set name = 'Site Administrator' where name = " +
+				"'Community Administrator'");
+		runSQL(
+			"update Role_ set name = 'Site Member' where name = " +
+				"'Community Member'");
+		runSQL(
+			"update Role_ set name = 'Site Owner' where name = " +
+				"'Community Owner'");
+		runSQL(
+			"update Role_ set name = 'Organization User' where name = " +
+				"'Organization Member'");
 
 		// LPS-14202 and LPS-17841
 
@@ -70,9 +83,9 @@ public class UpgradePermission extends UpgradeProcess {
 
 		if (community) {
 			PermissionLocalServiceUtil.setContainerResourcePermissions(
-				name, _COMMUNITY_MEMBER, ActionKeys.VIEW);
+				name, RoleConstants.SITE_MEMBER, ActionKeys.VIEW);
 			PermissionLocalServiceUtil.setContainerResourcePermissions(
-				name, _ORGANIZATION_MEMBER, ActionKeys.VIEW);
+				name, RoleConstants.ORGANIZATION_USER, ActionKeys.VIEW);
 		}
 
 		if (guest) {
@@ -98,9 +111,9 @@ public class UpgradePermission extends UpgradeProcess {
 
 		if (community) {
 			ResourcePermissionLocalServiceUtil.addResourcePermissions(
-				name, _COMMUNITY_MEMBER, scope, actionIdsLong);
+				name, RoleConstants.SITE_MEMBER, scope, actionIdsLong);
 			ResourcePermissionLocalServiceUtil.addResourcePermissions(
-				name, _ORGANIZATION_MEMBER, scope, actionIdsLong);
+				name, RoleConstants.ORGANIZATION_USER, scope, actionIdsLong);
 		}
 
 		if (guest) {
@@ -111,9 +124,5 @@ public class UpgradePermission extends UpgradeProcess {
 		ResourcePermissionLocalServiceUtil.addResourcePermissions(
 			name, RoleConstants.OWNER, scope, actionIdsLong);
 	}
-
-	private static final String _COMMUNITY_MEMBER = "Community Member";
-
-	private static final String _ORGANIZATION_MEMBER = "Organization Member";
 
 }
