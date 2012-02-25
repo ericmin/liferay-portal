@@ -45,11 +45,11 @@ public class UpgradePermission extends UpgradeProcess {
 			"update Role_ set name = 'Site Administrator' where name = " +
 				"'Community Administrator'");
 		runSQL(
-			"update Role_ set name = 'Site Member' where name = " +
-				"'Community Member'");
+			"update Role_ set name = 'Site Member' where name = 'Community " +
+				"Member'");
 		runSQL(
-			"update Role_ set name = 'Site Owner' where name = " +
-				"'Community Owner'");
+			"update Role_ set name = 'Site Owner' where name = 'Community " +
+				"Owner'");
 		runSQL(
 			"update Role_ set name = 'Organization User' where name = " +
 				"'Organization Member'");
