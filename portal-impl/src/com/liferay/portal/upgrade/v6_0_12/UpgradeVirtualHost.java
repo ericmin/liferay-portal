@@ -17,6 +17,7 @@ package com.liferay.portal.upgrade.v6_0_12;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -31,6 +32,10 @@ public class UpgradeVirtualHost extends UpgradeProcess {
 			long virtualHostId, long companyId, long layoutSetId,
 			String hostname)
 		throws Exception {
+
+		if (Validator.isNull(hostname)) {
+			return;
+		}
 
 		runSQL(
 			"insert into VirtualHost (virtualHostId, companyId, layoutSetId, " +
