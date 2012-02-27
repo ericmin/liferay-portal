@@ -575,6 +575,8 @@ alter table UserGroup add addedByLDAPImport BOOLEAN;
 
 alter table UserNotificationEvent add archived BOOLEAN;
 
+delete from VirtualHost where hostname = '';
+
 alter table WorkflowDefinitionLink add classPK LONG;
 alter table WorkflowDefinitionLink add typePK LONG;
 
