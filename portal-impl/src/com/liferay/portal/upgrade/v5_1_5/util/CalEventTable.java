@@ -1,0 +1,67 @@
+/**
+ * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+package com.liferay.portal.upgrade.v5_1_5.util;
+
+import java.sql.Types;
+
+/**
+ * <a href="CalEventTable.java.html"><b><i>View Source</i></b></a>
+ *
+ * @author	  Brian Wing Shun Chan
+ * @generated
+ */
+public class CalEventTable {
+
+	public static final String TABLE_NAME = "CalEvent";
+
+	public static final Object[][] TABLE_COLUMNS = {
+		{"uuid_", new Integer(Types.VARCHAR)},
+		{"eventId", new Integer(Types.BIGINT)},
+		{"groupId", new Integer(Types.BIGINT)},
+		{"companyId", new Integer(Types.BIGINT)},
+		{"userId", new Integer(Types.BIGINT)},
+		{"userName", new Integer(Types.VARCHAR)},
+		{"createDate", new Integer(Types.TIMESTAMP)},
+		{"modifiedDate", new Integer(Types.TIMESTAMP)},
+		{"title", new Integer(Types.VARCHAR)},
+		{"description", new Integer(Types.VARCHAR)},
+		{"startDate", new Integer(Types.TIMESTAMP)},
+		{"endDate", new Integer(Types.TIMESTAMP)},
+		{"durationHour", new Integer(Types.INTEGER)},
+		{"durationMinute", new Integer(Types.INTEGER)},
+		{"allDay", new Integer(Types.BOOLEAN)},
+		{"timeZoneSensitive", new Integer(Types.BOOLEAN)},
+		{"type_", new Integer(Types.VARCHAR)},
+		{"repeating", new Integer(Types.BOOLEAN)},
+		{"recurrence", new Integer(Types.CLOB)},
+		{"remindBy", new Integer(Types.INTEGER)},
+		{"firstReminder", new Integer(Types.INTEGER)},
+		{"secondReminder", new Integer(Types.INTEGER)}
+	};
+
+	public static final String TABLE_SQL_CREATE = "create table CalEvent (uuid_ VARCHAR(75) null,eventId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,title VARCHAR(75) null,description STRING null,startDate DATE null,endDate DATE null,durationHour INTEGER,durationMinute INTEGER,allDay BOOLEAN,timeZoneSensitive BOOLEAN,type_ VARCHAR(75) null,repeating BOOLEAN,recurrence TEXT null,remindBy INTEGER,firstReminder INTEGER,secondReminder INTEGER)";
+
+	public static final String TABLE_SQL_DROP = "drop table CalEvent";
+
+	public static final String[] TABLE_SQL_ADD_INDEXES = {
+		"create index IX_12EE4898 on CalEvent (groupId)",
+		"create index IX_4FDDD2BF on CalEvent (groupId, repeating)",
+		"create index IX_FCD7C63D on CalEvent (groupId, type_)",
+		"create index IX_F6006202 on CalEvent (remindBy)",
+		"create index IX_C1AD2122 on CalEvent (uuid_)",
+		"create unique index IX_5CCE79C8 on CalEvent (uuid_, groupId)"
+	};
+
+}
