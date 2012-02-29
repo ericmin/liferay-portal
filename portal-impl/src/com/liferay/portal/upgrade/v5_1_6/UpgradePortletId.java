@@ -23,7 +23,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
  * @author Brian Wing Shun Chan
  */
 public class UpgradePortletId
-	extends com.liferay.portal.upgrade.v4_3_5.UpgradePortletId {
+	extends com.liferay.portal.upgrade.v5_2_0.UpgradePortletId {
 
 	protected Log getLog() {
 		return _log;
