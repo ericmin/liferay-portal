@@ -39,36 +39,6 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 		updateLocks();
 	}
 
-	protected void updateFileEntries() throws Exception {
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-
-		try {
-			con = DataAccess.getConnection();
-
-			ps = con.prepareStatement(
-				"select fileEntryId, extension from DLFileEntry");
-
-			rs = ps.executeQuery();
-
-			while (rs.next()) {
-				long fileEntryId = rs.getLong("fileEntryId");
-				String extension = rs.getString("extension");
-
-				String mimeType = MimeTypesUtil.getContentType(
-					"A." + extension);
-
-				runSQL(
-					"update DLFileEntry set mimeType = '" + mimeType +
-						"' where fileEntryId = " + fileEntryId);
-			}
-		}
-		finally {
-			DataAccess.cleanUp(con, ps, rs);
-		}
-	}
-
 	protected long getFileEntryId(long groupId, long folderId, String name)
 		throws Exception {
 
@@ -94,6 +64,36 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 			}
 
 			return 0;
+		}
+		finally {
+			DataAccess.cleanUp(con, ps, rs);
+		}
+	}
+
+	protected void updateFileEntries() throws Exception {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			con = DataAccess.getConnection();
+
+			ps = con.prepareStatement(
+				"select fileEntryId, extension from DLFileEntry");
+
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				long fileEntryId = rs.getLong("fileEntryId");
+				String extension = rs.getString("extension");
+
+				String mimeType = MimeTypesUtil.getContentType(
+					"A." + extension);
+
+				runSQL(
+					"update DLFileEntry set mimeType = '" + mimeType +
+						"' where fileEntryId = " + fileEntryId);
+			}
 		}
 		finally {
 			DataAccess.cleanUp(con, ps, rs);

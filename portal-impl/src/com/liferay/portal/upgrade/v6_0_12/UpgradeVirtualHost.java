@@ -27,12 +27,6 @@ import java.sql.ResultSet;
  */
 public class UpgradeVirtualHost extends UpgradeProcess {
 
-	@Override
-	protected void doUpgrade() throws Exception {
-		updateCompany();
-		updateLayoutSet();
-	}
-
 	protected void addVirtualHost(
 			long virtualHostId, long companyId, long layoutSetId,
 			String hostname)
@@ -42,6 +36,12 @@ public class UpgradeVirtualHost extends UpgradeProcess {
 			"insert into VirtualHost (virtualHostId, companyId, layoutSetId, " +
 				"hostname) values (" + virtualHostId + ", " + companyId +
 					", " + layoutSetId + ", '" + hostname + "')");
+	}
+
+	@Override
+	protected void doUpgrade() throws Exception {
+		updateCompany();
+		updateLayoutSet();
 	}
 
 	protected void updateCompany() throws Exception {
