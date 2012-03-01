@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -30,9 +30,6 @@ import com.liferay.portal.upgrade.v5_2_6.UpgradeGroup;
 import com.liferay.portal.upgrade.v5_2_8.UpgradeDocumentLibrary;
 
 /**
- * <a href="UpgradeProcess_5_1_8_to_5_2_8.java.html"><b><i>View Source</i></b>
- * </a>
- *
  * @author Douglas Wong
  */
 public class UpgradeProcess_5_1_8_to_5_2_8 extends UpgradeProcess {

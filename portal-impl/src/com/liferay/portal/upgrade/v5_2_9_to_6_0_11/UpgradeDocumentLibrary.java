@@ -165,8 +165,7 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 
 		upgradeTable.setCreateSQL(
 			StringUtil.replace(
-				DLFileRankTable.TABLE_SQL_CREATE,
-				",createDate DATE null",
+				DLFileRankTable.TABLE_SQL_CREATE, ",createDate DATE null",
 				",createDate DATE null,fileEntryId LONG"));
 		upgradeTable.setIndexesSQL(DLFileRankTable.TABLE_SQL_ADD_INDEXES);
 
@@ -183,8 +182,7 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 
 		upgradeTable.setCreateSQL(
 			StringUtil.replace(
-				DLFileShortcutTable.TABLE_SQL_CREATE,
-				",folderId LONG",
+				DLFileShortcutTable.TABLE_SQL_CREATE, ",folderId LONG",
 				",folderId LONG,toFileEntryId LONG"));
 		upgradeTable.setIndexesSQL(DLFileShortcutTable.TABLE_SQL_ADD_INDEXES);
 
@@ -198,8 +196,7 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 
 		upgradeTable.setCreateSQL(
 			StringUtil.replace(
-				DLFileVersionTable.TABLE_SQL_CREATE,
-				",title VARCHAR(75) null",
+				DLFileVersionTable.TABLE_SQL_CREATE, ",title VARCHAR(75) null",
 				",title VARCHAR(255) null,fileEntryId LONG"));
 		upgradeTable.setIndexesSQL(DLFileVersionTable.TABLE_SQL_ADD_INDEXES);
 

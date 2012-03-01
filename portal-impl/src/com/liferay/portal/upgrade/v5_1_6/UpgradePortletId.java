@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -18,8 +18,6 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 /**
- * <a href="UpgradePortletId.java.html"><b><i>View Source</i></b></a>
- *
  * @author Brian Wing Shun Chan
  */
 public class UpgradePortletId
@@ -32,16 +30,13 @@ public class UpgradePortletId
 	protected String[][] getPortletIdsArray() {
 		return new String[][] {
 			new String[] {
-				"7",
-				"1_WAR_biblegatewayportlet"
+				"7", "1_WAR_biblegatewayportlet"
 			},
 			new String[] {
-				"21",
-				"1_WAR_randombibleverseportlet"
+				"21", "1_WAR_randombibleverseportlet"
 			},
 			new String[] {
-				"46",
-				"1_WAR_gospelforasiaportlet"
+				"46", "1_WAR_gospelforasiaportlet"
 			}
 		};
 	}

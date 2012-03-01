@@ -52,8 +52,7 @@ public class UpgradeMessageBoards extends UpgradeProcess {
 				String body = rs.getString("body");
 
 				body = StringUtil.replace(
-					body,
-					new String[] {"<3", ">_>", "<_<"},
+					body, new String[] {"<3", ">_>", "<_<"},
 					new String[] {":love:", ":glare:", ":dry:"});
 
 				updateMessage(messageId, body);

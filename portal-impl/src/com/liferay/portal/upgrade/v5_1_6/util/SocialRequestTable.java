@@ -17,8 +17,6 @@ package com.liferay.portal.upgrade.v5_1_6.util;
 import java.sql.Types;
 
 /**
- * <a href="SocialRequestTable.java.html"><b><i>View Source</i></b></a>
- *
  * @author	  Brian Wing Shun Chan
  * @generated
  */
