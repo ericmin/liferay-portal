@@ -135,8 +135,8 @@ public class ProcessExecutorTest extends TestCase {
 			fail();
 		}
 		catch (ProcessException pe) {
-			assertEquals(DummyExceptionProcessCallable.class.getName(),
-				pe.getMessage());
+			assertEquals(
+				DummyExceptionProcessCallable.class.getName(), pe.getMessage());
 		}
 	}
 
@@ -179,8 +179,8 @@ public class ProcessExecutorTest extends TestCase {
 				@Override
 				public void run() {
 					try {
-						ProcessExecutor.execute(loggingProcessCallable,
-							_classPath);
+						ProcessExecutor.execute(
+							loggingProcessCallable, _classPath);
 					}
 					catch (ProcessException pe) {
 						exceptionAtomicReference.set(pe);
@@ -235,8 +235,8 @@ public class ProcessExecutorTest extends TestCase {
 		DummyReturnProcessCallable dummyReturnProcessCallable =
 			new DummyReturnProcessCallable();
 
-		String result = ProcessExecutor.execute(dummyReturnProcessCallable,
-			_classPath);
+		String result = ProcessExecutor.execute(
+			dummyReturnProcessCallable, _classPath);
 
 		assertEquals(DummyReturnProcessCallable.class.getName(), result);
 	}
