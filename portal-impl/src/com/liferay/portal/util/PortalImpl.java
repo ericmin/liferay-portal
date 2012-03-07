@@ -1456,7 +1456,7 @@ public class PortalImpl implements Portal {
 		if (Validator.isNull(currentURL)) {
 			currentURL = HttpUtil.getCompleteURL(request);
 
-			if ((Validator.isNotNull(currentURL)) &&
+			if (Validator.isNotNull(currentURL) &&
 				(currentURL.indexOf(_J_SECURITY_CHECK) == -1)) {
 
 				currentURL = currentURL.substring(
@@ -2351,9 +2351,9 @@ public class PortalImpl implements Portal {
 			String tempI18nLanguageId = null;
 			String tempI18nPath = null;
 
-			if (((I18nFilter.getLanguageIds().contains(locale.toString())) &&
+			if ((I18nFilter.getLanguageIds().contains(locale.toString()) &&
 				 ((PropsValues.LOCALE_PREPEND_FRIENDLY_URL_STYLE == 1) &&
-				  (!locale.equals(LocaleUtil.getDefault())))) ||
+				  !locale.equals(LocaleUtil.getDefault()))) ||
 				(PropsValues.LOCALE_PREPEND_FRIENDLY_URL_STYLE == 2)) {
 
 				tempI18nLanguageId = locale.toString();
@@ -2503,7 +2503,7 @@ public class PortalImpl implements Portal {
 				themeDisplay.getLayout().getLayoutSet().getLayoutSetId();
 
 			if ((layoutSet.getLayoutSetId() != curLayoutSetId) ||
-				(portalURL.startsWith(themeDisplay.getURLPortal()))) {
+				portalURL.startsWith(themeDisplay.getURLPortal())) {
 
 				String layoutSetFriendlyURL = StringPool.BLANK;
 
@@ -3770,9 +3770,7 @@ public class PortalImpl implements Portal {
 
 		// Browser id
 
-		if ((parameterMap == null) ||
-			(!parameterMap.containsKey("browserId"))) {
-
+		if ((parameterMap == null) || !parameterMap.containsKey("browserId")) {
 			sb.append("&browserId=");
 			sb.append(BrowserSnifferUtil.getBrowserId(request));
 		}
@@ -3797,7 +3795,7 @@ public class PortalImpl implements Portal {
 		// Minifier
 
 		if ((parameterMap == null) ||
-			(!parameterMap.containsKey("minifierType"))) {
+			!parameterMap.containsKey("minifierType")) {
 
 			String minifierType = StringPool.BLANK;
 
@@ -4096,7 +4094,7 @@ public class PortalImpl implements Portal {
 
 		if ((!PropsValues.PORTAL_JAAS_ENABLE &&
 			 PropsValues.PORTAL_IMPERSONATION_ENABLE) ||
-			(alwaysAllowDoAsUser)) {
+			alwaysAllowDoAsUser) {
 
 			String doAsUserIdString = ParamUtil.getString(
 				request, "doAsUserId");
@@ -4816,9 +4814,9 @@ public class PortalImpl implements Portal {
 
 		boolean secure = false;
 
-		if ((PropsValues.COMPANY_SECURITY_AUTH_REQUIRES_HTTPS) &&
-			(!PropsValues.SESSION_ENABLE_PHISHING_PROTECTION) &&
-			(httpsInitial != null) && (!httpsInitial.booleanValue())) {
+		if (PropsValues.COMPANY_SECURITY_AUTH_REQUIRES_HTTPS &&
+			!PropsValues.SESSION_ENABLE_PHISHING_PROTECTION &&
+			(httpsInitial != null) && !httpsInitial.booleanValue()) {
 
 			secure = false;
 		}
@@ -5461,9 +5459,7 @@ public class PortalImpl implements Portal {
 		LayoutTypePortlet layoutType =
 			(LayoutTypePortlet)layout.getLayoutType();
 
-		if ((windowState == null) ||
-			(Validator.isNull(windowState.toString()))) {
-
+		if ((windowState == null) || Validator.isNull(windowState.toString())) {
 			if (layoutType.hasStateMaxPortletId(portletId)) {
 				windowState = WindowState.MAXIMIZED;
 			}
