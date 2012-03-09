@@ -86,7 +86,7 @@ public class UpgradeVirtualHost extends UpgradeProcess {
 
 			ps = con.prepareStatement(
 				"select layoutSetId, companyId, virtualHost from LayoutSet " +
-					"where virtualHost != ? or virtualHost is not null");
+					"where virtualHost != ? and virtualHost is not null");
 
 			ps.setString(1, StringPool.BLANK);
 
