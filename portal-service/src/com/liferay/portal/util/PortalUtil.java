@@ -208,7 +208,7 @@ public class PortalUtil {
 	/**
 	 * @deprecated {@link #getAlternateURL(String, ThemeDisplay, Locale)}
 	 */
-	public String getAlternateURL(
+	public static String getAlternateURL(
 		HttpServletRequest request, String canonicalURL, Locale locale) {
 
 		return getPortal().getAlternateURL(request, canonicalURL, locale);
@@ -263,7 +263,8 @@ public class PortalUtil {
 	/**
 	 * @deprecated {@link #getCanonicalURL(String, ThemeDisplay, Layout)}
 	 */
-	public String getCanonicalURL(String completeURL, ThemeDisplay themeDisplay)
+	public static String getCanonicalURL(
+			String completeURL, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		return getPortal().getCanonicalURL(completeURL, themeDisplay);
