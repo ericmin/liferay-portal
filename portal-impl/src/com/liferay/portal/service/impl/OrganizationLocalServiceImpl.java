@@ -177,18 +177,21 @@ public class OrganizationLocalServiceImpl
 			userId, Organization.class.getName(), organizationId, name, null,
 			GroupConstants.TYPE_SITE_PRIVATE, null, site, true, null);
 
-		// Role
+		if (PropsValues.ORGANIZATIONS_ASSIGNMENT_AUTO) {
 
-		Role role = roleLocalService.getRole(
-			organization.getCompanyId(), RoleConstants.ORGANIZATION_OWNER);
+			// Role
 
-		userGroupRoleLocalService.addUserGroupRoles(
-			userId, group.getGroupId(), new long[] {role.getRoleId()});
+			Role role = roleLocalService.getRole(
+				organization.getCompanyId(), RoleConstants.ORGANIZATION_OWNER);
 
-		// User
+			userGroupRoleLocalService.addUserGroupRoles(
+				userId, group.getGroupId(), new long[] {role.getRoleId()});
 
-		userLocalService.addOrganizationUsers(
-			organizationId, new long[] {userId});
+			// User
+
+			userLocalService.addOrganizationUsers(
+				organizationId, new long[] {userId});
+		}
 
 		// Resources
 
