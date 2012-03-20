@@ -418,13 +418,6 @@ public class OrganizationLocalServiceImpl
 
 		PermissionCacheUtil.clearCache();
 
-		// Indexer
-
-		Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
-			Organization.class);
-
-		indexer.delete(organization);
-
 		return organization;
 	}
 
