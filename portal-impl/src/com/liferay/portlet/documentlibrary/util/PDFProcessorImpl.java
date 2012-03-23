@@ -142,16 +142,16 @@ public class PDFProcessorImpl
 			fileVersion, index);
 	}
 
-	public Properties getResourceLimits() throws Exception {
-		Properties resourceLimits = PrefsPropsUtil.getProperties(
+	public Properties getResourceLimitsProperties() throws Exception {
+		Properties resourceLimitsProperties = PrefsPropsUtil.getProperties(
 			PropsKeys.IMAGEMAGICK_RESOURCE_LIMIT, true);
 
-		if (resourceLimits.isEmpty()) {
-			resourceLimits = PropsUtil.getProperties(
+		if (resourceLimitsProperties.isEmpty()) {
+			resourceLimitsProperties = PropsUtil.getProperties(
 				PropsKeys.IMAGEMAGICK_RESOURCE_LIMIT, true);
 		}
 
-		return resourceLimits;
+		return resourceLimitsProperties;
 	}
 
 	public InputStream getThumbnailAsStream(FileVersion fileVersion, int index)
@@ -245,7 +245,7 @@ public class PDFProcessorImpl
 		if (isImageMagickEnabled()) {
 			_globalSearchPath = getGlobalSearchPath();
 
-			_resourceLimits = getResourceLimits();
+			_resourceLimitsProperties = getResourceLimitsProperties();
 		}
 	}
 
@@ -505,7 +505,7 @@ public class PDFProcessorImpl
 		if (PropsValues.DL_FILE_ENTRY_PREVIEW_FORK_PROCESS_ENABLED) {
 			ProcessCallable<String> processCallable =
 				new ImageMagickProcessCallable(
-					_globalSearchPath, _resourceLimits,
+					_globalSearchPath, _resourceLimitsProperties,
 					imOperation.getCmdArgs());
 
 			ProcessExecutor.execute(
@@ -513,7 +513,8 @@ public class PDFProcessorImpl
 		}
 		else {
 			LiferayConvertCmd.run(
-				_globalSearchPath, _resourceLimits, imOperation.getCmdArgs());
+				_globalSearchPath, _resourceLimitsProperties,
+				imOperation.getCmdArgs());
 		}
 
 		// Store images
@@ -788,7 +789,7 @@ public class PDFProcessorImpl
 
 	private List<Long> _fileVersionIds = new Vector<Long>();
 	private String _globalSearchPath;
-	private Properties _resourceLimits;
+	private Properties _resourceLimitsProperties;
 	private boolean _warned;
 
 	private static class ImageMagickProcessCallable
