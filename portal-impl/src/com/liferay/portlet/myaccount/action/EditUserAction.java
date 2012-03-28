@@ -15,7 +15,6 @@
 package com.liferay.portlet.myaccount.action;
 
 import com.liferay.portal.UserPasswordException;
-import com.liferay.portal.kernel.servlet.DynamicServletRequest;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.CompanyConstants;
@@ -23,6 +22,7 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.security.pwd.PwdAuthenticator;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.RenderRequestImpl;
+import com.liferay.util.servlet.DynamicServletRequest;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
