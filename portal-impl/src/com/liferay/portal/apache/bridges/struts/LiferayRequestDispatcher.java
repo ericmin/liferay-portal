@@ -59,31 +59,36 @@ public class LiferayRequestDispatcher implements RequestDispatcher {
 			ServletRequest servletRequest, ServletResponse servletResponse)
 		throws IOException, ServletException {
 
+		forward(servletRequest, servletResponse, false);
+	}
+
+	public void forward(
+			ServletRequest servletRequest, ServletResponse servletResponse,
+			boolean named)
+		throws IOException, ServletException {
+
 		PortletRequest portletRequest =
 			(PortletRequest)servletRequest.getAttribute(
 				JavaConstants.JAVAX_PORTLET_REQUEST);
 
 		if (portletRequest != null) {
-			invoke(servletRequest, servletResponse, false);
+			invoke(servletRequest, servletResponse, named, false);
 		}
 		else {
 			_requestDispatcher.forward(servletRequest, servletResponse);
 		}
 	}
 
-	/**
-	 * @deprecated {@link #forward(ServletRequest, ServletResponse)}
-	 */
-	public void forward(
-			ServletRequest servletRequest, ServletResponse servletResponse,
-			boolean named)
+	public void include(
+			ServletRequest servletRequest, ServletResponse servletResponse)
 		throws IOException, ServletException {
 
-		forward(servletRequest, servletResponse);
+		include(servletRequest, servletResponse, false);
 	}
 
 	public void include(
-			ServletRequest servletRequest, ServletResponse servletResponse)
+			ServletRequest servletRequest, ServletResponse servletResponse,
+			boolean named)
 		throws IOException, ServletException {
 
 		PortletRequest portletRequest =
@@ -91,27 +96,16 @@ public class LiferayRequestDispatcher implements RequestDispatcher {
 				JavaConstants.JAVAX_PORTLET_REQUEST);
 
 		if (portletRequest != null) {
-			invoke(servletRequest, servletResponse, true);
+			invoke(servletRequest, servletResponse, named, true);
 		}
 		else {
 			_requestDispatcher.include(servletRequest, servletResponse);
 		}
 	}
 
-	/**
-	 * @deprecated {@link #include(ServletRequest, ServletResponse)}
-	 */
-	public void include(
-			ServletRequest servletRequest, ServletResponse servletResponse,
-			boolean named)
-		throws IOException, ServletException {
-
-		include(servletRequest, servletResponse);
-	}
-
 	public void invoke(
 			ServletRequest servletRequest, ServletResponse servletResponse,
-			boolean include)
+			boolean named, boolean include)
 		throws IOException, ServletException {
 
 		String pathInfo = null;
@@ -166,7 +160,7 @@ public class LiferayRequestDispatcher implements RequestDispatcher {
 
 		HttpServletRequest portletServletRequest = getPortletServletRequest(
 			servletRequest, portletRequest, pathInfo, queryString, requestURI,
-			servletPath, include);
+			servletPath, named, include);
 
 		HttpServletResponse portletServletResponse = getPortletServletResponse(
 			servletResponse, portletRequest, portletResponse, include);
@@ -181,24 +175,12 @@ public class LiferayRequestDispatcher implements RequestDispatcher {
 		}
 	}
 
-	/**
-	 * @deprecated {@link #invoke(ServletRequest, ServletResponse, boolean)}
-	 */
-	public void invoke(
-			ServletRequest servletRequest, ServletResponse servletResponse,
-			boolean named, boolean include)
-		throws IOException, ServletException {
-
-		invoke(servletRequest, servletResponse, include);
-	}
-
 	protected HttpServletRequest getPortletServletRequest(
 		ServletRequest servletRequest, PortletRequest portletRequest,
 		String pathInfo, String queryString, String requestURI,
-		String servletPath, boolean include) {
+		String servletPath, boolean named, boolean include) {
 
 		HttpServletRequest request = (HttpServletRequest)servletRequest;
-		boolean named = false;
 
 		PortletRequestImpl portletRequestImpl =
 			(PortletRequestImpl)portletRequest;
