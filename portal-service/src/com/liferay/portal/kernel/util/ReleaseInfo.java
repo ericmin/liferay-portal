@@ -134,7 +134,7 @@ public class ReleaseInfo {
 
 	private static final String _VERSION = "6.1.10";
 
-	private static final String _VERSION_DISPLAY_NAME = "6.1.10 CE";
+	private static final String _VERSION_DISPLAY_NAME = "6.1.10 EE";
 
 	private static String _releaseInfo;
 	private static String _serverInfo;
