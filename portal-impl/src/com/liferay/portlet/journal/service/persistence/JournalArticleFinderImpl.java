@@ -585,6 +585,10 @@ public class JournalArticleFinderImpl
 				sql = StringUtil.replace(sql, "(status = ?) AND", "");
 			}
 
+			if (type == null) {
+				sql = StringUtil.replace(sql, _TYPE_SQL, StringPool.BLANK);
+			}
+
 			sql = CustomSQLUtil.replaceAndOperator(sql, andOperator);
 
 			if ((articleIds != null) &&
@@ -646,8 +650,11 @@ public class JournalArticleFinderImpl
 
 			qPos.add(reviewDate_TS);
 			qPos.add(reviewDate_TS);
-			qPos.add(type);
-			qPos.add(type);
+
+			if (type != null) {
+				qPos.add(type);
+				qPos.add(type);
+			}
 
 			Iterator<Long> itr = q.iterate();
 
@@ -723,6 +730,10 @@ public class JournalArticleFinderImpl
 				sql = StringUtil.replace(sql, "(status = ?) AND", "");
 			}
 
+			if (type == null) {
+				sql = StringUtil.replace(sql, _TYPE_SQL, StringPool.BLANK);
+			}
+
 			sql = CustomSQLUtil.replaceAndOperator(sql, andOperator);
 
 			if ((articleIds != null) &&
@@ -786,8 +797,11 @@ public class JournalArticleFinderImpl
 
 			qPos.add(reviewDate_TS);
 			qPos.add(reviewDate_TS);
-			qPos.add(type);
-			qPos.add(type);
+
+			if (type != null) {
+				qPos.add(type);
+				qPos.add(type);
+			}
 
 			return (List<JournalArticle>)QueryUtil.list(
 				q, getDialect(), start, end);
@@ -820,5 +834,8 @@ public class JournalArticleFinderImpl
 
 		return articles.get(0);
 	}
+
+	private static final String _TYPE_SQL =
+		"WHERE (type_ = ? [$AND_OR_NULL_CHECK$])";
 
 }
