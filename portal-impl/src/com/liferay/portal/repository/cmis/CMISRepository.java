@@ -1783,7 +1783,7 @@ public class CMISRepository extends BaseCmisRepository {
 			_log.debug("Calling query " + query);
 		}
 
-		ItemIterable<QueryResult> queryResults = session.query(query, false);
+		ItemIterable<QueryResult> queryResults = session.query(query, true);
 
 		Iterator<QueryResult> itr = queryResults.iterator();
 
