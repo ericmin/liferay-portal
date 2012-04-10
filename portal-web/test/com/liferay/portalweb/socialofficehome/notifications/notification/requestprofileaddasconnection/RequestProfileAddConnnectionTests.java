@@ -15,7 +15,13 @@
 package com.liferay.portalweb.socialofficehome.notifications.notification.requestprofileaddasconnection;
 
 import com.liferay.portalweb.portal.BaseTestSuite;
+import com.liferay.portalweb.socialoffice.users.user.addsouser.AddSOUserTest;
+import com.liferay.portalweb.socialoffice.users.user.addsouser.SOUs_SignInTest;
+import com.liferay.portalweb.socialoffice.users.user.addsouser.SelectRegularRolesSOTest;
+import com.liferay.portalweb.socialoffice.users.user.signinso.SignInSOTest;
 import com.liferay.portalweb.socialoffice.users.user.signinso.SignOutSOTest;
+import com.liferay.portalweb.socialoffice.users.user.signinso.TearDownUserTest;
+import com.liferay.portalweb.socialofficehome.contactscenter.contacts.sousaddasconnectionccuser.ConfirmNotificationsAddConnectionTest;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
@@ -27,11 +33,12 @@ public class RequestProfileAddConnnectionTests extends BaseTestSuite {
 	public static Test suite() {
 		TestSuite testSuite = new TestSuite();
 		testSuite.addTestSuite(AddSOUserTest.class);
+		testSuite.addTestSuite(SelectRegularRolesSOTest.class);
 		testSuite.addTestSuite(SignOutSOTest.class);
 		testSuite.addTestSuite(SOUs_SignInTest.class);
 		testSuite.addTestSuite(SOUs_AddAsConnectionProfileUserTest.class);
 		testSuite.addTestSuite(SignOutSOTest.class);
-		testSuite.addTestSuite(SOSignInTest.class);
+		testSuite.addTestSuite(SignInSOTest.class);
 		testSuite.addTestSuite(ViewNotificationsAddAsConnectionTest.class);
 		testSuite.addTestSuite(IgnoreNotificationsAddConnnectionTest.class);
 		testSuite.addTestSuite(ViewIgnoreAddAsConnectionProfileUserTest.class);
@@ -39,9 +46,9 @@ public class RequestProfileAddConnnectionTests extends BaseTestSuite {
 		testSuite.addTestSuite(SOUs_SignInTest.class);
 		testSuite.addTestSuite(SOUs_AddAsConnectionProfileUserTest.class);
 		testSuite.addTestSuite(SignOutSOTest.class);
-		testSuite.addTestSuite(SOSignInTest.class);
+		testSuite.addTestSuite(SignInSOTest.class);
 		testSuite.addTestSuite(ViewNotificationsAddAsConnectionTest.class);
-		testSuite.addTestSuite(ConfirmNotificationsAddConnnectionTest.class);
+		testSuite.addTestSuite(ConfirmNotificationsAddConnectionTest.class);
 		testSuite.addTestSuite(ViewAddAsConnectionProfileUserTest.class);
 		testSuite.addTestSuite(TearDownNotificationsTest.class);
 		testSuite.addTestSuite(TearDownUserTest.class);

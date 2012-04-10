@@ -15,6 +15,9 @@
 package com.liferay.portalweb.socialofficehome.contactscenter.contacts.viewccuserprofile;
 
 import com.liferay.portalweb.portal.BaseTestSuite;
+import com.liferay.portalweb.socialoffice.users.user.addsouser.AddSOUserTest;
+import com.liferay.portalweb.socialoffice.users.user.addsouser.SelectRegularRolesSOTest;
+import com.liferay.portalweb.socialoffice.users.user.signinso.TearDownUserTest;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
@@ -26,6 +29,7 @@ public class ViewCCUserProfileTests extends BaseTestSuite {
 	public static Test suite() {
 		TestSuite testSuite = new TestSuite();
 		testSuite.addTestSuite(AddSOUserTest.class);
+		testSuite.addTestSuite(SelectRegularRolesSOTest.class);
 		testSuite.addTestSuite(ViewCCUserProfileTest.class);
 		testSuite.addTestSuite(TearDownUserTest.class);
 

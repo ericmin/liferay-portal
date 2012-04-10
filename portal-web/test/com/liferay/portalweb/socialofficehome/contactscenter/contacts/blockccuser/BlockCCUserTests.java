@@ -15,7 +15,12 @@
 package com.liferay.portalweb.socialofficehome.contactscenter.contacts.blockccuser;
 
 import com.liferay.portalweb.portal.BaseTestSuite;
+import com.liferay.portalweb.socialoffice.users.user.addsouser.AddSOUserTest;
+import com.liferay.portalweb.socialoffice.users.user.addsouser.SOUs_SignInTest;
+import com.liferay.portalweb.socialoffice.users.user.addsouser.SelectRegularRolesSOTest;
+import com.liferay.portalweb.socialoffice.users.user.signinso.SignInSOTest;
 import com.liferay.portalweb.socialoffice.users.user.signinso.SignOutSOTest;
+import com.liferay.portalweb.socialoffice.users.user.signinso.TearDownUserTest;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
@@ -27,12 +32,13 @@ public class BlockCCUserTests extends BaseTestSuite {
 	public static Test suite() {
 		TestSuite testSuite = new TestSuite();
 		testSuite.addTestSuite(AddSOUserTest.class);
+		testSuite.addTestSuite(SelectRegularRolesSOTest.class);
 		testSuite.addTestSuite(BlockCCUserTest.class);
 		testSuite.addTestSuite(SignOutSOTest.class);
 		testSuite.addTestSuite(SOUs_SignInTest.class);
 		testSuite.addTestSuite(SOUs_ViewBlockCCUserTest.class);
 		testSuite.addTestSuite(SignOutSOTest.class);
-		testSuite.addTestSuite(SOSignInTest.class);
+		testSuite.addTestSuite(SignInSOTest.class);
 		testSuite.addTestSuite(ViewBlockCCUserTest.class);
 		testSuite.addTestSuite(TearDownUserTest.class);
 
