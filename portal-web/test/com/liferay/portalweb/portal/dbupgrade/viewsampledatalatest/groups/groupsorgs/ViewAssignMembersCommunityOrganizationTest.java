@@ -95,6 +95,12 @@ public class ViewAssignMembersCommunityOrganizationTest extends BaseTestCase {
 			RuntimeVariables.replace("Organizations"));
 		selenium.waitForPageToLoad("30000");
 		loadRequiredJavaScriptModules();
+		selenium.type("//input[@name='_174_keywords']",
+			RuntimeVariables.replace("Groups Orgs"));
+		selenium.clickAt("//input[@value='Search']",
+			RuntimeVariables.replace("Search"));
+		selenium.waitForPageToLoad("30000");
+		loadRequiredJavaScriptModules();
 		assertEquals(RuntimeVariables.replace("Organization Groups Orgs"),
 			selenium.getText("//tr[3]/td[1]"));
 		assertEquals(RuntimeVariables.replace("Regular Organization"),
