@@ -44,6 +44,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.portlet.PortletConfig;
+import javax.portlet.PortletRequest;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
@@ -183,6 +184,9 @@ public class RuntimePortletImpl implements RuntimePortlet {
 		PortletConfig portletConfig = (PortletConfig)request.getAttribute(
 			JavaConstants.JAVAX_PORTLET_CONFIG);
 
+		String lifecycle = (String)request.getAttribute(
+			PortletRequest.LIFECYCLE_PHASE);
+
 		try {
 			return PortalUtil.renderPortlet(
 				servletContext, request, response, portlet, queryString,
@@ -195,6 +199,10 @@ public class RuntimePortletImpl implements RuntimePortlet {
 
 			_defineObjects(
 				request, portletConfig, renderRequest, renderResponse);
+
+			if (lifecycle != null) {
+				request.setAttribute(PortletRequest.LIFECYCLE_PHASE, lifecycle);
+			}
 		}
 	}
 
