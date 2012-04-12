@@ -15,7 +15,6 @@
 package com.liferay.portalweb.socialoffice.users.user.addsouser;
 
 import com.liferay.portalweb.portal.BaseTestSuite;
-import com.liferay.portalweb.socialoffice.users.user.signinso.SignOutSOTest;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
@@ -27,9 +26,7 @@ public class AddSOUserTests extends BaseTestSuite {
 	public static Test suite() {
 		TestSuite testSuite = new TestSuite();
 		testSuite.addTestSuite(AddSOUserTest.class);
-		testSuite.addTestSuite(SelectRegularRolesSOTest.class);
-		testSuite.addTestSuite(SignOutSOTest.class);
-		testSuite.addTestSuite(SOUs_SignInTest.class);
+		testSuite.addTestSuite(TearDownSOUserTest.class);
 
 		return testSuite;
 	}

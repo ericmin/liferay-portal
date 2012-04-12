@@ -16,6 +16,8 @@ package com.liferay.portalweb.socialoffice.users.user;
 
 import com.liferay.portalweb.portal.BaseTestSuite;
 import com.liferay.portalweb.socialoffice.users.user.addsouser.AddSOUserTests;
+import com.liferay.portalweb.socialoffice.users.user.editsouserpassword.EditSOUserPasswordTests;
+import com.liferay.portalweb.socialoffice.users.user.selectregularrolessouser.SelectRegularRolesSOUserTests;
 import com.liferay.portalweb.socialoffice.users.user.signinso.SignInSOTests;
 
 import junit.framework.Test;
@@ -30,6 +32,8 @@ public class UserTestPlan extends BaseTestSuite {
 		TestSuite testSuite = new TestSuite();
 
 		testSuite.addTest(AddSOUserTests.suite());
+		testSuite.addTest(EditSOUserPasswordTests.suite());
+		testSuite.addTest(SelectRegularRolesSOUserTests.suite());
 		testSuite.addTest(SignInSOTests.suite());
 
 		return testSuite;

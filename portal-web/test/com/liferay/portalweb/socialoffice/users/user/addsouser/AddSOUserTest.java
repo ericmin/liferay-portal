@@ -89,23 +89,6 @@ public class AddSOUserTest extends BaseTestCase {
 			RuntimeVariables.replace("Save"));
 		selenium.waitForPageToLoad("30000");
 		loadRequiredJavaScriptModules();
-
-		for (int second = 0;; second++) {
-			if (second >= 90) {
-				fail("timeout");
-			}
-
-			try {
-				if (selenium.isVisible("//div[@class='portlet-msg-success']")) {
-					break;
-				}
-			}
-			catch (Exception e) {
-			}
-
-			Thread.sleep(1000);
-		}
-
 		assertEquals(RuntimeVariables.replace(
 				"Your request completed successfully."),
 			selenium.getText("//div[@class='portlet-msg-success']"));
@@ -118,37 +101,5 @@ public class AddSOUserTest extends BaseTestCase {
 		assertEquals("Office01",
 			selenium.getValue("//input[@id='_125_middleName']"));
 		assertEquals("User01", selenium.getValue("//input[@id='_125_lastName']"));
-		assertTrue(selenium.isPartialText("//a[@id='_125_passwordLink']",
-				"Password"));
-		selenium.clickAt("//a[@id='_125_passwordLink']",
-			RuntimeVariables.replace("Password"));
-
-		for (int second = 0;; second++) {
-			if (second >= 90) {
-				fail("timeout");
-			}
-
-			try {
-				if (selenium.isVisible("//input[@id='_125_password1']")) {
-					break;
-				}
-			}
-			catch (Exception e) {
-			}
-
-			Thread.sleep(1000);
-		}
-
-		selenium.type("//input[@id='_125_password1']",
-			RuntimeVariables.replace("password"));
-		selenium.type("//input[@id='_125_password2']",
-			RuntimeVariables.replace("password"));
-		selenium.clickAt("//input[@value='Save']",
-			RuntimeVariables.replace("Save"));
-		selenium.waitForPageToLoad("30000");
-		loadRequiredJavaScriptModules();
-		assertEquals(RuntimeVariables.replace(
-				"Your request completed successfully."),
-			selenium.getText("//div[@class='portlet-msg-success']"));
 	}
 }

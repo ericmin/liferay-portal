@@ -16,11 +16,12 @@ package com.liferay.portalweb.socialofficehome.microblogs.microblogsentry.sousre
 
 import com.liferay.portalweb.portal.BaseTestSuite;
 import com.liferay.portalweb.socialoffice.users.user.addsouser.AddSOUserTest;
-import com.liferay.portalweb.socialoffice.users.user.addsouser.SOUs_SignInTest;
-import com.liferay.portalweb.socialoffice.users.user.addsouser.SelectRegularRolesSOTest;
+import com.liferay.portalweb.socialoffice.users.user.addsouser.TearDownSOUserTest;
+import com.liferay.portalweb.socialoffice.users.user.editsouserpassword.EditSOUserPasswordTest;
+import com.liferay.portalweb.socialoffice.users.user.selectregularrolessouser.SelectRegularRolesSOUserTest;
+import com.liferay.portalweb.socialoffice.users.user.signinso.SOUs_SignInSOTest;
 import com.liferay.portalweb.socialoffice.users.user.signinso.SignInSOTest;
 import com.liferay.portalweb.socialoffice.users.user.signinso.SignOutSOTest;
-import com.liferay.portalweb.socialoffice.users.user.signinso.TearDownUserTest;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
@@ -32,18 +33,19 @@ public class SOUs_ReplyMicroblogsContentProfileTests extends BaseTestSuite {
 	public static Test suite() {
 		TestSuite testSuite = new TestSuite();
 		testSuite.addTestSuite(AddSOUserTest.class);
-		testSuite.addTestSuite(SelectRegularRolesSOTest.class);
+		testSuite.addTestSuite(SelectRegularRolesSOUserTest.class);
+		testSuite.addTestSuite(EditSOUserPasswordTest.class);
 		testSuite.addTestSuite(AddMicroblogsContentViewableByEveryoneTest.class);
 		testSuite.addTestSuite(ViewMicroblogsContentViewableByEveryoneTest.class);
 		testSuite.addTestSuite(SignOutSOTest.class);
-		testSuite.addTestSuite(SOUs_SignInTest.class);
+		testSuite.addTestSuite(SOUs_SignInSOTest.class);
 		testSuite.addTestSuite(SOUs_ViewMBContentViewableByEveryoneProfileTest.class);
 		testSuite.addTestSuite(SOUs_ReplyMicroblogsContentProfileTest.class);
 		testSuite.addTestSuite(SOUs_ViewReplyMicroblogsContentTest.class);
 		testSuite.addTestSuite(SignOutSOTest.class);
 		testSuite.addTestSuite(SignInSOTest.class);
 		testSuite.addTestSuite(TearDownWHEntryContentTest.class);
-		testSuite.addTestSuite(TearDownUserTest.class);
+		testSuite.addTestSuite(TearDownSOUserTest.class);
 
 		return testSuite;
 	}
