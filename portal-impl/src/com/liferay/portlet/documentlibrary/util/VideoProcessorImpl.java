@@ -472,7 +472,8 @@ public class VideoProcessorImpl
 					PropsUtil.get(PropsKeys.LIFERAY_HOME),
 					Log4JUtil.getCustomLogSettings(),
 					srcFile.getCanonicalPath(), destFile.getCanonicalPath(),
-					containerType, PropsUtil.getProperties(
+					containerType,
+					PropsUtil.getProperties(
 						PropsKeys.DL_FILE_ENTRY_PREVIEW_VIDEO, false),
 					PropsUtil.getProperties(PropsKeys.XUGGLER_FFPRESET, true));
 
@@ -482,7 +483,8 @@ public class VideoProcessorImpl
 		else {
 			LiferayConverter liferayConverter = new LiferayVideoConverter(
 				srcFile.getCanonicalPath(), destFile.getCanonicalPath(),
-				containerType, PropsUtil.getProperties(
+				containerType,
+				PropsUtil.getProperties(
 					PropsKeys.DL_FILE_ENTRY_PREVIEW_VIDEO, false),
 				PropsUtil.getProperties(PropsKeys.XUGGLER_FFPRESET, true));
 
