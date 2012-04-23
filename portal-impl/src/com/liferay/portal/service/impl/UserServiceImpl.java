@@ -1584,7 +1584,8 @@ public class UserServiceImpl extends UserServiceBaseImpl {
 		boolean anonymousUser = GetterUtil.getBoolean(
 			serviceContext.getAttribute("anonymousUser"));
 
-		if ((creatorUserId != 0) ||
+		if (((creatorUserId != 0) &&
+				(creatorUserId != getDefaultUserId(companyId))) ||
 			(!company.isStrangers() && !anonymousUser)) {
 
 			if (!PortalPermissionUtil.contains(
