@@ -27,6 +27,7 @@ public class UpgradePortletId
 		return _log;
 	}
 
+	@Override
 	protected String[][] getPortletIdsArray() {
 		return new String[][] {
 			new String[] {

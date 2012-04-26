@@ -47,6 +47,7 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 				portletPreferencesId);
 	}
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		try {
 			runSQL("alter_column_type DLFileEntry name VARCHAR(255) null");

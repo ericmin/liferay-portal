@@ -19,6 +19,7 @@ package com.liferay.portal.upgrade.v5_1_5.util;
  */
 public class CountryDependencyManager extends DependencyManager {
 
+	@Override
 	public void update(
 			long oldPrimaryKeyValue, Object[] oldColumnValues,
 			Object[] oldExtraColumnValues, long newPrimaryKeyValue,

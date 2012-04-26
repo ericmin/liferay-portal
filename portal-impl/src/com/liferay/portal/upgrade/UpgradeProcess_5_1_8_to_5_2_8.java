@@ -34,10 +34,12 @@ import com.liferay.portal.upgrade.v5_2_8.UpgradeDocumentLibrary;
  */
 public class UpgradeProcess_5_1_8_to_5_2_8 extends UpgradeProcess {
 
+	@Override
 	public int getThreshold() {
 		return ReleaseInfo.RELEASE_5_2_8_BUILD_NUMBER;
 	}
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		upgrade(UpgradeSchema.class);
 

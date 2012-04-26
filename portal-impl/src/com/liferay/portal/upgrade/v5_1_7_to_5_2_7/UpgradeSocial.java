@@ -31,6 +31,7 @@ import java.sql.ResultSet;
  */
 public class UpgradeSocial extends UpgradeProcess {
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		updateGroupId();
 	}

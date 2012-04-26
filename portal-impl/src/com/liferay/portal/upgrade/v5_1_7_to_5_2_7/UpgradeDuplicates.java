@@ -280,6 +280,7 @@ public class UpgradeDuplicates extends UpgradeProcess {
 		}
 	}
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		deleteDuplicateExpando();
 	}

@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
  */
 public class UpgradeSchema extends UpgradeProcess {
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		runSQLTemplate("update-5.1.6-5.1.7.sql", false);
 	}

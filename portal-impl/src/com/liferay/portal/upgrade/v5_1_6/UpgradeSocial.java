@@ -28,6 +28,7 @@ import com.liferay.portal.upgrade.v5_1_6.util.SocialRequestTable;
  */
 public class UpgradeSocial extends UpgradeProcess {
 
+	@Override
 	protected void doUpgrade() throws Exception {
 
 		// SocialActivity

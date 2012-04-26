@@ -35,10 +35,12 @@ import com.liferay.portal.upgrade.v5_2_6.UpgradeNestedPortlets;
  */
 public class UpgradeProcess_5_1_7_to_5_2_7 extends UpgradeProcess {
 
+	@Override
 	public int getThreshold() {
 		return ReleaseInfo.RELEASE_5_2_7_BUILD_NUMBER;
 	}
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		upgrade(UpgradeSchema.class);
 

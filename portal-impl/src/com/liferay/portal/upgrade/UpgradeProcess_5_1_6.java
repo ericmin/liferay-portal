@@ -25,10 +25,12 @@ import com.liferay.portal.upgrade.v5_1_6.UpgradeSocial;
  */
 public class UpgradeProcess_5_1_6 extends UpgradeProcess {
 
+	@Override
 	public int getThreshold() {
 		return ReleaseInfo.RELEASE_5_1_6_BUILD_NUMBER;
 	}
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		upgrade(UpgradeBlogs.class);
 		upgrade(UpgradePortletId.class);

@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
  */
 public class UpgradeMessageBoards extends UpgradeProcess {
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		updateGroupId();
 		updateMessageClassNameId();

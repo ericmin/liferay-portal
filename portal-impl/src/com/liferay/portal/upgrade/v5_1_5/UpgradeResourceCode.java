@@ -24,6 +24,7 @@ import com.liferay.portal.upgrade.v5_1_5.util.ResourceCodeTable;
  */
 public class UpgradeResourceCode extends UpgradeProcess {
 
+	@Override
 	protected void doUpgrade() throws Exception {
 		try {
 			runSQL("alter_column_type ResourceCode name VARCHAR(255) null");
