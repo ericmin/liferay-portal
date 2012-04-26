@@ -600,10 +600,10 @@ public class DLFileEntryLocalServiceImpl
 		}
 
 		try {
-			DLFileVersion fileVersion = dlFileVersionPersistence.findByF_V(
+			DLFileVersion dlFileVersion = dlFileVersionPersistence.findByF_V(
 				fileEntryId, version);
 
-			if (!fileVersion.isApproved()) {
+			if (!dlFileVersion.isApproved()) {
 				throw new InvalidFileVersionException(
 					"Cannot delete an unapproved file version");
 			}
@@ -617,10 +617,11 @@ public class DLFileEntryLocalServiceImpl
 				}
 			}
 
-			dlFileVersionPersistence.remove(fileVersion);
+			dlFileVersionPersistence.remove(dlFileVersion);
 
 			expandoValueLocalService.deleteValues(
-				DLFileVersion.class.getName(), fileVersion.getFileVersionId());
+				DLFileVersion.class.getName(),
+				dlFileVersion.getFileVersionId());
 
 			DLFileEntry dlFileEntry = dlFileEntryPersistence.findByPrimaryKey(
 				fileEntryId);
