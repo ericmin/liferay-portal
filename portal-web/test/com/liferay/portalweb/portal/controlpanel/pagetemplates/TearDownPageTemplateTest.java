@@ -98,7 +98,7 @@ public class TearDownPageTemplateTest extends BaseTestCase {
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
 				assertTrue(selenium.getConfirmation()
-								   .matches("^Are you sure you want to delete this[\\s\\S] It will be deleted immediately.$"));
+								   .matches("^Are you sure you want to delete this[\\s\\S]$"));
 
 			case 2:
 
@@ -142,7 +142,7 @@ public class TearDownPageTemplateTest extends BaseTestCase {
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
 				assertTrue(selenium.getConfirmation()
-								   .matches("^Are you sure you want to delete this[\\s\\S] It will be deleted immediately.$"));
+								   .matches("^Are you sure you want to delete this[\\s\\S]$"));
 
 			case 3:
 
@@ -186,7 +186,7 @@ public class TearDownPageTemplateTest extends BaseTestCase {
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
 				assertTrue(selenium.getConfirmation()
-								   .matches("^Are you sure you want to delete this[\\s\\S] It will be deleted immediately.$"));
+								   .matches("^Are you sure you want to delete this[\\s\\S]$"));
 
 			case 4:
 
@@ -230,7 +230,7 @@ public class TearDownPageTemplateTest extends BaseTestCase {
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
 				assertTrue(selenium.getConfirmation()
-								   .matches("^Are you sure you want to delete this[\\s\\S] It will be deleted immediately.$"));
+								   .matches("^Are you sure you want to delete this[\\s\\S]$"));
 
 			case 5:
 
@@ -274,7 +274,7 @@ public class TearDownPageTemplateTest extends BaseTestCase {
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
 				assertTrue(selenium.getConfirmation()
-								   .matches("^Are you sure you want to delete this[\\s\\S] It will be deleted immediately.$"));
+								   .matches("^Are you sure you want to delete this[\\s\\S]$"));
 
 			case 6:
 			case 100:

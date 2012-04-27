@@ -53,13 +53,13 @@ public class ActivatePageTemplateTest extends BaseTestCase {
 		selenium.waitForPageToLoad("30000");
 		loadRequiredJavaScriptModules();
 		assertEquals(RuntimeVariables.replace("Test Page Template"),
-			selenium.getText("//tr[6]/td[1]/a"));
+			selenium.getText("//tr[contains(.,'Test Page Template')]/td[1]/a"));
 		assertEquals(RuntimeVariables.replace("No"),
-			selenium.getText("//tr[6]/td[2]/a"));
+			selenium.getText("//tr[contains(.,'Test Page Template')]/td[2]/a"));
 		assertEquals(RuntimeVariables.replace("Actions"),
 			selenium.getText(
-				"xPath=(//span[@title='Actions']/ul/li/strong/a/span)[4]"));
-		selenium.clickAt("xPath=(//span[@title='Actions']/ul/li/strong/a/span)[4]",
+				"//tr[contains(.,'Test Page Template')]/td/span[@title='Actions']/ul/li/strong/a/span"));
+		selenium.clickAt("//tr[contains(.,'Test Page Template')]/td/span[@title='Actions']/ul/li/strong/a/span",
 			RuntimeVariables.replace("Actions"));
 
 		for (int second = 0;; second++) {
@@ -115,8 +115,8 @@ public class ActivatePageTemplateTest extends BaseTestCase {
 				"Your request completed successfully."),
 			selenium.getText("//div[@class='portlet-msg-success']"));
 		assertEquals(RuntimeVariables.replace("Test Page Template"),
-			selenium.getText("//tr[6]/td[1]/a"));
+			selenium.getText("//tr[contains(.,'Test Page Template')]/td[1]/a"));
 		assertEquals(RuntimeVariables.replace("Yes"),
-			selenium.getText("//tr[6]/td[2]/a"));
+			selenium.getText("//tr[contains(.,'Test Page Template')]/td[2]/a"));
 	}
 }

@@ -60,7 +60,7 @@ public class DeletePageTemplateTest extends BaseTestCase {
 
 			try {
 				if (selenium.isVisible(
-							"xPath=(//span[@title='Actions']/ul/li/strong/a/span)[4]")) {
+							"//tr[contains(.,'Test Page Template')]/td/span[@title='Actions']/ul/li/strong/a/span")) {
 					break;
 				}
 			}
@@ -70,7 +70,7 @@ public class DeletePageTemplateTest extends BaseTestCase {
 			Thread.sleep(1000);
 		}
 
-		selenium.clickAt("xPath=(//span[@title='Actions']/ul/li/strong/a/span)[4]",
+		selenium.clickAt("//tr[contains(.,'Test Page Template')]/td/span[@title='Actions']/ul/li/strong/a/span",
 			RuntimeVariables.replace("Actions"));
 
 		for (int second = 0;; second++) {
@@ -98,7 +98,7 @@ public class DeletePageTemplateTest extends BaseTestCase {
 		selenium.waitForPageToLoad("30000");
 		loadRequiredJavaScriptModules();
 		assertTrue(selenium.getConfirmation()
-						   .matches("^Are you sure you want to delete this[\\s\\S] It will be deleted immediately.$"));
+						   .matches("^Are you sure you want to delete this[\\s\\S]$"));
 
 		for (int second = 0;; second++) {
 			if (second >= 90) {
