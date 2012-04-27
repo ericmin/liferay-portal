@@ -413,7 +413,9 @@ public class PortletHotDeployListener extends BaseHotDeployListener {
 
 		// Javadoc
 
-		JavadocManagerUtil.load(servletContextName, portletClassLoader);
+		if (PropsValues.JAVADOCS_ENABLED) {
+			JavadocManagerUtil.load(servletContextName, portletClassLoader);
+		}
 
 		// Clear cache
 
