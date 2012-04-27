@@ -318,7 +318,7 @@ public class TearDownPasswordPolicyTest extends BaseTestCase {
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
 				assertTrue(selenium.getConfirmation()
-								   .matches("^Are you sure you want to delete this[\\s\\S] It will be deleted immediately.$"));
+								   .matches("^Are you sure you want to delete this[\\s\\S]$"));
 
 			case 7:
 
@@ -362,7 +362,7 @@ public class TearDownPasswordPolicyTest extends BaseTestCase {
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
 				assertTrue(selenium.getConfirmation()
-								   .matches("^Are you sure you want to delete this[\\s\\S] It will be deleted immediately.$"));
+								   .matches("^Are you sure you want to delete this[\\s\\S]$"));
 
 			case 8:
 
@@ -406,7 +406,7 @@ public class TearDownPasswordPolicyTest extends BaseTestCase {
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
 				assertTrue(selenium.getConfirmation()
-								   .matches("^Are you sure you want to delete this[\\s\\S] It will be deleted immediately.$"));
+								   .matches("^Are you sure you want to delete this[\\s\\S]$"));
 
 			case 9:
 
@@ -450,7 +450,7 @@ public class TearDownPasswordPolicyTest extends BaseTestCase {
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
 				assertTrue(selenium.getConfirmation()
-								   .matches("^Are you sure you want to delete this[\\s\\S] It will be deleted immediately.$"));
+								   .matches("^Are you sure you want to delete this[\\s\\S]$"));
 
 			case 10:
 
@@ -494,7 +494,7 @@ public class TearDownPasswordPolicyTest extends BaseTestCase {
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
 				assertTrue(selenium.getConfirmation()
-								   .matches("^Are you sure you want to delete this[\\s\\S] It will be deleted immediately.$"));
+								   .matches("^Are you sure you want to delete this[\\s\\S]$"));
 
 			case 11:
 			case 100:

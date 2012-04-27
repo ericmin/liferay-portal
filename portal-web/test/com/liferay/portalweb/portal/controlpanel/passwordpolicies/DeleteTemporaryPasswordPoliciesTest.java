@@ -105,7 +105,7 @@ public class DeleteTemporaryPasswordPoliciesTest extends BaseTestCase {
 		selenium.waitForPageToLoad("30000");
 		loadRequiredJavaScriptModules();
 		assertTrue(selenium.getConfirmation()
-						   .matches("^Are you sure you want to delete this[\\s\\S] It will be deleted immediately.$"));
+						   .matches("^Are you sure you want to delete this[\\s\\S]$"));
 
 		for (int second = 0;; second++) {
 			if (second >= 90) {
