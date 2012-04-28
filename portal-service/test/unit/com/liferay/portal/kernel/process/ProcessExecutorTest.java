@@ -14,8 +14,7 @@
 
 package com.liferay.portal.kernel.process;
 
-import com.liferay.portal.kernel.test.TestCase;
-import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
+import com.liferay.portal.kernel.test.BaseTestCase;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -35,21 +34,7 @@ import java.util.concurrent.atomic.AtomicReference;
 /**
  * @author Shuyang Zhou
  */
-public class ProcessExecutorTest extends TestCase {
-
-	@Override
-	public void setUp() throws Exception {
-		super.setUp();
-
-		PortalClassLoaderUtil.setClassLoader(getClass().getClassLoader());
-	}
-
-	@Override
-	public void tearDown() throws Exception {
-		super.tearDown();
-
-		PortalClassLoaderUtil.setClassLoader(null);
-	}
+public class ProcessExecutorTest extends BaseTestCase {
 
 	public void testCrash() throws Exception {
 
