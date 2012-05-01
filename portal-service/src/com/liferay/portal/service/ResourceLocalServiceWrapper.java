@@ -80,6 +80,10 @@ public class ResourceLocalServiceWrapper implements ResourceLocalService,
 		return _resourceLocalService.deleteResource(resource);
 	}
 
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _resourceLocalService.dynamicQuery();
+	}
+
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*

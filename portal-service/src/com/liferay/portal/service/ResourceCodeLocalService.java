@@ -35,7 +35,8 @@ import com.liferay.portal.kernel.transaction.Transactional;
  */
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
-public interface ResourceCodeLocalService extends PersistedModelLocalService {
+public interface ResourceCodeLocalService extends BaseLocalService,
+	PersistedModelLocalService {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -83,6 +84,8 @@ public interface ResourceCodeLocalService extends PersistedModelLocalService {
 	public com.liferay.portal.model.ResourceCode deleteResourceCode(
 		com.liferay.portal.model.ResourceCode resourceCode)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.

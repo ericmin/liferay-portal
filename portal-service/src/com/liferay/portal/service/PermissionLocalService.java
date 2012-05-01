@@ -35,7 +35,8 @@ import com.liferay.portal.kernel.transaction.Transactional;
  */
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
-public interface PermissionLocalService extends PersistedModelLocalService {
+public interface PermissionLocalService extends BaseLocalService,
+	PersistedModelLocalService {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -85,6 +86,8 @@ public interface PermissionLocalService extends PersistedModelLocalService {
 	public com.liferay.portal.model.Permission deletePermission(
 		com.liferay.portal.model.Permission permission)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.

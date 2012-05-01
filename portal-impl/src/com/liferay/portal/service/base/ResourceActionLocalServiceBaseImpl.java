@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.search.Indexable;
@@ -32,6 +33,7 @@ import com.liferay.portal.service.AccountLocalService;
 import com.liferay.portal.service.AccountService;
 import com.liferay.portal.service.AddressLocalService;
 import com.liferay.portal.service.AddressService;
+import com.liferay.portal.service.BaseLocalServiceImpl;
 import com.liferay.portal.service.BrowserTrackerLocalService;
 import com.liferay.portal.service.CMISRepositoryLocalService;
 import com.liferay.portal.service.ClassNameLocalService;
@@ -237,7 +239,8 @@ import javax.sql.DataSource;
  * @generated
  */
 public abstract class ResourceActionLocalServiceBaseImpl
-	implements ResourceActionLocalService, IdentifiableBean {
+	extends BaseLocalServiceImpl implements ResourceActionLocalService,
+		IdentifiableBean {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -294,6 +297,11 @@ public abstract class ResourceActionLocalServiceBaseImpl
 	public ResourceAction deleteResourceAction(ResourceAction resourceAction)
 		throws SystemException {
 		return resourceActionPersistence.remove(resourceAction);
+	}
+
+	public DynamicQuery dynamicQuery() {
+		return DynamicQueryFactoryUtil.forClass(ResourceAction.class,
+			getClassLoader());
 	}
 
 	/**
@@ -3975,12 +3983,6 @@ public abstract class ResourceActionLocalServiceBaseImpl
 	 */
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
-	}
-
-	protected ClassLoader getClassLoader() {
-		Class<?> clazz = getClass();
-
-		return clazz.getClassLoader();
 	}
 
 	protected Class<?> getModelClass() {
