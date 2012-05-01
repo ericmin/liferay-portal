@@ -22,7 +22,7 @@ import com.liferay.portalweb.portal.util.RuntimeVariables;
  */
 public class ViewTasksTaskAssignedToMeUTTest extends BaseTestCase {
 	public void testViewTasksTaskAssignedToMeUT() throws Exception {
-		selenium.open("/user/joebloggs/home1/");
+		selenium.open("/user/joebloggs/so/dashboard/");
 		loadRequiredJavaScriptModules();
 
 		for (int second = 0;; second++) {
@@ -76,7 +76,7 @@ public class ViewTasksTaskAssignedToMeUTTest extends BaseTestCase {
 			selenium.getText("//div[@class='task-data status']"));
 		assertEquals(RuntimeVariables.replace("Normal"),
 			selenium.getText("//div[@class='task-data normal']"));
-		selenium.open("/user/joebloggs/home1/");
+		selenium.open("/user/joebloggs/so/dashboard/");
 		loadRequiredJavaScriptModules();
 
 		for (int second = 0;; second++) {

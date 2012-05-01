@@ -23,7 +23,7 @@ import com.liferay.portalweb.portal.util.RuntimeVariables;
 public class SOUs_ViewTasksTaskAssignedToConnectionUTTest extends BaseTestCase {
 	public void testSOUs_ViewTasksTaskAssignedToConnectionUT()
 		throws Exception {
-		selenium.open("/user/socialoffice01/home1/");
+		selenium.open("/user/socialoffice01/so/dashboard/");
 		loadRequiredJavaScriptModules();
 
 		for (int second = 0;; second++) {
@@ -78,7 +78,7 @@ public class SOUs_ViewTasksTaskAssignedToConnectionUTTest extends BaseTestCase {
 			selenium.getText("//div[@class='task-data status']"));
 		assertEquals(RuntimeVariables.replace("Normal"),
 			selenium.getText("//div[@class='task-data normal']"));
-		selenium.open("/user/socialoffice01/home1/");
+		selenium.open("/user/socialoffice01/so/dashboard/");
 		loadRequiredJavaScriptModules();
 
 		for (int second = 0;; second++) {
