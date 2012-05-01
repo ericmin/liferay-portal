@@ -2768,10 +2768,10 @@ public class UserUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(UserPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(UserUtil.class, "_persistence");
 	}
 
 	private static UserPersistence _persistence;

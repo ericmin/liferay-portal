@@ -1136,11 +1136,10 @@ public class MDRRuleGroupInstanceUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(MDRRuleGroupInstancePersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(MDRRuleGroupInstanceUtil.class,
-			"_persistence");
 	}
 
 	private static MDRRuleGroupInstancePersistence _persistence;

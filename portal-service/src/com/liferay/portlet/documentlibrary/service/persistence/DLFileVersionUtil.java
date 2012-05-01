@@ -1024,11 +1024,10 @@ public class DLFileVersionUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(DLFileVersionPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(DLFileVersionUtil.class,
-			"_persistence");
 	}
 
 	private static DLFileVersionPersistence _persistence;

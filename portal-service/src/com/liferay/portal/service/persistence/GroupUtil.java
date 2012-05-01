@@ -2151,10 +2151,10 @@ public class GroupUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(GroupPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(GroupUtil.class, "_persistence");
 	}
 
 	private static GroupPersistence _persistence;

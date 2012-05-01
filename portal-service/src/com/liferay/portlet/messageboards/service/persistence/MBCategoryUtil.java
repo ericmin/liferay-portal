@@ -1254,10 +1254,10 @@ public class MBCategoryUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(MBCategoryPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(MBCategoryUtil.class, "_persistence");
 	}
 
 	private static MBCategoryPersistence _persistence;

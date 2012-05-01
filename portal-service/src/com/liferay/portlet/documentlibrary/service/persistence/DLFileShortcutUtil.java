@@ -1141,11 +1141,10 @@ public class DLFileShortcutUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(DLFileShortcutPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(DLFileShortcutUtil.class,
-			"_persistence");
 	}
 
 	private static DLFileShortcutPersistence _persistence;

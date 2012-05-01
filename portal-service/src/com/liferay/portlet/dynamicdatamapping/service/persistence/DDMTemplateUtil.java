@@ -1464,11 +1464,10 @@ public class DDMTemplateUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(DDMTemplatePersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(DDMTemplateUtil.class,
-			"_persistence");
 	}
 
 	private static DDMTemplatePersistence _persistence;
