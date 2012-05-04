@@ -331,11 +331,9 @@ Element contentEl = (Element)request.getAttribute(WebKeys.JOURNAL_ARTICLE_CONTEN
 								Element dynConEl = contentEl.element("dynamic-content");
 
 								if (dynConEl != null) {
-									Iterator itr2 = dynConEl.elements("option").iterator();
+									List<Element> dynConElements = dynConEl.elements("option");
 
-									while (itr2.hasNext()) {
-										Element option = (Element)itr2.next();
-
+									for (Element option : dynConElements) {
 										if (listElValue.equals(option.getText())) {
 											contains = true;
 										}
