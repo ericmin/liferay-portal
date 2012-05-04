@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portalweb.portlet.messageboards.message.gmailviewmbthreadmessagegmail;
+package com.liferay.portalweb.portlet.messageboards.hybrid.gmailviewmbthreadmessagegmail;
 
 import com.liferay.portalweb.portal.BaseTestCase;
 import com.liferay.portalweb.portal.util.RuntimeVariables;
@@ -23,9 +23,7 @@ import com.liferay.portalweb.portal.util.RuntimeVariables;
 public class PostNewMBCategoryThreadMessageSiteTest extends BaseTestCase {
 	public void testPostNewMBCategoryThreadMessageSite()
 		throws Exception {
-		selenium.selectWindow("null");
-		selenium.selectFrame("relative=top");
-		selenium.open("/web/site-name");
+		selenium.open("/web/site-name/");
 		loadRequiredJavaScriptModules();
 
 		for (int second = 0;; second++) {
@@ -186,7 +184,7 @@ public class PostNewMBCategoryThreadMessageSiteTest extends BaseTestCase {
 		assertEquals(RuntimeVariables.replace(
 				"Your request completed successfully."),
 			selenium.getText("//div[@class='portlet-msg-success']"));
-		selenium.open("/web/site-name");
+		selenium.open("/web/site-name/");
 		loadRequiredJavaScriptModules();
 
 		for (int second = 0;; second++) {
