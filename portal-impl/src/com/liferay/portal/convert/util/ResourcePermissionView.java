@@ -68,18 +68,6 @@ public class ResourcePermissionView extends Table {
 	}
 
 	@Override
-	public String getSelectSQL() throws Exception {
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(_SELECT_SQL);
-		sb.append(StringPool.APOSTROPHE);
-		sb.append(_name);
-		sb.append(StringPool.APOSTROPHE);
-
-		return sb.toString();
-	}
-
-	@Override
 	public PreparedStatement getPreparedStatement(Connection con)
 		throws Exception {
 
@@ -90,6 +78,18 @@ public class ResourcePermissionView extends Table {
 		ps.setString(1, _name);
 
 		return ps;
+	}
+
+	@Override
+	public String getSelectSQL() throws Exception {
+		StringBundler sb = new StringBundler(4);
+
+		sb.append(_SELECT_SQL);
+		sb.append(StringPool.APOSTROPHE);
+		sb.append(_name);
+		sb.append(StringPool.APOSTROPHE);
+
+		return sb.toString();
 	}
 
 	private static final String _SELECT_SQL =
