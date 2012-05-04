@@ -68,7 +68,7 @@ public class ResourcePermissionView extends Table {
 	}
 
 	@Override
-	public PreparedStatement getPreparedStatement(Connection con)
+	public PreparedStatement getSelectPreparedStatement(Connection con)
 		throws Exception {
 
 		String selectSQL = _SELECT_SQL + StringPool.QUESTION;

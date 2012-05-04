@@ -179,7 +179,7 @@ public class Table {
 			new FileWriter(tempFileName));
 
 		try {
-			ps = getPreparedStatement(con);
+			ps = getSelectPreparedStatement(con);
 
 			rs = ps.executeQuery();
 
@@ -319,12 +319,10 @@ public class Table {
 		return _order;
 	}
 
-	public PreparedStatement getPreparedStatement(Connection con)
+	public PreparedStatement getSelectPreparedStatement(Connection con)
 		throws Exception {
 
-		PreparedStatement ps = con.prepareStatement(getSelectSQL());
-
-		return ps;
+		return con.prepareStatement(getSelectSQL());
 	}
 
 	public String getSelectSQL() throws Exception {
