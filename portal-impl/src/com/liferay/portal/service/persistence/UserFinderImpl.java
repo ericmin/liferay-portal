@@ -219,11 +219,8 @@ public class UserFinderImpl
 		screenNames = CustomSQLUtil.keywords(screenNames);
 		emailAddresses = CustomSQLUtil.keywords(emailAddresses);
 
-		Session session = null;
-
 		Long groupId = (Long)params.get("usersGroups");
-
-		boolean inherit = GetterUtil.getBoolean(params.get("inherit"), false);
+		boolean inherit = GetterUtil.getBoolean(params.get("inherit"));
 
 		boolean doUnion = Validator.isNotNull(groupId) && inherit;
 
@@ -265,6 +262,8 @@ public class UserFinderImpl
 			params3.remove("usersGroups");
 			params3.put("usersUserGroups", userGroupIds);
 		}
+
+		Session session = null;
 
 		try {
 			session = openSession();
@@ -433,8 +432,7 @@ public class UserFinderImpl
 		emailAddresses = CustomSQLUtil.keywords(emailAddresses);
 
 		Long groupId = (Long)params.get("usersGroups");
-
-		boolean inherit = GetterUtil.getBoolean(params.get("inherit"), false);
+		boolean inherit = GetterUtil.getBoolean(params.get("inherit"));
 
 		boolean doUnion = Validator.isNotNull(groupId) && inherit;
 
@@ -443,8 +441,6 @@ public class UserFinderImpl
 		LinkedHashMap<String, Object> params2 = null;
 
 		LinkedHashMap<String, Object> params3 = null;
-
-		Session session = null;
 
 		if (doUnion) {
 			params2 = new LinkedHashMap<String, Object>(params1);
@@ -478,6 +474,8 @@ public class UserFinderImpl
 			params3.remove("usersGroups");
 			params3.put("usersUserGroups", userGroupIds);
 		}
+
+		Session session = null;
 
 		try {
 			session = openSession();
