@@ -512,7 +512,10 @@ public class HookHotDeployListener
 			return;
 		}
 
-		logRegistration(servletContextName);
+		if (_log.isInfoEnabled()) {
+			_log.info(
+				"Registering extension environment for " + servletContextName);
+		}
 
 		_servletContextNames.add(servletContextName);
 
@@ -1915,12 +1918,6 @@ public class HookHotDeployListener
 			return ProxyUtil.newProxyInstance(
 				portletClassLoader, new Class[] {StrutsPortletAction.class},
 				new ClassLoaderBeanHandler(strutsAction, portletClassLoader));
-		}
-	}
-
-	protected void logRegistration(String servletContextName) {
-		if (_log.isInfoEnabled()) {
-			_log.info("Registering hook for " + servletContextName);
 		}
 	}
 
