@@ -746,9 +746,6 @@ public class LayoutAction extends Action {
 		ServletContext servletContext = (ServletContext)request.getAttribute(
 			WebKeys.CTX);
 
-		InvokerPortlet invokerPortlet = PortletInstanceFactoryUtil.create(
-			portlet, servletContext);
-
 		if (user != null) {
 			InvokerPortletImpl.clearResponse(
 				session, layout.getPrimaryKey(), portletId,
@@ -795,6 +792,9 @@ public class LayoutAction extends Action {
 			PermissionThreadLocal.getPermissionChecker();
 
 		if (lifecycle.equals(PortletRequest.ACTION_PHASE)) {
+			InvokerPortlet invokerPortlet = PortletInstanceFactoryUtil.create(
+				portlet, servletContext);
+
 			String contentType = request.getHeader(HttpHeaders.CONTENT_TYPE);
 
 			if (_log.isDebugEnabled()) {
@@ -907,6 +907,9 @@ public class LayoutAction extends Action {
 		}
 
 		if (lifecycle.equals(PortletRequest.RESOURCE_PHASE)) {
+			InvokerPortlet invokerPortlet = PortletInstanceFactoryUtil.create(
+				portlet, servletContext);
+
 			PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
 			String portletPrimaryKey = PortletPermissionUtil.getPrimaryKey(
