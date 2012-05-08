@@ -308,6 +308,7 @@ public class DLPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		String titleWithExtension = DLUtil.getTitleWithExtension(fileEntry);
 		String extension = fileEntry.getExtension();
+
 		String dotExtension = StringPool.PERIOD + extension;
 
 		if (portletDataContext.isDataStrategyMirror()) {
