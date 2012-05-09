@@ -676,7 +676,7 @@ public class LayoutExporter {
 		boolean isExportLAR = ParamUtil.getBoolean(
 			serviceContext, "isExportLAR");
 
-		if (LayoutStagingUtil.isBranchingLayout(layout) && !isExportLAR) {
+		if (!isExportLAR && LayoutStagingUtil.isBranchingLayout(layout)) {
 
 			long layoutSetBranchId = ParamUtil.getLong(
 				serviceContext, "layoutSetBranchId");
@@ -689,7 +689,7 @@ public class LayoutExporter {
 				layoutSetBranchId, true, layout.getPlid());
 
 			if (layoutRevision == null) {
-					return;
+				return;
 			}
 
 			LayoutStagingHandler layoutStagingHandler =
