@@ -40,6 +40,7 @@ import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.MathUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -204,8 +205,8 @@ public class JournalArticleLocalServiceImpl
 
 		Locale locale = LocaleUtil.getDefault();
 
-		String defaultLanguageId = GetterUtil.getString(
-			serviceContext.getAttribute("defaultLanguageId"));
+		String defaultLanguageId = ParamUtil.getString(
+			serviceContext, "defaultLanguageId");
 
 		if (Validator.isNotNull(defaultLanguageId)) {
 			locale = LocaleUtil.fromLanguageId(defaultLanguageId);
@@ -1959,8 +1960,7 @@ public class JournalArticleLocalServiceImpl
 
 		boolean incrementVersion = false;
 
-		boolean imported = GetterUtil.getBoolean(
-			serviceContext.getAttribute("imported"));
+		boolean imported = ParamUtil.getBoolean(serviceContext, "imported");
 
 		if (imported) {
 			oldArticle = getArticle(groupId, articleId, version);
@@ -2022,8 +2022,8 @@ public class JournalArticleLocalServiceImpl
 
 		Locale locale = LocaleUtil.getDefault();
 
-		String defaultLanguageId = GetterUtil.getString(
-			serviceContext.getAttribute("defaultLanguageId"));
+		String defaultLanguageId = ParamUtil.getString(
+			serviceContext, "defaultLanguageId");
 
 		if (Validator.isNotNull(defaultLanguageId)) {
 			locale = LocaleUtil.fromLanguageId(defaultLanguageId);
@@ -3051,8 +3051,8 @@ public class JournalArticleLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		String serviceContextUrlTitle = GetterUtil.getString(
-			serviceContext.getAttribute("urlTitle"));
+		String serviceContextUrlTitle = ParamUtil.getString(
+			serviceContext, "urlTitle");
 
 		String urlTitle = null;
 

@@ -23,7 +23,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowThreadLocal;
 import com.liferay.portal.model.Address;
@@ -1628,8 +1628,8 @@ public class UserServiceImpl extends UserServiceBaseImpl {
 			checkUserGroupIds(CompanyConstants.SYSTEM, userGroupIds);
 		}
 
-		boolean anonymousUser = GetterUtil.getBoolean(
-			serviceContext.getAttribute("anonymousUser"));
+		boolean anonymousUser = ParamUtil.getBoolean(
+			serviceContext, "anonymousUser");
 
 		if (((creatorUserId != 0) &&
 			 (creatorUserId != getDefaultUserId(companyId))) ||
