@@ -1184,7 +1184,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 		}
 	}
 
-	public boolean isDataStrategyMirrorWithOverwritting() {
+	public boolean isDataStrategyMirrorWithOverwriting() {
 		if (_dataStrategy.equals(
 				PortletDataHandlerKeys.DATA_STRATEGY_MIRROR_OVERWRITE)) {
 
