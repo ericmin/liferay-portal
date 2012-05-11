@@ -238,7 +238,7 @@ public class UserFinderImpl
 		if (doUnion) {
 			params2 = new LinkedHashMap<String, Object>(params1);
 
-			ArrayList<Long> organizationIds = new ArrayList<Long>();
+			List<Long> organizationIds = new ArrayList<Long>();
 
 			Group group = GroupLocalServiceUtil.fetchGroup(groupId);
 
@@ -258,12 +258,12 @@ public class UserFinderImpl
 
 			params3 = new LinkedHashMap<String, Object>(params1);
 
-			ArrayList<Long> userGroupIds = new ArrayList<Long>();
+			Long[] userGroupIds = new Long[userGroups.size()];
 
-			List<UserGroup> userGroups = GroupUtil.getUserGroups(groupId);
+			for (int i = 0; i < userGroups.size(); i++) {
+				UserGroup userGroup = userGroups.get(i);
 
-			for (UserGroup userGroup : userGroups) {
-				userGroupIds.add(userGroup.getUserGroupId());
+				userGroupIds[i] = userGroup.getUserGroupId();
 			}
 
 			params3.remove("usersGroups");
@@ -456,7 +456,7 @@ public class UserFinderImpl
 		if (doUnion) {
 			params2 = new LinkedHashMap<String, Object>(params1);
 
-			ArrayList<Long> organizationIds = new ArrayList<Long>();
+			List<Long> organizationIds = new ArrayList<Long>();
 
 			Group group = GroupLocalServiceUtil.fetchGroup(groupId);
 
@@ -476,12 +476,12 @@ public class UserFinderImpl
 
 			params3 = new LinkedHashMap<String, Object>(params1);
 
-			ArrayList<Long> userGroupIds = new ArrayList<Long>();
+			Long[] userGroupIds = new Long[userGroups.size()];
 
-			List<UserGroup> userGroups = GroupUtil.getUserGroups(groupId);
+			for (int i = 0; i < userGroups.size(); i++) {
+				UserGroup userGroup = userGroups.get(i);
 
-			for (UserGroup userGroup : userGroups) {
-				userGroupIds.add(userGroup.getUserGroupId());
+				userGroupIds[i] = userGroup.getUserGroupId();
 			}
 
 			params3.remove("usersGroups");
