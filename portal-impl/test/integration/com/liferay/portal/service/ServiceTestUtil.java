@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.messaging.sender.SynchronousMessageSender;
 import com.liferay.portal.kernel.scheduler.SchedulerEngineUtil;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.search.SearchContext;
-import com.liferay.portal.kernel.trash.TrashHandlerRegistryUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.FriendlyURLNormalizerUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -50,20 +49,17 @@ import com.liferay.portal.util.PropsValues;
 import com.liferay.portal.util.TestPropsValues;
 import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
 import com.liferay.portlet.blogs.asset.BlogsEntryAssetRendererFactory;
-import com.liferay.portlet.blogs.trash.BlogsEntryTrashHandler;
 import com.liferay.portlet.blogs.util.BlogsIndexer;
 import com.liferay.portlet.blogs.workflow.BlogsEntryWorkflowHandler;
 import com.liferay.portlet.bookmarks.util.BookmarksIndexer;
 import com.liferay.portlet.directory.workflow.UserWorkflowHandler;
 import com.liferay.portlet.documentlibrary.asset.DLFileEntryAssetRendererFactory;
-import com.liferay.portlet.documentlibrary.trash.DLFileEntryTrashHandler;
 import com.liferay.portlet.documentlibrary.util.DLIndexer;
 import com.liferay.portlet.documentlibrary.workflow.DLFileEntryWorkflowHandler;
 import com.liferay.portlet.journal.workflow.JournalArticleWorkflowHandler;
 import com.liferay.portlet.messageboards.util.MBIndexer;
 import com.liferay.portlet.messageboards.workflow.MBDiscussionWorkflowHandler;
 import com.liferay.portlet.messageboards.workflow.MBMessageWorkflowHandler;
-import com.liferay.portlet.usersadmin.util.ContactIndexer;
 import com.liferay.portlet.usersadmin.util.UserIndexer;
 import com.liferay.util.PwdGenerator;
 
@@ -86,9 +82,7 @@ public class ServiceTestUtil {
 
 	public static final int THREAD_COUNT = 25;
 
-	public static Group addGroup(long parentGroupId, String name)
-		throws Exception {
-
+	public static Group addGroup(String name) throws Exception {
 		Group group = GroupLocalServiceUtil.fetchGroup(
 			TestPropsValues.getCompanyId(), name);
 
@@ -104,12 +98,8 @@ public class ServiceTestUtil {
 		boolean active = true;
 
 		return GroupLocalServiceUtil.addGroup(
-			TestPropsValues.getUserId(), parentGroupId, null, 0, name,
-			description, type, friendlyURL, site, active, getServiceContext());
-	}
-
-	public static Group addGroup(String name) throws Exception {
-		return addGroup(GroupConstants.DEFAULT_PARENT_GROUP_ID, name);
+			TestPropsValues.getUserId(), null, 0, name, description, type,
+			friendlyURL, site, active, getServiceContext());
 	}
 
 	public static Layout addLayout(long groupId, String name) throws Exception {
@@ -246,7 +236,6 @@ public class ServiceTestUtil {
 		// Indexers
 
 		IndexerRegistryUtil.register(new BlogsIndexer());
-		IndexerRegistryUtil.register(new ContactIndexer());
 		IndexerRegistryUtil.register(new UserIndexer());
 		IndexerRegistryUtil.register(new BookmarksIndexer());
 		IndexerRegistryUtil.register(new DLIndexer());
@@ -308,11 +297,6 @@ public class ServiceTestUtil {
 			new BlogsEntryAssetRendererFactory());
 		AssetRendererFactoryRegistryUtil.register(
 			new DLFileEntryAssetRendererFactory());
-
-		// Trash
-
-		TrashHandlerRegistryUtil.register(new BlogsEntryTrashHandler());
-		TrashHandlerRegistryUtil.register(new DLFileEntryTrashHandler());
 
 		// Workflow
 
