@@ -436,6 +436,9 @@ public class LangBuilder {
 				value = StringUtil.replace(value, " this ", " This ");
 			}
 		}
+		else {
+			value = StringUtil.replace(value, " From ", " from ");
+		}
 
 		return value;
 	}
