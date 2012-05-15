@@ -196,9 +196,11 @@ public class HeaderCacheServletResponse extends HttpServletResponseWrapper {
 
 	@Override
 	public void setContentType(String contentType) {
-		_contentType = contentType;
+		if (contentType != null) {
+			_contentType = contentType;
 
-		super.setContentType(contentType);
+			super.setContentType(contentType);
+		}
 	}
 
 	@Override
