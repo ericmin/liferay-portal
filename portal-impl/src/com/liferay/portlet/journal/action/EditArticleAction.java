@@ -230,7 +230,7 @@ public class EditArticleAction extends PortletAction {
 				e instanceof NoSuchTemplateException ||
 				e instanceof PrincipalException) {
 
-				SessionErrors.add(actionRequest, e.getClass().getName());
+				SessionErrors.add(actionRequest, e.getClass());
 
 				setForward(actionRequest, "portlet.journal.error");
 			}
@@ -246,7 +246,7 @@ public class EditArticleAction extends PortletAction {
 					 e instanceof ArticleVersionException ||
 					 e instanceof DuplicateArticleIdException) {
 
-				SessionErrors.add(actionRequest, e.getClass().getName());
+				SessionErrors.add(actionRequest, e.getClass());
 			}
 			else if (e instanceof AssetCategoryException ||
 					 e instanceof AssetTagException) {
@@ -278,7 +278,7 @@ public class EditArticleAction extends PortletAction {
 			if (//e instanceof NoSuchArticleException ||
 				e instanceof PrincipalException) {
 
-				SessionErrors.add(renderRequest, e.getClass().getName());
+				SessionErrors.add(renderRequest, e.getClass());
 
 				return mapping.findForward("portlet.journal.error");
 			}
