@@ -15,7 +15,6 @@
 package com.liferay.portlet.social.service;
 
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
-import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
@@ -424,7 +423,6 @@ public class SocialActivityCounterLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(SocialActivityCounterLocalServiceUtil.class,
 				"_service");
-			MethodCache.remove(SocialActivityCounterLocalService.class);
 		}
 
 		return _service;
