@@ -1736,7 +1736,7 @@
 
 		<antcall target="build-test-ant-script">
 			<param name="test.ant.script.command" value="properties-message-boards-publish-to-live-by-default" />
-			<param name="test.ant.script.properties" value="Message.boards.publish.to.live.by.default=true" />
+			<param name="test.ant.script.properties" value="message.boards.publish.to.live.by.default=true" />
 			<param name="test.ant.script.suite" value="PropertiesMessageBoardsPublishToLiveByDefaultTestSuite" />
 		</antcall>
 
