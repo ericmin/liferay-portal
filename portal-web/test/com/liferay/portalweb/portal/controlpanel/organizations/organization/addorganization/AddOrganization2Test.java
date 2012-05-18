@@ -20,8 +20,8 @@ import com.liferay.portalweb.portal.util.RuntimeVariables;
 /**
  * @author Brian Wing Shun Chan
  */
-public class AddOrganizationTest extends BaseTestCase {
-	public void testAddOrganization() throws Exception {
+public class AddOrganization2Test extends BaseTestCase {
+	public void testAddOrganization2() throws Exception {
 		selenium.open("/web/guest/home/");
 		loadRequiredJavaScriptModules();
 		assertEquals(RuntimeVariables.replace("Go to"),
@@ -82,7 +82,7 @@ public class AddOrganizationTest extends BaseTestCase {
 		selenium.waitForPageToLoad("30000");
 		loadRequiredJavaScriptModules();
 		selenium.type("//input[@id='_125_name']",
-			RuntimeVariables.replace("Organization Name"));
+			RuntimeVariables.replace("Organization2 Name"));
 		selenium.select("//select[@id='_125_type']",
 			RuntimeVariables.replace("label=Regular Organization"));
 		selenium.clickAt("//input[@value='Save']",
@@ -92,7 +92,7 @@ public class AddOrganizationTest extends BaseTestCase {
 		assertEquals(RuntimeVariables.replace(
 				"Your request completed successfully."),
 			selenium.getText("//div[@class='portlet-msg-success']"));
-		assertEquals(RuntimeVariables.replace("Organization Name"),
+		assertEquals(RuntimeVariables.replace("Organization2 Name"),
 			selenium.getText("//h1[@class='header-title']"));
 	}
 }
