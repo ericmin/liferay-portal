@@ -25,6 +25,9 @@ public class ErrorAddUserScreenNameNumberOrganizationIdTest extends BaseTestCase
 		throws Exception {
 		selenium.open("/web/guest/home/");
 		loadRequiredJavaScriptModules();
+		assertEquals(RuntimeVariables.replace("Go to"),
+			selenium.getText("//li[@id='_145_mySites']/a/span"));
+		selenium.mouseOver("//li[@id='_145_mySites']/a/span");
 
 		for (int second = 0;; second++) {
 			if (second >= 90) {
@@ -32,7 +35,7 @@ public class ErrorAddUserScreenNameNumberOrganizationIdTest extends BaseTestCase
 			}
 
 			try {
-				if (selenium.isElementPresent("link=Control Panel")) {
+				if (selenium.isVisible("link=Control Panel")) {
 					break;
 				}
 			}
@@ -51,14 +54,16 @@ public class ErrorAddUserScreenNameNumberOrganizationIdTest extends BaseTestCase
 		selenium.waitForPageToLoad("30000");
 		loadRequiredJavaScriptModules();
 		selenium.type("//input[@name='_125_keywords']",
-			RuntimeVariables.replace("Selenium"));
+			RuntimeVariables.replace("Organization Name"));
 		selenium.clickAt("//input[@value='Search']",
 			RuntimeVariables.replace("Search"));
 		selenium.waitForPageToLoad("30000");
 		loadRequiredJavaScriptModules();
-		assertEquals(RuntimeVariables.replace("Selenium"),
+		assertEquals(RuntimeVariables.replace("Organization Name"),
 			selenium.getText("//td[2]//strong"));
-		selenium.clickAt("//span[@title='Actions']/ul",
+		assertEquals(RuntimeVariables.replace("Actions"),
+			selenium.getText("//span[@title='Actions']/ul/li/strong/a/span"));
+		selenium.clickAt("//span[@title='Actions']/ul/li/strong/a/span",
 			RuntimeVariables.replace("Actions"));
 
 		for (int second = 0;; second++) {
@@ -68,7 +73,7 @@ public class ErrorAddUserScreenNameNumberOrganizationIdTest extends BaseTestCase
 
 			try {
 				if (selenium.isVisible(
-							"//div[@class='lfr-component lfr-menu-list']/ul/li/a")) {
+							"//div[@class='lfr-component lfr-menu-list']/ul/li/a[contains(.,'Edit')]")) {
 					break;
 				}
 			}
@@ -80,16 +85,19 @@ public class ErrorAddUserScreenNameNumberOrganizationIdTest extends BaseTestCase
 
 		assertEquals(RuntimeVariables.replace("Edit"),
 			selenium.getText(
-				"//div[@class='lfr-component lfr-menu-list']/ul/li/a"));
+				"//div[@class='lfr-component lfr-menu-list']/ul/li/a[contains(.,'Edit')]"));
 		selenium.click(RuntimeVariables.replace(
-				"//div[@class='lfr-component lfr-menu-list']/ul/li/a"));
+				"//div[@class='lfr-component lfr-menu-list']/ul/li/a[contains(.,'Edit')]"));
 		selenium.waitForPageToLoad("30000");
 		loadRequiredJavaScriptModules();
 
 		String OrganizationID = selenium.getFirstNumber(
 				"//fieldset[1]/div/div[3]/div");
 		RuntimeVariables.setValue("OrganizationID", OrganizationID);
-		selenium.clickAt("link=Add", RuntimeVariables.replace("Add"));
+		assertEquals(RuntimeVariables.replace("Add"),
+			selenium.getText("//span[@title='Add']/ul/li/strong/a/span"));
+		selenium.clickAt("//span[@title='Add']/ul/li/strong/a/span",
+			RuntimeVariables.replace("Add"));
 
 		for (int second = 0;; second++) {
 			if (second >= 90) {
@@ -98,7 +106,7 @@ public class ErrorAddUserScreenNameNumberOrganizationIdTest extends BaseTestCase
 
 			try {
 				if (selenium.isVisible(
-							"//div[@class='lfr-component lfr-menu-list']/ul/li/a")) {
+							"//div[@class='lfr-component lfr-menu-list']/ul/li/a[contains(.,'User')]")) {
 					break;
 				}
 			}
@@ -110,19 +118,19 @@ public class ErrorAddUserScreenNameNumberOrganizationIdTest extends BaseTestCase
 
 		assertEquals(RuntimeVariables.replace("User"),
 			selenium.getText(
-				"//div[@class='lfr-component lfr-menu-list']/ul/li/a"));
+				"//div[@class='lfr-component lfr-menu-list']/ul/li/a[contains(.,'User')]"));
 		selenium.click(RuntimeVariables.replace(
-				"//div[@class='lfr-component lfr-menu-list']/ul/li/a"));
+				"//div[@class='lfr-component lfr-menu-list']/ul/li/a[contains(.,'User')]"));
 		selenium.waitForPageToLoad("30000");
 		loadRequiredJavaScriptModules();
 		selenium.type("//input[@id='_125_screenName']",
 			RuntimeVariables.replace(RuntimeVariables.getValue("OrganizationID")));
 		selenium.type("//input[@id='_125_emailAddress']",
-			RuntimeVariables.replace("testA@selenium.com"));
+			RuntimeVariables.replace("userea@liferay.com"));
 		selenium.type("//input[@id='_125_firstName']",
-			RuntimeVariables.replace("testA"));
+			RuntimeVariables.replace("userfn"));
 		selenium.type("//input[@id='_125_lastName']",
-			RuntimeVariables.replace("testA"));
+			RuntimeVariables.replace("userln"));
 		selenium.clickAt("//input[@value='Save']",
 			RuntimeVariables.replace("Save"));
 		selenium.waitForPageToLoad("30000");

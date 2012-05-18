@@ -29,6 +29,9 @@ public class TearDownOrganizationTest extends BaseTestCase {
 			case 1:
 				selenium.open("/web/guest/home/");
 				loadRequiredJavaScriptModules();
+				assertEquals(RuntimeVariables.replace("Go to"),
+					selenium.getText("//li[@id='_145_mySites']/a/span"));
+				selenium.mouseOver("//li[@id='_145_mySites']/a/span");
 
 				for (int second = 0;; second++) {
 					if (second >= 90) {
@@ -36,7 +39,7 @@ public class TearDownOrganizationTest extends BaseTestCase {
 					}
 
 					try {
-						if (selenium.isElementPresent("link=Control Panel")) {
+						if (selenium.isVisible("link=Control Panel")) {
 							break;
 						}
 					}
@@ -54,19 +57,15 @@ public class TearDownOrganizationTest extends BaseTestCase {
 					RuntimeVariables.replace("Users and Organizations"));
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
-				selenium.clickAt("link=Search All Organizations",
-					RuntimeVariables.replace("Search All Organizations"));
-				selenium.waitForPageToLoad("30000");
-				loadRequiredJavaScriptModules();
-				selenium.type("//input[@name='_125_keywords']",
-					RuntimeVariables.replace("Selenium"));
+				selenium.type("//input[@id='_125_keywords']",
+					RuntimeVariables.replace("Organization*"));
 				selenium.click(RuntimeVariables.replace(
 						"//input[@value='Search']"));
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
 
 				boolean organization1Present = selenium.isElementPresent(
-						"//td[8]/span/ul/li/strong/a/span");
+						"//span[@title='Actions']/ul[@id='_125_organizationsSearchContainer_1_menu']/li/strong/a/span");
 
 				if (!organization1Present) {
 					label = 11;
@@ -74,10 +73,10 @@ public class TearDownOrganizationTest extends BaseTestCase {
 					continue;
 				}
 
-				assertEquals(RuntimeVariables.replace("Actions"),
-					selenium.getText("//td[8]/span/ul/li/strong/a/span"));
-				selenium.clickAt("//td[8]/span/ul/li/strong/a/span",
-					RuntimeVariables.replace("Actions"));
+				selenium.clickAt("//td[@id='_125_organizationsSearchContainer_col-name_row-1']/a/strong",
+					RuntimeVariables.replace("Organization"));
+				selenium.waitForPageToLoad("30000");
+				loadRequiredJavaScriptModules();
 
 				for (int second = 0;; second++) {
 					if (second >= 90) {
@@ -86,7 +85,7 @@ public class TearDownOrganizationTest extends BaseTestCase {
 
 					try {
 						if (selenium.isVisible(
-									"//div[@class='lfr-component lfr-menu-list']/ul/li[3]/a")) {
+									"//div[@class='lfr-component lfr-menu-list lfr-menu-expanded align-right null']/ul/li/a[contains(.,'Assign Users')]")) {
 							break;
 						}
 					}
@@ -98,31 +97,20 @@ public class TearDownOrganizationTest extends BaseTestCase {
 
 				assertEquals(RuntimeVariables.replace("Assign Users"),
 					selenium.getText(
-						"//div[@class='lfr-component lfr-menu-list']/ul/li[3]/a"));
+						"//div[@class='lfr-component lfr-menu-list lfr-menu-expanded align-right null']/ul/li/a[contains(.,'Assign Users')]"));
 				selenium.click(RuntimeVariables.replace(
-						"//div[@class='lfr-component lfr-menu-list']/ul/li[3]/a"));
+						"//div[@class='lfr-component lfr-menu-list lfr-menu-expanded align-right null']/ul/li/a[contains(.,'Assign Users')]"));
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
-				selenium.clickAt("//input[@name='_125_allRowIds']",
-					RuntimeVariables.replace("All Rows"));
-				selenium.clickAt("//input[@value='Update Associations']",
-					RuntimeVariables.replace("Update Associations"));
-				selenium.waitForPageToLoad("30000");
-				loadRequiredJavaScriptModules();
-				selenium.clickAt("//a[@id='_125_TabsBack']",
-					RuntimeVariables.replace("\u00ab Back"));
-				selenium.waitForPageToLoad("30000");
-				loadRequiredJavaScriptModules();
-				assertTrue(selenium.isVisible("//td[2]/a"));
-				selenium.clickAt("//td[2]/a",
-					RuntimeVariables.replace("Organization Entry 1"));
+				selenium.clickAt("link=Current",
+					RuntimeVariables.replace("Current"));
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
 
-				boolean suborganization1Present = selenium.isElementPresent(
-						"//td[4]/span/ul/li/strong/a");
+				boolean users1Found = selenium.isVisible(
+						"//input[@name='_125_allRowIds']");
 
-				if (!suborganization1Present) {
+				if (!users1Found) {
 					label = 2;
 
 					continue;
@@ -130,45 +118,64 @@ public class TearDownOrganizationTest extends BaseTestCase {
 
 				selenium.clickAt("//input[@name='_125_allRowIds']",
 					RuntimeVariables.replace("All Rows"));
+				selenium.clickAt("//input[@value='Update Associations']",
+					RuntimeVariables.replace("Update Associations"));
+				selenium.waitForPageToLoad("30000");
+				loadRequiredJavaScriptModules();
+				assertEquals(RuntimeVariables.replace(
+						"Your request completed successfully."),
+					selenium.getText("//div[@class='portlet-msg-success']"));
+
+			case 2:
+				assertEquals(RuntimeVariables.replace("\u00ab Back"),
+					selenium.getText("//a[@id='_125_TabsBack']"));
+				selenium.clickAt("//a[@id='_125_TabsBack']",
+					RuntimeVariables.replace("\u00ab Back"));
+				selenium.waitForPageToLoad("30000");
+				loadRequiredJavaScriptModules();
+
+				for (int second = 0;; second++) {
+					if (second >= 90) {
+						fail("timeout");
+					}
+
+					try {
+						if (selenium.isVisible(
+									"//div[@class='lfr-component lfr-menu-list lfr-menu-expanded align-right null']/ul/li/a[contains(.,'Delete')]")) {
+							break;
+						}
+					}
+					catch (Exception e) {
+					}
+
+					Thread.sleep(1000);
+				}
+
+				assertEquals(RuntimeVariables.replace("Delete"),
+					selenium.getText(
+						"//div[@class='lfr-component lfr-menu-list lfr-menu-expanded align-right null']/ul/li/a[contains(.,'Delete')]"));
 				selenium.click(RuntimeVariables.replace(
-						"//input[@value='Delete']"));
+						"//div[@class='lfr-component lfr-menu-list lfr-menu-expanded align-right null']/ul/li/a[contains(.,'Delete')]"));
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
 				assertTrue(selenium.getConfirmation()
 								   .matches("^Are you sure you want to delete this[\\s\\S]$"));
-
-			case 2:
+				assertEquals(RuntimeVariables.replace(
+						"Your request completed successfully."),
+					selenium.getText("//div[@class='portlet-msg-success']"));
 				selenium.clickAt("link=Users and Organizations",
 					RuntimeVariables.replace("Users and Organizations"));
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
 				selenium.type("//input[@id='_125_keywords']",
-					RuntimeVariables.replace("Selenium"));
-				selenium.click(RuntimeVariables.replace(
-						"//input[@value='Search']"));
-				selenium.waitForPageToLoad("30000");
-				loadRequiredJavaScriptModules();
-				selenium.clickAt("//input[@name='_125_rowIds']",
-					RuntimeVariables.replace("Row"));
-				selenium.click(RuntimeVariables.replace(
-						"//input[@value='Delete']"));
-				selenium.waitForPageToLoad("30000");
-				loadRequiredJavaScriptModules();
-				assertTrue(selenium.getConfirmation()
-								   .matches("^Are you sure you want to delete this[\\s\\S]$"));
-				selenium.clickAt("link=Search All Organizations",
-					RuntimeVariables.replace("Search All Organizations"));
-				selenium.waitForPageToLoad("30000");
-				loadRequiredJavaScriptModules();
-				selenium.type("//input[@name='_125_keywords']",
-					RuntimeVariables.replace("Test"));
+					RuntimeVariables.replace("Organization*"));
 				selenium.click(RuntimeVariables.replace(
 						"//input[@value='Search']"));
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
 
 				boolean organization2Present = selenium.isElementPresent(
-						"//td[8]/span/ul/li/strong/a/span");
+						"//span[@title='Actions']/ul[@id='_125_organizationsSearchContainer_2_menu']/li/strong/a/span");
 
 				if (!organization2Present) {
 					label = 10;
@@ -176,10 +183,10 @@ public class TearDownOrganizationTest extends BaseTestCase {
 					continue;
 				}
 
-				assertEquals(RuntimeVariables.replace("Actions"),
-					selenium.getText("//td[8]/span/ul/li/strong/a/span"));
-				selenium.clickAt("//td[8]/span/ul/li/strong/a/span",
-					RuntimeVariables.replace("Actions"));
+				selenium.clickAt("//td[@id='_125_organizationsSearchContainer_col-name_row-1']/a/strong",
+					RuntimeVariables.replace("Organization"));
+				selenium.waitForPageToLoad("30000");
+				loadRequiredJavaScriptModules();
 
 				for (int second = 0;; second++) {
 					if (second >= 90) {
@@ -188,7 +195,7 @@ public class TearDownOrganizationTest extends BaseTestCase {
 
 					try {
 						if (selenium.isVisible(
-									"//div[@class='lfr-component lfr-menu-list']/ul/li[3]/a")) {
+									"//div[@class='lfr-component lfr-menu-list lfr-menu-expanded align-right null']/ul/li/a[contains(.,'Assign Users')]")) {
 							break;
 						}
 					}
@@ -200,31 +207,20 @@ public class TearDownOrganizationTest extends BaseTestCase {
 
 				assertEquals(RuntimeVariables.replace("Assign Users"),
 					selenium.getText(
-						"//div[@class='lfr-component lfr-menu-list']/ul/li[3]/a"));
+						"//div[@class='lfr-component lfr-menu-list lfr-menu-expanded align-right null']/ul/li/a[contains(.,'Assign Users')]"));
 				selenium.click(RuntimeVariables.replace(
-						"//div[@class='lfr-component lfr-menu-list']/ul/li[3]/a"));
+						"//div[@class='lfr-component lfr-menu-list lfr-menu-expanded align-right null']/ul/li/a[contains(.,'Assign Users')]"));
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
-				selenium.clickAt("//input[@name='_125_allRowIds']",
-					RuntimeVariables.replace("All Rows"));
-				selenium.clickAt("//input[@value='Update Associations']",
-					RuntimeVariables.replace("Update Associations"));
-				selenium.waitForPageToLoad("30000");
-				loadRequiredJavaScriptModules();
-				selenium.clickAt("//a[@id='_125_TabsBack']",
-					RuntimeVariables.replace("\u00ab Back"));
-				selenium.waitForPageToLoad("30000");
-				loadRequiredJavaScriptModules();
-				assertTrue(selenium.isElementPresent("//a[2]/strong"));
-				selenium.clickAt("//a[2]/strong",
-					RuntimeVariables.replace("Organization Entry 2"));
+				selenium.clickAt("link=Current",
+					RuntimeVariables.replace("Current"));
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
 
-				boolean suborganization2Present = selenium.isElementPresent(
-						"//td[4]/span/ul/li/strong/a");
+				boolean users2Found = selenium.isVisible(
+						"//input[@name='_125_allRowIds']");
 
-				if (!suborganization2Present) {
+				if (!users2Found) {
 					label = 3;
 
 					continue;
@@ -232,45 +228,64 @@ public class TearDownOrganizationTest extends BaseTestCase {
 
 				selenium.clickAt("//input[@name='_125_allRowIds']",
 					RuntimeVariables.replace("All Rows"));
+				selenium.clickAt("//input[@value='Update Associations']",
+					RuntimeVariables.replace("Update Associations"));
+				selenium.waitForPageToLoad("30000");
+				loadRequiredJavaScriptModules();
+				assertEquals(RuntimeVariables.replace(
+						"Your request completed successfully."),
+					selenium.getText("//div[@class='portlet-msg-success']"));
+
+			case 3:
+				assertEquals(RuntimeVariables.replace("\u00ab Back"),
+					selenium.getText("//a[@id='_125_TabsBack']"));
+				selenium.clickAt("//a[@id='_125_TabsBack']",
+					RuntimeVariables.replace("\u00ab Back"));
+				selenium.waitForPageToLoad("30000");
+				loadRequiredJavaScriptModules();
+
+				for (int second = 0;; second++) {
+					if (second >= 90) {
+						fail("timeout");
+					}
+
+					try {
+						if (selenium.isVisible(
+									"//div[@class='lfr-component lfr-menu-list lfr-menu-expanded align-right null']/ul/li/a[contains(.,'Delete')]")) {
+							break;
+						}
+					}
+					catch (Exception e) {
+					}
+
+					Thread.sleep(1000);
+				}
+
+				assertEquals(RuntimeVariables.replace("Delete"),
+					selenium.getText(
+						"//div[@class='lfr-component lfr-menu-list lfr-menu-expanded align-right null']/ul/li/a[contains(.,'Delete')]"));
 				selenium.click(RuntimeVariables.replace(
-						"//input[@value='Delete']"));
+						"//div[@class='lfr-component lfr-menu-list lfr-menu-expanded align-right null']/ul/li/a[contains(.,'Delete')]"));
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
 				assertTrue(selenium.getConfirmation()
 								   .matches("^Are you sure you want to delete this[\\s\\S]$"));
-
-			case 3:
+				assertEquals(RuntimeVariables.replace(
+						"Your request completed successfully."),
+					selenium.getText("//div[@class='portlet-msg-success']"));
 				selenium.clickAt("link=Users and Organizations",
 					RuntimeVariables.replace("Users and Organizations"));
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
 				selenium.type("//input[@id='_125_keywords']",
-					RuntimeVariables.replace("Test"));
-				selenium.click(RuntimeVariables.replace(
-						"//input[@value='Search']"));
-				selenium.waitForPageToLoad("30000");
-				loadRequiredJavaScriptModules();
-				selenium.clickAt("//input[@name='_125_rowIds']",
-					RuntimeVariables.replace("Row"));
-				selenium.click(RuntimeVariables.replace(
-						"//input[@value='Delete']"));
-				selenium.waitForPageToLoad("30000");
-				loadRequiredJavaScriptModules();
-				assertTrue(selenium.getConfirmation()
-								   .matches("^Are you sure you want to delete this[\\s\\S]$"));
-				selenium.clickAt("link=Search All Organizations",
-					RuntimeVariables.replace("Search All Organizations"));
-				selenium.waitForPageToLoad("30000");
-				loadRequiredJavaScriptModules();
-				selenium.type("//input[@name='_125_keywords']",
-					RuntimeVariables.replace("Test"));
+					RuntimeVariables.replace("Organization*"));
 				selenium.click(RuntimeVariables.replace(
 						"//input[@value='Search']"));
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
 
 				boolean organization3Present = selenium.isElementPresent(
-						"//td[8]/span/ul/li/strong/a/span");
+						"//span[@title='Actions']/ul[@id='_125_organizationsSearchContainer_3_menu']/li/strong/a/span");
 
 				if (!organization3Present) {
 					label = 9;
@@ -278,10 +293,10 @@ public class TearDownOrganizationTest extends BaseTestCase {
 					continue;
 				}
 
-				assertEquals(RuntimeVariables.replace("Actions"),
-					selenium.getText("//td[8]/span/ul/li/strong/a/span"));
-				selenium.clickAt("//td[8]/span/ul/li/strong/a/span",
-					RuntimeVariables.replace("Actions"));
+				selenium.clickAt("//td[@id='_125_organizationsSearchContainer_col-name_row-1']/a/strong",
+					RuntimeVariables.replace("Organization"));
+				selenium.waitForPageToLoad("30000");
+				loadRequiredJavaScriptModules();
 
 				for (int second = 0;; second++) {
 					if (second >= 90) {
@@ -290,7 +305,7 @@ public class TearDownOrganizationTest extends BaseTestCase {
 
 					try {
 						if (selenium.isVisible(
-									"//div[@class='lfr-component lfr-menu-list']/ul/li[3]/a")) {
+									"//div[@class='lfr-component lfr-menu-list lfr-menu-expanded align-right null']/ul/li/a[contains(.,'Assign Users')]")) {
 							break;
 						}
 					}
@@ -302,31 +317,20 @@ public class TearDownOrganizationTest extends BaseTestCase {
 
 				assertEquals(RuntimeVariables.replace("Assign Users"),
 					selenium.getText(
-						"//div[@class='lfr-component lfr-menu-list']/ul/li[3]/a"));
+						"//div[@class='lfr-component lfr-menu-list lfr-menu-expanded align-right null']/ul/li/a[contains(.,'Assign Users')]"));
 				selenium.click(RuntimeVariables.replace(
-						"//div[@class='lfr-component lfr-menu-list']/ul/li[3]/a"));
+						"//div[@class='lfr-component lfr-menu-list lfr-menu-expanded align-right null']/ul/li/a[contains(.,'Assign Users')]"));
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
-				selenium.clickAt("//input[@name='_125_allRowIds']",
-					RuntimeVariables.replace("All Rows"));
-				selenium.clickAt("//input[@value='Update Associations']",
-					RuntimeVariables.replace("Update Associations"));
-				selenium.waitForPageToLoad("30000");
-				loadRequiredJavaScriptModules();
-				selenium.clickAt("//a[@id='_125_TabsBack']",
-					RuntimeVariables.replace("\u00ab Back"));
-				selenium.waitForPageToLoad("30000");
-				loadRequiredJavaScriptModules();
-				assertTrue(selenium.isElementPresent("//a[2]/strong"));
-				selenium.clickAt("//a[2]/strong",
-					RuntimeVariables.replace("Organization Entry 3"));
+				selenium.clickAt("link=Current",
+					RuntimeVariables.replace("Current"));
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
 
-				boolean suborganization3Present = selenium.isElementPresent(
-						"//td[4]/span/ul/li/strong/a");
+				boolean users3Found = selenium.isVisible(
+						"//input[@name='_125_allRowIds']");
 
-				if (!suborganization3Present) {
+				if (!users3Found) {
 					label = 4;
 
 					continue;
@@ -334,45 +338,64 @@ public class TearDownOrganizationTest extends BaseTestCase {
 
 				selenium.clickAt("//input[@name='_125_allRowIds']",
 					RuntimeVariables.replace("All Rows"));
+				selenium.clickAt("//input[@value='Update Associations']",
+					RuntimeVariables.replace("Update Associations"));
+				selenium.waitForPageToLoad("30000");
+				loadRequiredJavaScriptModules();
+				assertEquals(RuntimeVariables.replace(
+						"Your request completed successfully."),
+					selenium.getText("//div[@class='portlet-msg-success']"));
+
+			case 4:
+				assertEquals(RuntimeVariables.replace("\u00ab Back"),
+					selenium.getText("//a[@id='_125_TabsBack']"));
+				selenium.clickAt("//a[@id='_125_TabsBack']",
+					RuntimeVariables.replace("\u00ab Back"));
+				selenium.waitForPageToLoad("30000");
+				loadRequiredJavaScriptModules();
+
+				for (int second = 0;; second++) {
+					if (second >= 90) {
+						fail("timeout");
+					}
+
+					try {
+						if (selenium.isVisible(
+									"//div[@class='lfr-component lfr-menu-list lfr-menu-expanded align-right null']/ul/li/a[contains(.,'Delete')]")) {
+							break;
+						}
+					}
+					catch (Exception e) {
+					}
+
+					Thread.sleep(1000);
+				}
+
+				assertEquals(RuntimeVariables.replace("Delete"),
+					selenium.getText(
+						"//div[@class='lfr-component lfr-menu-list lfr-menu-expanded align-right null']/ul/li/a[contains(.,'Delete')]"));
 				selenium.click(RuntimeVariables.replace(
-						"//input[@value='Delete']"));
+						"//div[@class='lfr-component lfr-menu-list lfr-menu-expanded align-right null']/ul/li/a[contains(.,'Delete')]"));
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
 				assertTrue(selenium.getConfirmation()
 								   .matches("^Are you sure you want to delete this[\\s\\S]$"));
-
-			case 4:
+				assertEquals(RuntimeVariables.replace(
+						"Your request completed successfully."),
+					selenium.getText("//div[@class='portlet-msg-success']"));
 				selenium.clickAt("link=Users and Organizations",
 					RuntimeVariables.replace("Users and Organizations"));
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
 				selenium.type("//input[@id='_125_keywords']",
-					RuntimeVariables.replace("Test"));
-				selenium.click(RuntimeVariables.replace(
-						"//input[@value='Search']"));
-				selenium.waitForPageToLoad("30000");
-				loadRequiredJavaScriptModules();
-				selenium.clickAt("//input[@name='_125_rowIds']",
-					RuntimeVariables.replace("Row"));
-				selenium.click(RuntimeVariables.replace(
-						"//input[@value='Delete']"));
-				selenium.waitForPageToLoad("30000");
-				loadRequiredJavaScriptModules();
-				assertTrue(selenium.getConfirmation()
-								   .matches("^Are you sure you want to delete this[\\s\\S]$"));
-				selenium.clickAt("link=Search All Organizations",
-					RuntimeVariables.replace("Search All Organizations"));
-				selenium.waitForPageToLoad("30000");
-				loadRequiredJavaScriptModules();
-				selenium.type("//input[@name='_125_keywords']",
-					RuntimeVariables.replace("Test"));
+					RuntimeVariables.replace("Organization*"));
 				selenium.click(RuntimeVariables.replace(
 						"//input[@value='Search']"));
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
 
 				boolean organization4Present = selenium.isElementPresent(
-						"//td[8]/span/ul/li/strong/a/span");
+						"//span[@title='Actions']/ul[@id='_125_organizationsSearchContainer_4_menu']/li/strong/a/span");
 
 				if (!organization4Present) {
 					label = 8;
@@ -380,10 +403,10 @@ public class TearDownOrganizationTest extends BaseTestCase {
 					continue;
 				}
 
-				assertEquals(RuntimeVariables.replace("Actions"),
-					selenium.getText("//td[8]/span/ul/li/strong/a/span"));
-				selenium.clickAt("//td[8]/span/ul/li/strong/a/span",
-					RuntimeVariables.replace("Actions"));
+				selenium.clickAt("//td[@id='_125_organizationsSearchContainer_col-name_row-1']/a/strong",
+					RuntimeVariables.replace("Organization"));
+				selenium.waitForPageToLoad("30000");
+				loadRequiredJavaScriptModules();
 
 				for (int second = 0;; second++) {
 					if (second >= 90) {
@@ -392,7 +415,7 @@ public class TearDownOrganizationTest extends BaseTestCase {
 
 					try {
 						if (selenium.isVisible(
-									"//div[@class='lfr-component lfr-menu-list']/ul/li[3]/a")) {
+									"//div[@class='lfr-component lfr-menu-list lfr-menu-expanded align-right null']/ul/li/a[contains(.,'Assign Users')]")) {
 							break;
 						}
 					}
@@ -404,31 +427,20 @@ public class TearDownOrganizationTest extends BaseTestCase {
 
 				assertEquals(RuntimeVariables.replace("Assign Users"),
 					selenium.getText(
-						"//div[@class='lfr-component lfr-menu-list']/ul/li[3]/a"));
+						"//div[@class='lfr-component lfr-menu-list lfr-menu-expanded align-right null']/ul/li/a[contains(.,'Assign Users')]"));
 				selenium.click(RuntimeVariables.replace(
-						"//div[@class='lfr-component lfr-menu-list']/ul/li[3]/a"));
+						"//div[@class='lfr-component lfr-menu-list lfr-menu-expanded align-right null']/ul/li/a[contains(.,'Assign Users')]"));
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
-				selenium.clickAt("//input[@name='_125_allRowIds']",
-					RuntimeVariables.replace("All Rows"));
-				selenium.clickAt("//input[@value='Update Associations']",
-					RuntimeVariables.replace("Update Associations"));
-				selenium.waitForPageToLoad("30000");
-				loadRequiredJavaScriptModules();
-				selenium.clickAt("//a[@id='_125_TabsBack']",
-					RuntimeVariables.replace("\u00ab Back"));
-				selenium.waitForPageToLoad("30000");
-				loadRequiredJavaScriptModules();
-				assertTrue(selenium.isElementPresent("//a[2]/strong"));
-				selenium.clickAt("//a[2]/strong",
-					RuntimeVariables.replace("Organization Entry 4"));
+				selenium.clickAt("link=Current",
+					RuntimeVariables.replace("Current"));
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
 
-				boolean suborganization4Present = selenium.isElementPresent(
-						"//td[4]/span/ul/li/strong/a");
+				boolean users4Found = selenium.isVisible(
+						"//input[@name='_125_allRowIds']");
 
-				if (!suborganization4Present) {
+				if (!users4Found) {
 					label = 5;
 
 					continue;
@@ -436,56 +448,21 @@ public class TearDownOrganizationTest extends BaseTestCase {
 
 				selenium.clickAt("//input[@name='_125_allRowIds']",
 					RuntimeVariables.replace("All Rows"));
-				selenium.click(RuntimeVariables.replace(
-						"//input[@value='Delete']"));
+				selenium.clickAt("//input[@value='Update Associations']",
+					RuntimeVariables.replace("Update Associations"));
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
-				assertTrue(selenium.getConfirmation()
-								   .matches("^Are you sure you want to delete this[\\s\\S]$"));
+				assertEquals(RuntimeVariables.replace(
+						"Your request completed successfully."),
+					selenium.getText("//div[@class='portlet-msg-success']"));
 
 			case 5:
-				selenium.clickAt("link=Users and Organizations",
-					RuntimeVariables.replace("Users and Organizations"));
+				assertEquals(RuntimeVariables.replace("\u00ab Back"),
+					selenium.getText("//a[@id='_125_TabsBack']"));
+				selenium.clickAt("//a[@id='_125_TabsBack']",
+					RuntimeVariables.replace("\u00ab Back"));
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
-				selenium.type("//input[@id='_125_keywords']",
-					RuntimeVariables.replace("Test"));
-				selenium.click(RuntimeVariables.replace(
-						"//input[@value='Search']"));
-				selenium.waitForPageToLoad("30000");
-				loadRequiredJavaScriptModules();
-				selenium.clickAt("//input[@name='_125_rowIds']",
-					RuntimeVariables.replace("Row"));
-				selenium.click(RuntimeVariables.replace(
-						"//input[@value='Delete']"));
-				selenium.waitForPageToLoad("30000");
-				loadRequiredJavaScriptModules();
-				assertTrue(selenium.getConfirmation()
-								   .matches("^Are you sure you want to delete this[\\s\\S]$"));
-				selenium.clickAt("link=Search All Organizations",
-					RuntimeVariables.replace("Search All Organizations"));
-				selenium.waitForPageToLoad("30000");
-				loadRequiredJavaScriptModules();
-				selenium.type("//input[@name='_125_keywords']",
-					RuntimeVariables.replace("Test"));
-				selenium.click(RuntimeVariables.replace(
-						"//input[@value='Search']"));
-				selenium.waitForPageToLoad("30000");
-				loadRequiredJavaScriptModules();
-
-				boolean organization5Present = selenium.isElementPresent(
-						"//td[8]/span/ul/li/strong/a/span");
-
-				if (!organization5Present) {
-					label = 7;
-
-					continue;
-				}
-
-				assertEquals(RuntimeVariables.replace("Actions"),
-					selenium.getText("//td[8]/span/ul/li/strong/a/span"));
-				selenium.clickAt("//td[8]/span/ul/li/strong/a/span",
-					RuntimeVariables.replace("Actions"));
 
 				for (int second = 0;; second++) {
 					if (second >= 90) {
@@ -494,7 +471,61 @@ public class TearDownOrganizationTest extends BaseTestCase {
 
 					try {
 						if (selenium.isVisible(
-									"//div[@class='lfr-component lfr-menu-list']/ul/li[3]/a")) {
+									"//div[@class='lfr-component lfr-menu-list lfr-menu-expanded align-right null']/ul/li/a[contains(.,'Delete')]")) {
+							break;
+						}
+					}
+					catch (Exception e) {
+					}
+
+					Thread.sleep(1000);
+				}
+
+				assertEquals(RuntimeVariables.replace("Delete"),
+					selenium.getText(
+						"//div[@class='lfr-component lfr-menu-list lfr-menu-expanded align-right null']/ul/li/a[contains(.,'Delete')]"));
+				selenium.click(RuntimeVariables.replace(
+						"//div[@class='lfr-component lfr-menu-list lfr-menu-expanded align-right null']/ul/li/a[contains(.,'Delete')]"));
+				selenium.waitForPageToLoad("30000");
+				loadRequiredJavaScriptModules();
+				assertTrue(selenium.getConfirmation()
+								   .matches("^Are you sure you want to delete this[\\s\\S]$"));
+				assertEquals(RuntimeVariables.replace(
+						"Your request completed successfully."),
+					selenium.getText("//div[@class='portlet-msg-success']"));
+				selenium.clickAt("link=Users and Organizations",
+					RuntimeVariables.replace("Users and Organizations"));
+				selenium.waitForPageToLoad("30000");
+				loadRequiredJavaScriptModules();
+				selenium.type("//input[@id='_125_keywords']",
+					RuntimeVariables.replace("Organization*"));
+				selenium.click(RuntimeVariables.replace(
+						"//input[@value='Search']"));
+				selenium.waitForPageToLoad("30000");
+				loadRequiredJavaScriptModules();
+
+				boolean organization5Present = selenium.isElementPresent(
+						"//span[@title='Actions']/ul[@id='_125_organizationsSearchContainer_5_menu']/li/strong/a/span");
+
+				if (!organization5Present) {
+					label = 7;
+
+					continue;
+				}
+
+				selenium.clickAt("//td[@id='_125_organizationsSearchContainer_col-name_row-1']/a/strong",
+					RuntimeVariables.replace("Organization"));
+				selenium.waitForPageToLoad("30000");
+				loadRequiredJavaScriptModules();
+
+				for (int second = 0;; second++) {
+					if (second >= 90) {
+						fail("timeout");
+					}
+
+					try {
+						if (selenium.isVisible(
+									"//div[@class='lfr-component lfr-menu-list lfr-menu-expanded align-right null']/ul/li/a[contains(.,'Assign Users')]")) {
 							break;
 						}
 					}
@@ -506,31 +537,20 @@ public class TearDownOrganizationTest extends BaseTestCase {
 
 				assertEquals(RuntimeVariables.replace("Assign Users"),
 					selenium.getText(
-						"//div[@class='lfr-component lfr-menu-list']/ul/li[3]/a"));
+						"//div[@class='lfr-component lfr-menu-list lfr-menu-expanded align-right null']/ul/li/a[contains(.,'Assign Users')]"));
 				selenium.click(RuntimeVariables.replace(
-						"//div[@class='lfr-component lfr-menu-list']/ul/li[3]/a"));
+						"//div[@class='lfr-component lfr-menu-list lfr-menu-expanded align-right null']/ul/li/a[contains(.,'Assign Users')]"));
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
-				selenium.clickAt("//input[@name='_125_allRowIds']",
-					RuntimeVariables.replace("All Rows"));
-				selenium.clickAt("//input[@value='Update Associations']",
-					RuntimeVariables.replace("Update Associations"));
-				selenium.waitForPageToLoad("30000");
-				loadRequiredJavaScriptModules();
-				selenium.clickAt("//a[@id='_125_TabsBack']",
-					RuntimeVariables.replace("\u00ab Back"));
-				selenium.waitForPageToLoad("30000");
-				loadRequiredJavaScriptModules();
-				assertTrue(selenium.isElementPresent("//a[2]/strong"));
-				selenium.clickAt("//a[2]/strong",
-					RuntimeVariables.replace("Organization Entry 5"));
+				selenium.clickAt("link=Current",
+					RuntimeVariables.replace("Current"));
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
 
-				boolean suborganization5Present = selenium.isElementPresent(
-						"//td[4]/span/ul/li/strong/a");
+				boolean users5Found = selenium.isVisible(
+						"//input[@name='_125_allRowIds']");
 
-				if (!suborganization5Present) {
+				if (!users5Found) {
 					label = 6;
 
 					continue;
@@ -538,32 +558,51 @@ public class TearDownOrganizationTest extends BaseTestCase {
 
 				selenium.clickAt("//input[@name='_125_allRowIds']",
 					RuntimeVariables.replace("All Rows"));
-				selenium.click(RuntimeVariables.replace(
-						"//input[@value='Delete']"));
+				selenium.clickAt("//input[@value='Update Associations']",
+					RuntimeVariables.replace("Update Associations"));
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
-				assertTrue(selenium.getConfirmation()
-								   .matches("^Are you sure you want to delete this[\\s\\S]$"));
+				assertEquals(RuntimeVariables.replace(
+						"Your request completed successfully."),
+					selenium.getText("//div[@class='portlet-msg-success']"));
 
 			case 6:
-				selenium.clickAt("link=Users and Organizations",
-					RuntimeVariables.replace("Users and Organizations"));
+				assertEquals(RuntimeVariables.replace("\u00ab Back"),
+					selenium.getText("//a[@id='_125_TabsBack']"));
+				selenium.clickAt("//a[@id='_125_TabsBack']",
+					RuntimeVariables.replace("\u00ab Back"));
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
-				selenium.type("//input[@id='_125_keywords']",
-					RuntimeVariables.replace("Test"));
+
+				for (int second = 0;; second++) {
+					if (second >= 90) {
+						fail("timeout");
+					}
+
+					try {
+						if (selenium.isVisible(
+									"//div[@class='lfr-component lfr-menu-list lfr-menu-expanded align-right null']/ul/li/a[contains(.,'Delete')]")) {
+							break;
+						}
+					}
+					catch (Exception e) {
+					}
+
+					Thread.sleep(1000);
+				}
+
+				assertEquals(RuntimeVariables.replace("Delete"),
+					selenium.getText(
+						"//div[@class='lfr-component lfr-menu-list lfr-menu-expanded align-right null']/ul/li/a[contains(.,'Delete')]"));
 				selenium.click(RuntimeVariables.replace(
-						"//input[@value='Search']"));
-				selenium.waitForPageToLoad("30000");
-				loadRequiredJavaScriptModules();
-				selenium.clickAt("//input[@name='_125_rowIds']",
-					RuntimeVariables.replace("Row"));
-				selenium.click(RuntimeVariables.replace(
-						"//input[@value='Delete']"));
+						"//div[@class='lfr-component lfr-menu-list lfr-menu-expanded align-right null']/ul/li/a[contains(.,'Delete')]"));
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
 				assertTrue(selenium.getConfirmation()
 								   .matches("^Are you sure you want to delete this[\\s\\S]$"));
+				assertEquals(RuntimeVariables.replace(
+						"Your request completed successfully."),
+					selenium.getText("//div[@class='portlet-msg-success']"));
 
 			case 7:
 			case 8:
