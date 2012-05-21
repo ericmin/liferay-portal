@@ -846,6 +846,8 @@ public class PortalUtil {
 	}
 
 	public static Portal getPortal() {
+		PortalRuntimePermission.checkGetBeanProperty(PortalUtil.class);
+
 		return _portal;
 	}
 
