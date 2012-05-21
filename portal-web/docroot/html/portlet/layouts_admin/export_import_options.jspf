@@ -25,19 +25,21 @@
 	</c:choose>
 
 	<liferay-ui:panel-container extended="<%= true %>" id="export-dialog-tree-panel-container" persistState="<%= true %>">
-		<liferay-ui:panel collapsible="<%= true %>" cssClass="export-group-panel" id="pagesPanel" persistState="<%= true %>" title="pages">
-			<ul class="lfr-tree lfr-component">
-				<li class="tree-item">
-					<aui:input disabled="<%= true %>" name="pages" type="checkbox" value="<%= true %>" />
-				</li>
-
-				<c:if test="<%= cmd.equals(Constants.IMPORT) %>">
+		<c:if test="<%= !group.isLayoutPrototype() %>">
+			<liferay-ui:panel collapsible="<%= true %>" cssClass="export-group-panel" id="pagesPanel" persistState="<%= true %>" title="pages">
+				<ul class="lfr-tree lfr-component">
 					<li class="tree-item">
-						<aui:input helpMessage="delete-missing-layouts-help" label="delete-missing-layouts" name="<%= PortletDataHandlerKeys.DELETE_MISSING_LAYOUTS %>" type="checkbox" value="<%= false %>" />
+						<aui:input disabled="<%= true %>" name="pages" type="checkbox" value="<%= true %>" />
 					</li>
-				</c:if>
-			</ul>
-		</liferay-ui:panel>
+
+					<c:if test="<%= cmd.equals(Constants.IMPORT) %>">
+						<li class="tree-item">
+							<aui:input helpMessage="delete-missing-layouts-help" label="delete-missing-layouts" name="<%= PortletDataHandlerKeys.DELETE_MISSING_LAYOUTS %>" type="checkbox" value="<%= false %>" />
+						</li>
+					</c:if>
+				</ul>
+			</liferay-ui:panel>
+		</c:if>
 
 		<liferay-ui:panel collapsible="<%= true %>" cssClass="export-group-panel" id="portletDataPanel" persistState="<%= true %>" title="applications">
 			<ul class="lfr-tree lfr-component">
@@ -52,7 +54,7 @@
 				</li>
 				<li class="tree-item">
 					<c:choose>
-						<c:when test="<%= cmd.equals(Constants.IMPORT) %>">
+						<c:when test="<%= cmd.equals(Constants.IMPORT) && !group.isLayoutPrototype() %>">
 							<aui:input name="<%= PortletDataHandlerKeys.PORTLET_DATA_CONTROL_DEFAULT %>" type="hidden" value="<%= true %>" />
 
 							<aui:input label="data" name="<%= PortletDataHandlerKeys.PORTLET_DATA %>" type="checkbox" value="<%= true %>" />
@@ -81,7 +83,7 @@
 								</li>
 							</ul>
 						</c:when>
-						<c:otherwise>
+						<c:when test="<%= cmd.equals(Constants.EXPORT) && !group.isLayoutPrototype() %>">
 							<aui:input name="<%= PortletDataHandlerKeys.PORTLET_DATA_CONTROL_DEFAULT %>" type="hidden" value="<%= false %>" />
 
 							<aui:input label="data" name="<%= PortletDataHandlerKeys.PORTLET_DATA %>" type="checkbox" value="<%= true %>" />
@@ -343,7 +345,7 @@
 									</aui:fieldset>
 								</li>
 							</ul>
-						</c:otherwise>
+						</c:when>
 					</c:choose>
 				</li>
 			</ul>

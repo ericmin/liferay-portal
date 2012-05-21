@@ -46,6 +46,7 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Image;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
+import com.liferay.portal.model.LayoutPrototype;
 import com.liferay.portal.model.LayoutRevision;
 import com.liferay.portal.model.LayoutSet;
 import com.liferay.portal.model.LayoutSetPrototype;
@@ -57,6 +58,7 @@ import com.liferay.portal.model.Theme;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ImageLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
+import com.liferay.portal.service.LayoutPrototypeLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetPrototypeLocalServiceUtil;
 import com.liferay.portal.service.PortletLocalServiceUtil;
@@ -321,7 +323,16 @@ public class LayoutExporter {
 
 		String type = "layout-set";
 
-		if (group.isLayoutSetPrototype()) {
+		if (group.isLayoutPrototype()) {
+			type = "layout-prototype";
+
+			LayoutPrototype layoutPrototype =
+				LayoutPrototypeLocalServiceUtil.getLayoutPrototype(
+					group.getClassPK());
+
+			headerElement.addAttribute("type-uuid", layoutPrototype.getUuid());
+		}
+		else if (group.isLayoutSetPrototype()) {
 			type ="layout-set-prototype";
 
 			LayoutSetPrototype layoutSetPrototype =

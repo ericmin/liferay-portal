@@ -19,6 +19,7 @@ import com.liferay.portal.LARFileException;
 import com.liferay.portal.LARTypeException;
 import com.liferay.portal.LayoutImportException;
 import com.liferay.portal.NoSuchLayoutException;
+import com.liferay.portal.NoSuchLayoutPrototypeException;
 import com.liferay.portal.NoSuchLayoutSetPrototypeException;
 import com.liferay.portal.kernel.cluster.ClusterExecutorUtil;
 import com.liferay.portal.kernel.cluster.ClusterRequest;
@@ -58,6 +59,7 @@ import com.liferay.portal.kernel.zip.ZipReaderFactoryUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
+import com.liferay.portal.model.LayoutPrototype;
 import com.liferay.portal.model.LayoutSet;
 import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.model.LayoutTemplate;
@@ -76,6 +78,7 @@ import com.liferay.portal.security.permission.PermissionCacheUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ImageLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
+import com.liferay.portal.service.LayoutPrototypeLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetPrototypeLocalServiceUtil;
 import com.liferay.portal.service.LayoutTemplateLocalServiceUtil;
@@ -343,7 +346,8 @@ public class LayoutImporter {
 
 		String larType = headerElement.attributeValue("type");
 
-		if (!larType.equals("layout-set") &&
+		if (!larType.equals("layout-prototype") &&
+			!larType.equals("layout-set") &&
 			!larType.equals("layout-set-prototype")) {
 
 			throw new LARTypeException(
@@ -357,10 +361,37 @@ public class LayoutImporter {
 
 		portletDataContext.setSourceGroupId(sourceGroupId);
 
-		// Layout set prototype
+		// Layout and layout set prototype
 
-		if (group.isLayoutSetPrototype() &&
-			larType.equals("layout-set-prototype")) {
+		if (group.isLayoutPrototype() && larType.equals("layout-prototype")) {
+			LayoutPrototype layoutPrototype =
+				LayoutPrototypeLocalServiceUtil.getLayoutPrototype(
+					group.getClassPK());
+
+			String layoutPrototypeUuid = GetterUtil.getString(
+				headerElement.attributeValue("type-uuid"));
+
+			LayoutPrototype existingLayoutPrototype = null;
+
+			if (Validator.isNotNull(layoutPrototypeUuid)) {
+				try {
+					existingLayoutPrototype =
+						LayoutPrototypeLocalServiceUtil.
+							getLayoutPrototypeByUuid(layoutPrototypeUuid);
+				}
+				catch (NoSuchLayoutPrototypeException nslpe) {
+				}
+			}
+
+			if (existingLayoutPrototype == null) {
+				layoutPrototype.setUuid(layoutPrototypeUuid);
+
+				LayoutPrototypeLocalServiceUtil.updateLayoutPrototype(
+					layoutPrototype);
+			}
+		}
+		else if (group.isLayoutSetPrototype() &&
+				 larType.equals("layout-set-prototype")) {
 
 			LayoutSetPrototype layoutSetPrototype =
 				LayoutSetPrototypeLocalServiceUtil.getLayoutSetPrototype(
