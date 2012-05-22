@@ -341,6 +341,12 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 					userId, group, serviceContext.getAssetCategoryIds(),
 					serviceContext.getAssetTagNames());
 			}
+
+			// Expando
+
+			if (serviceContext != null) {
+				group.setExpandoBridgeAttributes(serviceContext);
+			}
 		}
 		else if (className.equals(Organization.class.getName()) &&
 				 !user.isDefaultUser()) {
@@ -350,12 +356,6 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 			resourceLocalService.addResources(
 				group.getCompanyId(), 0, 0, Group.class.getName(),
 				group.getGroupId(), false, false, false);
-		}
-		
-		// Expando
-		
-		if (serviceContext != null) {
-			group.setExpandoBridgeAttributes(serviceContext);
 		}
 
 		return group;
@@ -2028,9 +2028,10 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 
 		groupPersistence.update(group, false);
 
-		// Asset
-
 		if ((serviceContext != null) && group.isSite()) {
+
+			// Asset
+
 			User user = null;
 
 			try {
@@ -2052,9 +2053,9 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 			updateAsset(
 				user.getUserId(), group, serviceContext.getAssetCategoryIds(),
 				serviceContext.getAssetTagNames());
-			
+
 			// Expando
-			
+
 			group.setExpandoBridgeAttributes(serviceContext);
 		}
 
