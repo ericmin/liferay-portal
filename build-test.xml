@@ -346,6 +346,11 @@
 		</antcall>
 
 		<antcall target="build-test-ant-script">
+			<param name="test.ant.script.command" value="control-panel-roles" />
+			<param name="test.ant.script.suite" value="ControlPanelRolesTestSuite" />
+		</antcall>
+
+		<antcall target="build-test-ant-script">
 			<param name="test.ant.script.command" value="control-panel-settings" />
 			<param name="test.ant.script.suite" value="ControlPanelSettingsTestSuite" />
 		</antcall>
