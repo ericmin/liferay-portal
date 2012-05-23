@@ -137,6 +137,10 @@ public class DLFileEntryAssetRenderer extends BaseAssetRenderer {
 		return _fileEntry.getUserId();
 	}
 
+	public String getUserName() {
+		return _fileEntry.getUserName();
+	}
+
 	public String getUuid() {
 		return _fileEntry.getUuid();
 	}
