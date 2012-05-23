@@ -305,6 +305,12 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 		group.setSite(site);
 		group.setActive(active);
 
+		if ((serviceContext != null) && (classNameId == groupClassNameId) &&
+			!user.isDefaultUser()) {
+
+			group.setExpandoBridgeAttributes(serviceContext);
+		}
+
 		groupPersistence.update(group, false);
 
 		// Layout sets
@@ -340,12 +346,6 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 				updateAsset(
 					userId, group, serviceContext.getAssetCategoryIds(),
 					serviceContext.getAssetTagNames());
-			}
-
-			// Expando
-
-			if (serviceContext != null) {
-				group.setExpandoBridgeAttributes(serviceContext);
 			}
 		}
 		else if (className.equals(Organization.class.getName()) &&
@@ -2026,12 +2026,15 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 		group.setFriendlyURL(friendlyURL);
 		group.setActive(active);
 
+		if ((serviceContext != null) && group.isSite()) {
+			group.setExpandoBridgeAttributes(serviceContext);
+		}
+
 		groupPersistence.update(group, false);
 
+		// Asset
+
 		if ((serviceContext != null) && group.isSite()) {
-
-			// Asset
-
 			User user = null;
 
 			try {
@@ -2053,10 +2056,6 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 			updateAsset(
 				user.getUserId(), group, serviceContext.getAssetCategoryIds(),
 				serviceContext.getAssetTagNames());
-
-			// Expando
-
-			group.setExpandoBridgeAttributes(serviceContext);
 		}
 
 		return group;
