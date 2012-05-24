@@ -1947,6 +1947,14 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 		Repository fromRepository = getRepository(0, fileEntryId, 0);
 		Repository toRepository = getRepository(newFolderId, serviceContext);
 
+		if (newFolderId != DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+			Folder toFolder = toRepository.getFolder(newFolderId);
+
+			if (toFolder.isMountPoint()) {
+				toRepository = getRepository(toFolder.getRepositoryId());
+			}
+		}
+
 		if (fromRepository.getRepositoryId() ==
 				toRepository.getRepositoryId()) {
 
@@ -1981,6 +1989,14 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 
 		Repository fromRepository = getRepository(folderId, 0, 0);
 		Repository toRepository = getRepository(parentFolderId, serviceContext);
+
+		if (parentFolderId != DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+			Folder toFolder = toRepository.getFolder(parentFolderId);
+
+			if (toFolder.isMountPoint()) {
+				toRepository = getRepository(toFolder.getRepositoryId());
+			}
+		}
 
 		if (fromRepository.getRepositoryId() ==
 				toRepository.getRepositoryId()) {
