@@ -361,8 +361,8 @@
 		</antcall>
 
 		<antcall target="build-test-ant-script">
-			<param name="test.ant.script.command" value="control-panel-user-group" />
-			<param name="test.ant.script.suite" value="ControlPanelUserGroupTestSuite" />
+			<param name="test.ant.script.command" value="control-panel-user-groups" />
+			<param name="test.ant.script.suite" value="ControlPanelUserGroupsTestSuite" />
 		</antcall>
 
 		<antcall target="build-test-ant-script">
