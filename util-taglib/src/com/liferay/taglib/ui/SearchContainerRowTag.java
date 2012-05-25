@@ -314,7 +314,8 @@ public class SearchContainerRowTag<R>
 			}
 			else {
 				rowId = FriendlyURLNormalizerUtil.normalize(
-					String.valueOf(rowIdObj), new char[] {CharPool.SLASH});
+					String.valueOf(rowIdObj),
+					new char[] {CharPool.SLASH, CharPool.PERIOD});
 			}
 		}
 
