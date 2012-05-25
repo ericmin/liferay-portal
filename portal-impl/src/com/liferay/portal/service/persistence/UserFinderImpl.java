@@ -254,7 +254,9 @@ public class UserFinderImpl
 			}
 
 			params2.remove("usersGroups");
-			params2.put("usersOrgs", organizationIds);
+			params2.put(
+				"usersOrgs", organizationIds.toArray(
+					new Long[organizationIds.size()]));
 
 			params3 = new LinkedHashMap<String, Object>(params1);
 
@@ -474,7 +476,9 @@ public class UserFinderImpl
 			}
 
 			params2.remove("usersGroups");
-			params2.put("usersOrgs", organizationIds);
+			params2.put(
+				"usersOrgs", organizationIds.toArray(
+					new Long[organizationIds.size()]));
 
 			params3 = new LinkedHashMap<String, Object>(params1);
 
