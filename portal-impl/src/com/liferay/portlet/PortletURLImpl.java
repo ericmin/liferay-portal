@@ -263,7 +263,11 @@ public class PortletURLImpl
 	}
 
 	public PortletMode getPortletMode() {
-		return _portletMode;
+		if (_portletModeString == null) {
+			return null;
+		}
+
+		return PortletModeFactory.getPortletMode(_portletModeString);
 	}
 
 	public PortletRequest getPortletRequest() {
@@ -293,16 +297,16 @@ public class PortletURLImpl
 			_reservedParameters.put("p_p_lifecycle", "2");
 		}
 
-		if (_windowState != null) {
-			_reservedParameters.put("p_p_state", _windowState.toString());
+		if (_windowStateString != null) {
+			_reservedParameters.put("p_p_state", _windowStateString);
 		}
 
 		if (_windowStateRestoreCurrentView) {
 			_reservedParameters.put("p_p_state_rcv", "1");
 		}
 
-		if (_portletMode != null) {
-			_reservedParameters.put("p_p_mode", _portletMode.toString());
+		if (_portletModeString != null) {
+			_reservedParameters.put("p_p_mode", _portletModeString);
 		}
 
 		if (_resourceID != null) {
@@ -343,7 +347,11 @@ public class PortletURLImpl
 	}
 
 	public WindowState getWindowState() {
-		return _windowState;
+		if (_windowStateString == null) {
+			return null;
+		}
+
+		return WindowStateFactory.getWindowState(_windowStateString);
 	}
 
 	public boolean isAnchor() {
@@ -594,7 +602,7 @@ public class PortletURLImpl
 			}
 		}
 
-		_portletMode = portletMode;
+		_portletModeString = portletMode.toString();
 
 		clearCache();
 	}
@@ -648,7 +656,7 @@ public class PortletURLImpl
 		if (LiferayWindowState.isWindowStatePreserved(
 				getWindowState(), windowState)) {
 
-			_windowState = windowState;
+			_windowStateString = windowState.toString();
 		}
 
 		clearCache();
@@ -1031,10 +1039,12 @@ public class PortletURLImpl
 		}
 
 		if (PropsValues.PORTLET_URL_ANCHOR_ENABLE) {
-			if (_anchor && (_windowState != null) &&
-				!_windowState.equals(WindowState.MAXIMIZED) &&
-				!_windowState.equals(LiferayWindowState.EXCLUSIVE) &&
-				!_windowState.equals(LiferayWindowState.POP_UP)) {
+			if (_anchor && (_windowStateString != null) &&
+				!_windowStateString.equals(WindowState.MAXIMIZED.toString()) &&
+				!_windowStateString.equals(
+					LiferayWindowState.EXCLUSIVE.toString()) &&
+				!_windowStateString.equals(
+					LiferayWindowState.POP_UP.toString())) {
 
 				String lastString = sb.stringAt(sb.index() - 1);
 
@@ -1110,17 +1120,17 @@ public class PortletURLImpl
 
 		sb.append(StringPool.AMPERSAND);
 
-		if (_windowState != null) {
+		if (_windowStateString != null) {
 			sb.append("wsrp-windowState");
 			sb.append(StringPool.EQUAL);
-			sb.append(HttpUtil.encodeURL("wsrp:" + _windowState.toString()));
+			sb.append(HttpUtil.encodeURL("wsrp:" + _windowStateString));
 			sb.append(StringPool.AMPERSAND);
 		}
 
-		if (_portletMode != null) {
+		if (_portletModeString != null) {
 			sb.append("wsrp-mode");
 			sb.append(StringPool.EQUAL);
-			sb.append(HttpUtil.encodeURL("wsrp:" + _portletMode.toString()));
+			sb.append(HttpUtil.encodeURL("wsrp:" + _portletModeString));
 			sb.append(StringPool.AMPERSAND);
 		}
 
@@ -1139,10 +1149,12 @@ public class PortletURLImpl
 		}
 
 		if (PropsValues.PORTLET_URL_ANCHOR_ENABLE) {
-			if (_anchor && (_windowState != null) &&
-				!_windowState.equals(WindowState.MAXIMIZED) &&
-				!_windowState.equals(LiferayWindowState.EXCLUSIVE) &&
-				!_windowState.equals(LiferayWindowState.POP_UP)) {
+			if (_anchor && (_windowStateString != null) &&
+				!_windowStateString.equals(WindowState.MAXIMIZED.toString()) &&
+				!_windowStateString.equals(
+					LiferayWindowState.EXCLUSIVE.toString()) &&
+				!_windowStateString.equals(
+					LiferayWindowState.POP_UP.toString())) {
 
 				sb.append("wsrp-fragmentID");
 				sb.append(StringPool.EQUAL);
@@ -1394,7 +1406,7 @@ public class PortletURLImpl
 	private long _plid;
 	private Portlet _portlet;
 	private String _portletId;
-	private PortletMode _portletMode;
+	private String _portletModeString;
 	private PortletRequest _portletRequest;
 	private long _refererPlid;
 	private Set<String> _removedParameterNames;
@@ -1404,8 +1416,8 @@ public class PortletURLImpl
 	private String _resourceID;
 	private boolean _secure;
 	private String _toString;
-	private WindowState _windowState;
 	private boolean _windowStateRestoreCurrentView;
+	private String _windowStateString;
 	private boolean _wsrp;
 
 }
