@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portalweb.portal.controlpanel.roles.role.assignmembersorgroleuser;
+package com.liferay.portalweb.portal.controlpanel.organizations.organization.assignmembersorganizationuser;
 
 import com.liferay.portalweb.portal.BaseTestCase;
 import com.liferay.portalweb.portal.util.RuntimeVariables;
@@ -20,8 +20,8 @@ import com.liferay.portalweb.portal.util.RuntimeVariables;
 /**
  * @author Brian Wing Shun Chan
  */
-public class ViewUserOrgRoleTest extends BaseTestCase {
-	public void testViewUserOrgRole() throws Exception {
+public class AssignMembersOrganizationUserTest extends BaseTestCase {
+	public void testAssignMembersOrganizationUser() throws Exception {
 		int label = 1;
 
 		while (label >= 1) {
@@ -57,41 +57,8 @@ public class ViewUserOrgRoleTest extends BaseTestCase {
 					RuntimeVariables.replace("Users and Organizations"));
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
-				selenium.clickAt("link=Search All Users",
-					RuntimeVariables.replace("Search All Users"));
-				selenium.waitForPageToLoad("30000");
-				loadRequiredJavaScriptModules();
-
-				boolean basicVisible = selenium.isVisible("link=\u00ab Basic");
-
-				if (!basicVisible) {
-					label = 2;
-
-					continue;
-				}
-
-				selenium.clickAt("link=\u00ab Basic",
-					RuntimeVariables.replace("\u00ab Basic"));
-
-				for (int second = 0;; second++) {
-					if (second >= 90) {
-						fail("timeout");
-					}
-
-					try {
-						if (selenium.isVisible("//input[@name='_125_keywords']")) {
-							break;
-						}
-					}
-					catch (Exception e) {
-					}
-
-					Thread.sleep(1000);
-				}
-
-			case 2:
 				selenium.type("//input[@name='_125_keywords']",
-					RuntimeVariables.replace("usersn"));
+					RuntimeVariables.replace("Organization"));
 				selenium.clickAt("//input[@value='Search']",
 					RuntimeVariables.replace("Search"));
 				selenium.waitForPageToLoad("30000");
@@ -109,7 +76,7 @@ public class ViewUserOrgRoleTest extends BaseTestCase {
 
 					try {
 						if (selenium.isVisible(
-									"//div[@class='lfr-component lfr-menu-list']/ul/li/a[contains(.,'Edit')]")) {
+									"//div[@class='lfr-component lfr-menu-list']/ul/li/a[contains(.,'Assign Users')]")) {
 							break;
 						}
 					}
@@ -119,17 +86,30 @@ public class ViewUserOrgRoleTest extends BaseTestCase {
 					Thread.sleep(1000);
 				}
 
-				assertEquals(RuntimeVariables.replace("Edit"),
+				assertEquals(RuntimeVariables.replace("Assign Users"),
 					selenium.getText(
-						"//div[@class='lfr-component lfr-menu-list']/ul/li/a[contains(.,'Edit')]"));
-				selenium.clickAt("//div[@class='lfr-component lfr-menu-list']/ul/li/a[contains(.,'Edit')]",
-					RuntimeVariables.replace("Edit"));
+						"//div[@class='lfr-component lfr-menu-list']/ul/li/a[contains(.,'Assign Users')]"));
+				selenium.click(RuntimeVariables.replace(
+						"//div[@class='lfr-component lfr-menu-list']/ul/li/a[contains(.,'Assign Users')]"));
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
-				assertTrue(selenium.isPartialText("//a[@id='_125_rolesLink']",
-						"Roles"));
-				selenium.clickAt("//a[@id='_125_rolesLink']",
-					RuntimeVariables.replace("Roles"));
+				selenium.clickAt("link=Available",
+					RuntimeVariables.replace("Available"));
+				selenium.waitForPageToLoad("30000");
+				loadRequiredJavaScriptModules();
+
+				boolean basicVisible = selenium.isVisible("link=\u00ab Basic");
+
+				if (!basicVisible) {
+					label = 2;
+
+					continue;
+				}
+
+				selenium.clickAt("link=\u00ab Basic",
+					RuntimeVariables.replace("\u00ab Basic"));
+
+			case 2:
 
 				for (int second = 0;; second++) {
 					if (second >= 90) {
@@ -137,8 +117,7 @@ public class ViewUserOrgRoleTest extends BaseTestCase {
 					}
 
 					try {
-						if (selenium.isVisible(
-									"//h1[@class='header-title']/span")) {
+						if (selenium.isVisible("//input[@name='_125_keywords']")) {
 							break;
 						}
 					}
@@ -148,26 +127,33 @@ public class ViewUserOrgRoleTest extends BaseTestCase {
 					Thread.sleep(1000);
 				}
 
+				selenium.type("//input[@name='_125_keywords']",
+					RuntimeVariables.replace("userfn"));
+				selenium.clickAt("//input[@value='Search']",
+					RuntimeVariables.replace("Search"));
+				selenium.waitForPageToLoad("30000");
+				loadRequiredJavaScriptModules();
+				assertFalse(selenium.isChecked("//input[@name='_125_rowIds']"));
+				selenium.clickAt("//input[@name='_125_rowIds']",
+					RuntimeVariables.replace("Select User"));
+				assertTrue(selenium.isChecked("//input[@name='_125_rowIds']"));
+				selenium.clickAt("//input[@value='Update Associations']",
+					RuntimeVariables.replace("Update Associations"));
+				selenium.waitForPageToLoad("30000");
+				loadRequiredJavaScriptModules();
+				assertEquals(RuntimeVariables.replace(
+						"Your request completed successfully."),
+					selenium.getText("//div[@class='portlet-msg-success']"));
+				selenium.clickAt("link=Current",
+					RuntimeVariables.replace("Current"));
+				selenium.waitForPageToLoad("30000");
+				loadRequiredJavaScriptModules();
+				assertTrue(selenium.isChecked(
+						"//tr[contains(.,'userfn userln')]/td[1]/input"));
 				assertEquals(RuntimeVariables.replace("userfn userln"),
-					selenium.getText("//h1[@class='header-title']/span"));
-				assertEquals(RuntimeVariables.replace("\u00ab Back"),
-					selenium.getText("//a[@id='_125_TabsBack']"));
-				assertEquals(RuntimeVariables.replace("Regular Roles"),
-					selenium.getText("//div[@id='_125_roles']/h3"));
-				assertEquals(RuntimeVariables.replace("Organization Roles"),
-					selenium.getText("//div[@id='_125_roles']/h3[3]"));
-				assertEquals(RuntimeVariables.replace("Title"),
-					selenium.getText(
-						"//th[@id='_125_organizationRolesSearchContainer_col-title']"));
-				assertEquals(RuntimeVariables.replace("Organization"),
-					selenium.getText(
-						"//th[@id='_125_organizationRolesSearchContainer_col-organization']"));
-				assertEquals(RuntimeVariables.replace("Orgrole Name"),
-					selenium.getText(
-						"//td[@id='_125_organizationRolesSearchContainer_col-title_row-1']"));
-				assertEquals(RuntimeVariables.replace("Remove"),
-					selenium.getText(
-						"//td[@id='_125_organizationRolesSearchContainer_col-3_row-1']"));
+					selenium.getText("//tr[contains(.,'userfn userln')]/td[2]"));
+				assertEquals(RuntimeVariables.replace("usersn"),
+					selenium.getText("//tr[contains(.,'userfn userln')]/td[3]"));
 
 			case 100:
 				label = -1;

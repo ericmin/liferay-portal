@@ -32,7 +32,7 @@ public class AssignMembersRegRoleUserTests extends BaseTestSuite {
 		testSuite.addTestSuite(AddUserTest.class);
 		testSuite.addTestSuite(AddRegRoleTest.class);
 		testSuite.addTestSuite(AssignMembersRegRoleUserTest.class);
-		testSuite.addTestSuite(ViewUserRegRoleTest.class);
+		testSuite.addTestSuite(ViewRegRoleUserTest.class);
 		testSuite.addTestSuite(TearDownUserTest.class);
 		testSuite.addTestSuite(TearDownRoleTest.class);
 

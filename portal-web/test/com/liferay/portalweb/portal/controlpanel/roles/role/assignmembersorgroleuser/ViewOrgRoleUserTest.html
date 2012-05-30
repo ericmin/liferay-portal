@@ -1,12 +1,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>ViewUserSiteRoleTest</title>
+<title>ViewOrgRoleUserTest</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">ViewUserSiteRoleTest</td></tr>
+<tr><td rowspan="1" colspan="3">ViewOrgRoleUserTest</td></tr>
 </thead><tbody>
 <tr>
 	<td>open</td>
@@ -130,32 +130,32 @@
 </tr>
 <tr>
 	<td>assertText</td>
-	<td>//div[@id='_125_roles']/h3[4]</td>
-	<td>Site Roles</td>
+	<td>//div[@id='_125_roles']/h3</td>
+	<td>Regular Roles</td>
 </tr>
 <tr>
 	<td>assertText</td>
-	<td>//th[@id='_125_communityRolesSearchContainer_col-title']</td>
+	<td>//div[@id='_125_roles']/h3[3]</td>
+	<td>Organization Roles</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//th[@id='_125_organizationRolesSearchContainer_col-title']</td>
 	<td>Title</td>
 </tr>
 <tr>
 	<td>assertText</td>
-	<td>//th[@id='_125_communityRolesSearchContainer_col-site']</td>
-	<td>Site</td>
+	<td>//th[@id='_125_organizationRolesSearchContainer_col-organization']</td>
+	<td>Organization</td>
 </tr>
 <tr>
 	<td>assertText</td>
-	<td>//td[@id='_125_communityRolesSearchContainer_col-title_row-1']</td>
-	<td>Siterole Name</td>
+	<td>//td[@id='_125_organizationRolesSearchContainer_col-title_row-1']</td>
+	<td>Orgrole Name</td>
 </tr>
 <tr>
 	<td>assertText</td>
-	<td>//td[@id='_125_communityRolesSearchContainer_col-site_row-1']</td>
-	<td>Site Name</td>
-</tr>
-<tr>
-	<td>assertText</td>
-	<td>//td[@id='_125_communityRolesSearchContainer_col-3_row-1']/a</td>
+	<td>//td[@id='_125_organizationRolesSearchContainer_col-3_row-1']</td>
 	<td>Remove</td>
 </tr>
 </tbody></table>

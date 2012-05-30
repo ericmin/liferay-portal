@@ -1,12 +1,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>AssignUsersOrganizationTest</title>
+<title>AssignMembersOrganizationUserTest</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">AssignUsersOrganizationTest</td></tr>
+<tr><td rowspan="1" colspan="3">AssignMembersOrganizationUserTest</td></tr>
 </thead><tbody>
 <tr>
 	<td>open</td>
@@ -41,7 +41,7 @@
 <tr>
 	<td>type</td>
 	<td>//input[@name='_125_keywords']</td>
-	<td>Organization Name</td>
+	<td>Organization</td>
 </tr>
 <tr>
 	<td>clickAtAndWait</td>
@@ -60,23 +60,18 @@
 </tr>
 <tr>
 	<td>waitForVisible</td>
-	<td>//div[@class='lfr-component lfr-menu-list']/ul/li[contains(.,'Assign Users')]/a</td>
+	<td>//div[@class='lfr-component lfr-menu-list']/ul/li/a[contains(.,'Assign Users')]</td>
 	<td>Assign Users</td>
 </tr>
 <tr>
 	<td>assertText</td>
-	<td>//div[@class='lfr-component lfr-menu-list']/ul/li[contains(.,'Assign Users')]/a</td>
+	<td>//div[@class='lfr-component lfr-menu-list']/ul/li/a[contains(.,'Assign Users')]</td>
 	<td>Assign Users</td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>//div[@class='lfr-component lfr-menu-list']/ul/li[contains(.,'Assign Users')]/a</td>
+	<td>//div[@class='lfr-component lfr-menu-list']/ul/li/a[contains(.,'Assign Users')]</td>
 	<td>Assign Users</td>
-</tr>
-<tr>
-	<td>assertText</td>
-	<td>link=Available</td>
-	<td>Available</td>
 </tr>
 <tr>
 	<td>clickAtAndWait</td>
@@ -99,19 +94,19 @@
 	<td>« Basic</td>
 </tr>
 <tr>
-	<td>waitForVisible</td>
-	<td>//input[@name='_125_keywords']</td>
-	<td>Search Field</td>
-</tr>
-<tr>
 	<td>label</td>
 	<td>BasicNotVisible</td>
 	<td></td>
 </tr>
 <tr>
+	<td>waitForVisible</td>
+	<td>//input[@name='_125_keywords']</td>
+	<td>Search</td>
+</tr>
+<tr>
 	<td>type</td>
 	<td>//input[@name='_125_keywords']</td>
-	<td>usersn</td>
+	<td>userfn</td>
 </tr>
 <tr>
 	<td>clickAtAndWait</td>
@@ -119,29 +114,19 @@
 	<td>Search</td>
 </tr>
 <tr>
-	<td>assertText</td>
-	<td>//td[@id='_125_usersSearchContainer_col-name_row-usersn']</td>
-	<td>userfn userln</td>
-</tr>
-<tr>
-	<td>assertText</td>
-	<td>//td[@id='_125_usersSearchContainer_col-screen-name_row-usersn']</td>
-	<td>usersn</td>
-</tr>
-<tr>
 	<td>assertNotChecked</td>
-	<td>//td[@id='_125_usersSearchContainer_col-rowChecker_row-usersn']/input</td>
-	<td>Check User</td>
+	<td>//input[@name='_125_rowIds']</td>
+	<td>Select User</td>
 </tr>
 <tr>
 	<td>clickAt</td>
-	<td>//td[@id='_125_usersSearchContainer_col-rowChecker_row-usersn']/input</td>
-	<td>Check User</td>
+	<td>//input[@name='_125_rowIds']</td>
+	<td>Select User</td>
 </tr>
 <tr>
 	<td>assertChecked</td>
-	<td>//td[@id='_125_usersSearchContainer_col-rowChecker_row-usersn']/input</td>
-	<td>Check User</td>
+	<td>//input[@name='_125_rowIds']</td>
+	<td>Select User</td>
 </tr>
 <tr>
 	<td>clickAtAndWait</td>
@@ -154,9 +139,24 @@
 	<td>Your request completed successfully.</td>
 </tr>
 <tr>
+	<td>clickAtAndWait</td>
+	<td>link=Current</td>
+	<td>Current</td>
+</tr>
+<tr>
 	<td>assertChecked</td>
-	<td>//td[@id='_125_usersSearchContainer_col-rowChecker_row-usersn']/input</td>
-	<td>Check User</td>
+	<td>//tr[contains(.,'userfn userln')]/td[1]/input</td>
+	<td>userfn userln</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[contains(.,'userfn userln')]/td[2]</td>
+	<td>userfn userln</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[contains(.,'userfn userln')]/td[3]</td>
+	<td>usersn</td>
 </tr>
 </tbody></table>
 </body>

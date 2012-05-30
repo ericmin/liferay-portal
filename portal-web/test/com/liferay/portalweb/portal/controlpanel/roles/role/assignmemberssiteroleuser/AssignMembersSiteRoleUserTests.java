@@ -37,7 +37,7 @@ public class AssignMembersSiteRoleUserTests extends BaseTestSuite {
 		testSuite.addTestSuite(AddMembersSiteUserTest.class);
 		testSuite.addTestSuite(AddSiteRoleTest.class);
 		testSuite.addTestSuite(AssignMembersSiteRoleUserTest.class);
-		testSuite.addTestSuite(ViewUserSiteRoleTest.class);
+		testSuite.addTestSuite(ViewSiteRoleUserTest.class);
 		testSuite.addTestSuite(TearDownUserTest.class);
 		testSuite.addTestSuite(TearDownSiteTest.class);
 		testSuite.addTestSuite(TearDownRoleTest.class);
