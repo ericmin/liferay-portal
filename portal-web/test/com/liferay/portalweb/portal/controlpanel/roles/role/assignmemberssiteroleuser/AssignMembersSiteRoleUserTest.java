@@ -90,6 +90,8 @@ public class AssignMembersSiteRoleUserTest extends BaseTestCase {
 				"//div[@class='lfr-component lfr-menu-list']/ul/li[contains(.,'Manage Memberships')]/a"));
 		selenium.waitForPageToLoad("30000");
 		loadRequiredJavaScriptModules();
+		assertEquals(RuntimeVariables.replace("Site Name"),
+			selenium.getText("//h1[@class='header-title']/span"));
 		assertEquals(RuntimeVariables.replace("Add Site Roles to"),
 			selenium.getText(
 				"//span[@title='Add Site Roles to']/ul/li/strong/a/span"));
@@ -121,26 +123,21 @@ public class AssignMembersSiteRoleUserTest extends BaseTestCase {
 		selenium.waitForPageToLoad("30000");
 		loadRequiredJavaScriptModules();
 		selenium.type("//input[@id='_174_keywords']",
-			RuntimeVariables.replace("siterole"));
+			RuntimeVariables.replace("Siterole"));
 		selenium.clickAt("//input[@value='Search']",
 			RuntimeVariables.replace("Search"));
 		selenium.waitForPageToLoad("30000");
 		loadRequiredJavaScriptModules();
-		assertEquals(RuntimeVariables.replace("siterole"),
+		assertEquals(RuntimeVariables.replace("Siterole Name"),
 			selenium.getText(
 				"//td[@id='_174_ocerSearchContainer_col-name_row-1']/a"));
 		assertEquals(RuntimeVariables.replace("Site"),
 			selenium.getText(
 				"//td[@id='_174_ocerSearchContainer_col-type_row-1']/a"));
-		assertEquals(RuntimeVariables.replace("This is a Site Role."),
-			selenium.getText(
-				"//td[@id='_174_ocerSearchContainer_col-description_row-1']/a"));
 		selenium.clickAt("//td[@id='_174_ocerSearchContainer_col-name_row-1']/a",
-			RuntimeVariables.replace("siterole"));
+			RuntimeVariables.replace("Siterole Name"));
 		selenium.waitForPageToLoad("30000");
 		loadRequiredJavaScriptModules();
-		assertEquals(RuntimeVariables.replace("Available"),
-			selenium.getText("link=Available"));
 		selenium.clickAt("link=Available", RuntimeVariables.replace("Available"));
 		selenium.waitForPageToLoad("30000");
 		loadRequiredJavaScriptModules();

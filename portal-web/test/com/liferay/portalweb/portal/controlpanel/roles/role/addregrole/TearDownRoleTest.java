@@ -57,7 +57,7 @@ public class TearDownRoleTest extends BaseTestCase {
 				selenium.waitForPageToLoad("30000");
 				loadRequiredJavaScriptModules();
 				selenium.type("//input[@id='_128_keywords']",
-					RuntimeVariables.replace("regrole"));
+					RuntimeVariables.replace("Regrole"));
 				selenium.clickAt("//input[@value='Search']",
 					RuntimeVariables.replace("Search"));
 				selenium.waitForPageToLoad("30000");
@@ -294,7 +294,7 @@ public class TearDownRoleTest extends BaseTestCase {
 			case 5:
 			case 6:
 				selenium.type("//input[@id='_128_keywords']",
-					RuntimeVariables.replace("orgrole"));
+					RuntimeVariables.replace("Orgrole"));
 				selenium.clickAt("//input[@value='Search']",
 					RuntimeVariables.replace("Search"));
 				selenium.waitForPageToLoad("30000");
@@ -531,7 +531,7 @@ public class TearDownRoleTest extends BaseTestCase {
 			case 10:
 			case 11:
 				selenium.type("//input[@id='_128_keywords']",
-					RuntimeVariables.replace("siterole"));
+					RuntimeVariables.replace("Siterole"));
 				selenium.clickAt("//input[@value='Search']",
 					RuntimeVariables.replace("Search"));
 				selenium.waitForPageToLoad("30000");

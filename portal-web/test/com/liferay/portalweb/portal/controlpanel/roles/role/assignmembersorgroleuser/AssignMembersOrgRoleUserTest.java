@@ -94,21 +94,18 @@ public class AssignMembersOrgRoleUserTest extends BaseTestCase {
 			RuntimeVariables.replace("Assign Organization Roles"));
 		selenium.waitForPageToLoad("30000");
 		loadRequiredJavaScriptModules();
-		assertEquals(RuntimeVariables.replace("orgrole"),
+		assertEquals(RuntimeVariables.replace("Organization Name"),
+			selenium.getText("//h1[@class='header-title']/span"));
+		assertEquals(RuntimeVariables.replace("Orgrole Name"),
 			selenium.getText(
-				"//tr[contains(.,'orgrole')]/td[@headers='_125_ocerSearchContainer_col-name']/a"));
+				"//tr[contains(.,'Orgrole Name')]/td[@headers='_125_ocerSearchContainer_col-name']/a"));
 		assertEquals(RuntimeVariables.replace("Organization"),
 			selenium.getText(
 				"//tr[contains(.,'Organization')]/td[@headers='_125_ocerSearchContainer_col-type']/a"));
-		assertEquals(RuntimeVariables.replace("This is an Organization Role."),
-			selenium.getText(
-				"//tr[contains(.,'This is an Organization Role.')]/td[@headers='_125_ocerSearchContainer_col-description']/a"));
-		selenium.clickAt("//tr[contains(.,'orgrole')]/td[@headers='_125_ocerSearchContainer_col-name']/a",
-			RuntimeVariables.replace("orgrole"));
+		selenium.clickAt("//tr[contains(.,'Orgrole Name')]/td[@headers='_125_ocerSearchContainer_col-name']/a",
+			RuntimeVariables.replace("Orgrole Name"));
 		selenium.waitForPageToLoad("30000");
 		loadRequiredJavaScriptModules();
-		assertEquals(RuntimeVariables.replace("Available"),
-			selenium.getText("link=Available"));
 		selenium.clickAt("link=Available", RuntimeVariables.replace("Available"));
 		selenium.waitForPageToLoad("30000");
 		loadRequiredJavaScriptModules();

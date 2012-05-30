@@ -81,9 +81,7 @@ public class AddOrgRole3Test extends BaseTestCase {
 		selenium.waitForPageToLoad("30000");
 		loadRequiredJavaScriptModules();
 		selenium.type("//input[@id='_128_name']",
-			RuntimeVariables.replace("orgrole3"));
-		selenium.type("//textarea[@id='_128_description_en_US']",
-			RuntimeVariables.replace("This is an Organization Role."));
+			RuntimeVariables.replace("Orgrole3 Name"));
 		selenium.clickAt("//input[@value='Save']",
 			RuntimeVariables.replace("Save"));
 		selenium.waitForPageToLoad("30000");

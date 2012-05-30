@@ -52,20 +52,17 @@ public class ViewSiteRoleTest extends BaseTestCase {
 		selenium.waitForPageToLoad("30000");
 		loadRequiredJavaScriptModules();
 		selenium.type("//input[@name='_128_keywords']",
-			RuntimeVariables.replace("siterole"));
+			RuntimeVariables.replace("Siterole"));
 		selenium.clickAt("//input[@value='Search']",
 			RuntimeVariables.replace("Search"));
 		selenium.waitForPageToLoad("30000");
 		loadRequiredJavaScriptModules();
-		assertEquals(RuntimeVariables.replace("siterole"),
+		assertEquals(RuntimeVariables.replace("Siterole Name"),
 			selenium.getText(
 				"//td[@id='_128_ocerSearchContainer_col-name_row-1']"));
 		assertEquals(RuntimeVariables.replace("Site"),
 			selenium.getText(
 				"//td[@id='_128_ocerSearchContainer_col-type_row-1']"));
-		assertEquals(RuntimeVariables.replace("This is a Site Role."),
-			selenium.getText(
-				"//td[@id='_128_ocerSearchContainer_col-description_row-1']"));
 		assertEquals(RuntimeVariables.replace("Actions"),
 			selenium.getText(
 				"//span[@title='Actions']/ul[@id='_128_ocerSearchContainer_1_menu']/li/strong/a/span"));
@@ -96,8 +93,10 @@ public class ViewSiteRoleTest extends BaseTestCase {
 			RuntimeVariables.replace("Edit"));
 		selenium.waitForPageToLoad("30000");
 		loadRequiredJavaScriptModules();
-		assertEquals(RuntimeVariables.replace("siterole"),
+		assertEquals(RuntimeVariables.replace("Siterole Name"),
 			selenium.getText("//h1[@class='header-title']"));
+		assertEquals(RuntimeVariables.replace("\u00ab Back"),
+			selenium.getText("//a[@id='_128_TabsBack']"));
 		assertEquals(RuntimeVariables.replace("Edit"),
 			selenium.getText(
 				"//div[contains(.,'Edit')]/ul[@class='aui-tabview-list']/li[1]/span/a"));
@@ -109,14 +108,13 @@ public class ViewSiteRoleTest extends BaseTestCase {
 		assertTrue(selenium.isPartialText("//fieldset/div/div/div", "Site"));
 		assertEquals(RuntimeVariables.replace("New Name (Required)"),
 			selenium.getText("//span/label"));
-		assertEquals("siterole", selenium.getValue("//input[@id='_128_name']"));
+		assertEquals("Siterole Name",
+			selenium.getValue("//input[@id='_128_name']"));
 		assertEquals(RuntimeVariables.replace("Title"),
 			selenium.getText("//span[2]/span/label"));
 		assertEquals("", selenium.getValue("//input[@id='_128_title_en_US']"));
 		assertEquals(RuntimeVariables.replace("Description"),
 			selenium.getText("//span[3]/span/label"));
-		assertEquals("This is a Site Role.",
-			selenium.getValue("//textarea[@id='_128_description_en_US']"));
 		assertTrue(selenium.isVisible("//input[@value='Save']"));
 		assertTrue(selenium.isVisible("//input[@value='Cancel']"));
 	}
