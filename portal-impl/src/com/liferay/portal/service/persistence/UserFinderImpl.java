@@ -243,7 +243,7 @@ public class UserFinderImpl
 			Group group = GroupLocalServiceUtil.fetchGroup(groupId);
 
 			if ((group != null) && group.isOrganization()) {
-				organizationIds.add(groupId);
+				organizationIds.add(group.getOrganizationId());
 			}
 
 			List<Organization> organizations = GroupUtil.getOrganizations(
@@ -465,7 +465,7 @@ public class UserFinderImpl
 			Group group = GroupLocalServiceUtil.fetchGroup(groupId);
 
 			if ((group != null) && group.isOrganization()) {
-				organizationIds.add(groupId);
+				organizationIds.add(group.getOrganizationId());
 			}
 
 			List<Organization> organizations = GroupUtil.getOrganizations(
