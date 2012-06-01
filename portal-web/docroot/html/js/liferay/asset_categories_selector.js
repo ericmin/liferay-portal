@@ -228,6 +228,9 @@ AUI.add(
 						var instance = this;
 
 						var data = {};
+
+						data.p_auth = Liferay.authToken;
+
 						var assetId = instance._getTreeNodeAssetId(treeNode);
 						var assetType = instance._getTreeNodeAssetType(treeNode);
 
@@ -239,8 +242,6 @@ AUI.add(
 								data.vocabularyId = assetId;
 							}
 						}
-
-						data.p_auth = Liferay.securityPAuthToken;
 
 						return data;
 					},
