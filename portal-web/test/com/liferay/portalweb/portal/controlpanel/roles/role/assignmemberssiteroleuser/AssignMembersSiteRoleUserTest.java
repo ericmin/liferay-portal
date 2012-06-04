@@ -128,14 +128,14 @@ public class AssignMembersSiteRoleUserTest extends BaseTestCase {
 			RuntimeVariables.replace("Search"));
 		selenium.waitForPageToLoad("30000");
 		loadRequiredJavaScriptModules();
-		assertEquals(RuntimeVariables.replace("Siterole Name"),
+		assertEquals(RuntimeVariables.replace("Roles Siterole Name"),
 			selenium.getText(
 				"//td[@id='_174_ocerSearchContainer_col-name_row-1']/a"));
 		assertEquals(RuntimeVariables.replace("Site"),
 			selenium.getText(
 				"//td[@id='_174_ocerSearchContainer_col-type_row-1']/a"));
 		selenium.clickAt("//td[@id='_174_ocerSearchContainer_col-name_row-1']/a",
-			RuntimeVariables.replace("Siterole Name"));
+			RuntimeVariables.replace("Roles Siterole Name"));
 		selenium.waitForPageToLoad("30000");
 		loadRequiredJavaScriptModules();
 		selenium.clickAt("link=Available", RuntimeVariables.replace("Available"));

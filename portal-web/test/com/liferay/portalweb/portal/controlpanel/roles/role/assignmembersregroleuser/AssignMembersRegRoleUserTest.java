@@ -57,7 +57,7 @@ public class AssignMembersRegRoleUserTest extends BaseTestCase {
 			RuntimeVariables.replace("Search"));
 		selenium.waitForPageToLoad("30000");
 		loadRequiredJavaScriptModules();
-		assertEquals(RuntimeVariables.replace("Regrole Name"),
+		assertEquals(RuntimeVariables.replace("Roles Regrole Name"),
 			selenium.getText(
 				"//td[@id='_128_ocerSearchContainer_col-name_row-1']"));
 		assertEquals(RuntimeVariables.replace("Regular"),
@@ -93,7 +93,7 @@ public class AssignMembersRegRoleUserTest extends BaseTestCase {
 			RuntimeVariables.replace("Assign Members"));
 		selenium.waitForPageToLoad("30000");
 		loadRequiredJavaScriptModules();
-		assertEquals(RuntimeVariables.replace("Regrole Name"),
+		assertEquals(RuntimeVariables.replace("Roles Regrole Name"),
 			selenium.getText("//h1[@class='header-title']/span"));
 		selenium.clickAt("link=Available", RuntimeVariables.replace("Available"));
 		selenium.waitForPageToLoad("30000");

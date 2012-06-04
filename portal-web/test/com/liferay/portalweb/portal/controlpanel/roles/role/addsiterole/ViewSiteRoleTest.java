@@ -57,7 +57,7 @@ public class ViewSiteRoleTest extends BaseTestCase {
 			RuntimeVariables.replace("Search"));
 		selenium.waitForPageToLoad("30000");
 		loadRequiredJavaScriptModules();
-		assertEquals(RuntimeVariables.replace("Siterole Name"),
+		assertEquals(RuntimeVariables.replace("Roles Siterole Name"),
 			selenium.getText(
 				"//td[@id='_128_ocerSearchContainer_col-name_row-1']"));
 		assertEquals(RuntimeVariables.replace("Site"),
@@ -93,7 +93,7 @@ public class ViewSiteRoleTest extends BaseTestCase {
 			RuntimeVariables.replace("Edit"));
 		selenium.waitForPageToLoad("30000");
 		loadRequiredJavaScriptModules();
-		assertEquals(RuntimeVariables.replace("Siterole Name"),
+		assertEquals(RuntimeVariables.replace("Roles Siterole Name"),
 			selenium.getText("//h1[@class='header-title']"));
 		assertEquals(RuntimeVariables.replace("\u00ab Back"),
 			selenium.getText("//a[@id='_128_TabsBack']"));
@@ -108,7 +108,7 @@ public class ViewSiteRoleTest extends BaseTestCase {
 		assertTrue(selenium.isPartialText("//fieldset/div/div/div", "Site"));
 		assertEquals(RuntimeVariables.replace("New Name (Required)"),
 			selenium.getText("//span/label"));
-		assertEquals("Siterole Name",
+		assertEquals("Roles Siterole Name",
 			selenium.getValue("//input[@id='_128_name']"));
 		assertEquals(RuntimeVariables.replace("Title"),
 			selenium.getText("//span[2]/span/label"));

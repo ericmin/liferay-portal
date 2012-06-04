@@ -57,7 +57,7 @@ public class ViewOrgRoleTest extends BaseTestCase {
 			RuntimeVariables.replace("Search"));
 		selenium.waitForPageToLoad("30000");
 		loadRequiredJavaScriptModules();
-		assertEquals(RuntimeVariables.replace("Orgrole Name"),
+		assertEquals(RuntimeVariables.replace("Roles Orgrole Name"),
 			selenium.getText(
 				"//td[@id='_128_ocerSearchContainer_col-name_row-1']"));
 		assertEquals(RuntimeVariables.replace("Organization"),
@@ -93,7 +93,7 @@ public class ViewOrgRoleTest extends BaseTestCase {
 			RuntimeVariables.replace("Edit"));
 		selenium.waitForPageToLoad("30000");
 		loadRequiredJavaScriptModules();
-		assertEquals(RuntimeVariables.replace("Orgrole Name"),
+		assertEquals(RuntimeVariables.replace("Roles Orgrole Name"),
 			selenium.getText("//h1[@class='header-title']"));
 		assertEquals(RuntimeVariables.replace("\u00ab Back"),
 			selenium.getText("//a[@id='_128_TabsBack']"));
@@ -109,7 +109,7 @@ public class ViewOrgRoleTest extends BaseTestCase {
 				"Organization"));
 		assertEquals(RuntimeVariables.replace("New Name (Required)"),
 			selenium.getText("//span/label"));
-		assertEquals("Orgrole Name",
+		assertEquals("Roles Orgrole Name",
 			selenium.getValue("//input[@id='_128_name']"));
 		assertEquals(RuntimeVariables.replace("Title"),
 			selenium.getText("//span[2]/span/label"));

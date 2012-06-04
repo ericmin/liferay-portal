@@ -160,7 +160,7 @@ public class ViewSiteRoleUserTest extends BaseTestCase {
 				assertEquals(RuntimeVariables.replace("Site"),
 					selenium.getText(
 						"//th[@id='_125_communityRolesSearchContainer_col-site']"));
-				assertEquals(RuntimeVariables.replace("Siterole Name"),
+				assertEquals(RuntimeVariables.replace("Roles Siterole Name"),
 					selenium.getText(
 						"//td[@id='_125_communityRolesSearchContainer_col-title_row-1']"));
 				assertEquals(RuntimeVariables.replace("Site Name"),
