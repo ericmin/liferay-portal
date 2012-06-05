@@ -1783,7 +1783,8 @@ public class CMISRepository extends BaseCmisRepository {
 			_log.debug("Calling query " + query);
 		}
 
-		ItemIterable<QueryResult> queryResults = session.query(query, true);
+		ItemIterable<QueryResult> queryResults = session.query(
+			query, isAllVersionsSearchableSupported(session));
 
 		Iterator<QueryResult> itr = queryResults.iterator();
 
@@ -2048,6 +2049,15 @@ public class CMISRepository extends BaseCmisRepository {
 		else {
 			return false;
 		}
+	}
+
+	protected boolean isAllVersionsSearchableSupported(Session session) {
+		RepositoryInfo repositoryInfo = session.getRepositoryInfo();
+
+		RepositoryCapabilities repositoryCapabilities =
+			repositoryInfo.getCapabilities();
+
+		return repositoryCapabilities.isAllVersionsSearchableSupported();
 	}
 
 	protected void processException(Exception e) throws PortalException {
