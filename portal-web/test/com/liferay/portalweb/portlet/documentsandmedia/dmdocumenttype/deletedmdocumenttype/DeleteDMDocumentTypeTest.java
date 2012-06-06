@@ -79,7 +79,8 @@ public class DeleteDMDocumentTypeTest extends BaseTestCase {
 			}
 
 			try {
-				if (selenium.isVisible("//iframe")) {
+				if (selenium.isVisible(
+							"//iframe[@id='_20_openFileEntryTypeView']")) {
 					break;
 				}
 			}
@@ -89,7 +90,7 @@ public class DeleteDMDocumentTypeTest extends BaseTestCase {
 			Thread.sleep(1000);
 		}
 
-		selenium.selectFrame("//iframe");
+		selenium.selectFrame("//iframe[@id='_20_openFileEntryTypeView']");
 
 		for (int second = 0;; second++) {
 			if (second >= 90) {
@@ -111,10 +112,15 @@ public class DeleteDMDocumentTypeTest extends BaseTestCase {
 			RuntimeVariables.replace("Name"));
 		selenium.clickAt("//input[@value='Search']",
 			RuntimeVariables.replace("Search"));
+		selenium.waitForPageToLoad("30000");
+		loadRequiredJavaScriptModules();
 		Thread.sleep(5000);
+		assertEquals(RuntimeVariables.replace("DM DocumentType Name"),
+			selenium.getText("//tr[contains(.,'DM DocumentType Name')]/td[1]"));
 		assertEquals(RuntimeVariables.replace("Actions"),
-			selenium.getText("//span[@title='Actions']/ul/li/strong/a/span"));
-		selenium.clickAt("//span[@title='Actions']/ul/li/strong/a/span",
+			selenium.getText(
+				"//tr[contains(.,'DM DocumentType Name')]/td/span[@title='Actions']/ul/li/strong/a/span"));
+		selenium.clickAt("//tr[contains(.,'DM DocumentType Name')]/td/span[@title='Actions']/ul/li/strong/a/span",
 			RuntimeVariables.replace("Actions"));
 
 		for (int second = 0;; second++) {
@@ -143,6 +149,7 @@ public class DeleteDMDocumentTypeTest extends BaseTestCase {
 		loadRequiredJavaScriptModules();
 		assertTrue(selenium.getConfirmation()
 						   .matches("^Are you sure you want to delete this[\\s\\S]$"));
+		assertFalse(selenium.isTextPresent("DM DocumentType Name"));
 		assertEquals(RuntimeVariables.replace("There are no results."),
 			selenium.getText("//div[@class='portlet-msg-info']"));
 		selenium.selectFrame("relative=top");
