@@ -637,8 +637,6 @@ public class JournalArticleFinderImpl
 			qPos.add(titles, 2);
 			qPos.add(descriptions, 2);
 			qPos.add(contents, 2);
-			qPos.add(structureIds, 2);
-			qPos.add(templateIds, 2);
 			qPos.add(displayDateGT_TS);
 			qPos.add(displayDateGT_TS);
 			qPos.add(displayDateLT_TS);
@@ -655,6 +653,9 @@ public class JournalArticleFinderImpl
 				qPos.add(type);
 				qPos.add(type);
 			}
+
+			qPos.add(structureIds, 2);
+			qPos.add(templateIds, 2);
 
 			Iterator<Long> itr = q.iterate();
 
@@ -784,8 +785,6 @@ public class JournalArticleFinderImpl
 			qPos.add(titles, 2);
 			qPos.add(descriptions, 2);
 			qPos.add(contents, 2);
-			qPos.add(structureIds, 2);
-			qPos.add(templateIds, 2);
 			qPos.add(displayDateGT_TS);
 			qPos.add(displayDateGT_TS);
 			qPos.add(displayDateLT_TS);
@@ -802,6 +801,9 @@ public class JournalArticleFinderImpl
 				qPos.add(type);
 				qPos.add(type);
 			}
+
+			qPos.add(structureIds, 2);
+			qPos.add(templateIds, 2);
 
 			return (List<JournalArticle>)QueryUtil.list(
 				q, getDialect(), start, end);
@@ -836,6 +838,6 @@ public class JournalArticleFinderImpl
 	}
 
 	private static final String _TYPE_SQL =
-		"WHERE (type_ = ? [$AND_OR_NULL_CHECK$])";
+		"(type_ = ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]";
 
 }
