@@ -41,13 +41,13 @@ import com.liferay.portal.kernel.search.Summary;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
-import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.security.pacl.PACLClassLoaderUtil;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.GroupLocalServiceUtil;
@@ -535,7 +535,7 @@ public class DLIndexer extends BaseIndexer {
 		throws Exception {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			DLFileEntry.class, PortalClassLoaderUtil.getClassLoader());
+			DLFileEntry.class, PACLClassLoaderUtil.getPortalClassLoader());
 
 		Projection minFileEntryIdProjection = ProjectionFactoryUtil.min(
 			"fileEntryId");
@@ -586,7 +586,7 @@ public class DLIndexer extends BaseIndexer {
 		throws Exception {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			DLFileEntry.class, PortalClassLoaderUtil.getClassLoader());
+			DLFileEntry.class, PACLClassLoaderUtil.getPortalClassLoader());
 
 		Property property = PropertyFactoryUtil.forName("fileEntryId");
 
@@ -619,7 +619,7 @@ public class DLIndexer extends BaseIndexer {
 
 	protected void reindexFolders(long companyId) throws Exception {
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			DLFolder.class, PortalClassLoaderUtil.getClassLoader());
+			DLFolder.class, PACLClassLoaderUtil.getPortalClassLoader());
 
 		Projection minFolderIdProjection = ProjectionFactoryUtil.min(
 			"folderId");
@@ -665,7 +665,7 @@ public class DLIndexer extends BaseIndexer {
 		throws Exception {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			DLFolder.class, PortalClassLoaderUtil.getClassLoader());
+			DLFolder.class, PACLClassLoaderUtil.getPortalClassLoader());
 
 		Property property = PropertyFactoryUtil.forName("folderId");
 
@@ -693,7 +693,7 @@ public class DLIndexer extends BaseIndexer {
 
 	protected void reindexRoot(long companyId) throws Exception {
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			Group.class, PortalClassLoaderUtil.getClassLoader());
+			Group.class, PACLClassLoaderUtil.getPortalClassLoader());
 
 		Projection minGroupIdProjection = ProjectionFactoryUtil.min("groupId");
 		Projection maxGroupIdProjection = ProjectionFactoryUtil.max("groupId");
@@ -735,7 +735,7 @@ public class DLIndexer extends BaseIndexer {
 		throws Exception {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			Group.class, PortalClassLoaderUtil.getClassLoader());
+			Group.class, PACLClassLoaderUtil.getPortalClassLoader());
 
 		Property property = PropertyFactoryUtil.forName("groupId");
 

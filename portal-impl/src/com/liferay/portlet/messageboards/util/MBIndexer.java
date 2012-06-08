@@ -38,11 +38,11 @@ import com.liferay.portal.kernel.search.SearchEngineUtil;
 import com.liferay.portal.kernel.search.Summary;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
-import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.security.pacl.PACLClassLoaderUtil;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.GroupLocalServiceUtil;
@@ -369,7 +369,7 @@ public class MBIndexer extends BaseIndexer {
 
 	protected void reindexCategories(long companyId) throws Exception {
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			MBCategory.class, PortalClassLoaderUtil.getClassLoader());
+			MBCategory.class, PACLClassLoaderUtil.getPortalClassLoader());
 
 		Projection minCategoryIdProjection = ProjectionFactoryUtil.min(
 			"categoryId");
@@ -415,7 +415,7 @@ public class MBIndexer extends BaseIndexer {
 		throws Exception {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			MBCategory.class, PortalClassLoaderUtil.getClassLoader());
+			MBCategory.class, PACLClassLoaderUtil.getPortalClassLoader());
 
 		Property property = PropertyFactoryUtil.forName("categoryId");
 
@@ -440,7 +440,7 @@ public class MBIndexer extends BaseIndexer {
 		throws Exception {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			MBMessage.class, PortalClassLoaderUtil.getClassLoader());
+			MBMessage.class, PACLClassLoaderUtil.getPortalClassLoader());
 
 		Projection minMessageIdProjection = ProjectionFactoryUtil.min(
 			"messageId");
@@ -488,7 +488,7 @@ public class MBIndexer extends BaseIndexer {
 		throws Exception {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			MBMessage.class, PortalClassLoaderUtil.getClassLoader());
+			MBMessage.class, PACLClassLoaderUtil.getPortalClassLoader());
 
 		Property property = PropertyFactoryUtil.forName("messageId");
 
@@ -519,7 +519,7 @@ public class MBIndexer extends BaseIndexer {
 
 	protected void reindexRoot(long companyId) throws Exception {
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			Group.class, PortalClassLoaderUtil.getClassLoader());
+			Group.class, PACLClassLoaderUtil.getPortalClassLoader());
 
 		Projection minGroupIdProjection = ProjectionFactoryUtil.min("groupId");
 		Projection maxGroupIdProjection = ProjectionFactoryUtil.max("groupId");
@@ -561,7 +561,7 @@ public class MBIndexer extends BaseIndexer {
 		throws Exception {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			Group.class, PortalClassLoaderUtil.getClassLoader());
+			Group.class, PACLClassLoaderUtil.getPortalClassLoader());
 
 		Property property = PropertyFactoryUtil.forName("groupId");
 
