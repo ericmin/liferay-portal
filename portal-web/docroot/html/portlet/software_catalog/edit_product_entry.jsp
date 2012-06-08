@@ -114,7 +114,7 @@ int screenshotsCount = ParamUtil.getInteger(request, "screenshotsCount", product
 					SCLicense license = (SCLicense)itr.next();
 				%>
 
-					<option <%= licenseIds.contains(new Long(license.getLicenseId())) ? "selected" : "" %> value="<%= license.getLicenseId() %>"><%= license.getName() %></option>
+					<option <%= licenseIds.contains(new Long(license.getLicenseId())) ? "selected" : "" %> value="<%= license.getLicenseId() %>"><%= HtmlUtil.escape(license.getName()) %></option>
 
 				<%
 				}
@@ -131,7 +131,7 @@ int screenshotsCount = ParamUtil.getInteger(request, "screenshotsCount", product
 					SCLicense license = (SCLicense)itr.next();
 				%>
 
-					<option <%= licenseIds.contains(new Long(license.getLicenseId())) ? "selected" : "" %> value="<%= license.getLicenseId() %>"><%= license.getName() %></option>
+					<option <%= licenseIds.contains(new Long(license.getLicenseId())) ? "selected" : "" %> value="<%= license.getLicenseId() %>"><%= HtmlUtil.escape(license.getName()) %></option>
 
 				<%
 				}
