@@ -188,7 +188,7 @@ public class EditFileEntryAction extends PortletAction {
 					DuplicateLockException dle = (DuplicateLockException)e;
 
 					SessionErrors.add(
-						actionRequest, dle.getClass() dle.getLock());
+						actionRequest, dle.getClass(), dle.getLock());
 				}
 				else {
 					SessionErrors.add(actionRequest, e.getClass());
