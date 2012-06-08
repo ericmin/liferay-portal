@@ -919,7 +919,7 @@ public abstract class BaseIndexer implements Indexer {
 		int length = docs.size();
 
 		if (hasMore) {
-			length = documents.length;
+			length = length + (end - start);
 		}
 
 		hits.setLength(length);
