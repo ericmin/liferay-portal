@@ -373,6 +373,9 @@ public class LayoutImporter {
 
 		// Layout and layout set prototype
 
+		String layoutSetPrototypeUuid = layoutsElement.attributeValue(
+			"layout-set-prototype-uuid");
+
 		if (group.isLayoutPrototype() && larType.equals("layout-prototype")) {
 			LayoutPrototype layoutPrototype =
 				LayoutPrototypeLocalServiceUtil.getLayoutPrototype(
@@ -407,31 +410,32 @@ public class LayoutImporter {
 				LayoutSetPrototypeLocalServiceUtil.getLayoutSetPrototype(
 					group.getClassPK());
 
-			String layoutSetPrototypeUuid = GetterUtil.getString(
+			String importedLayoutSetPrototypeUuid = GetterUtil.getString(
 				headerElement.attributeValue("type-uuid"));
 
 			LayoutSetPrototype existingLayoutSetPrototype = null;
 
-			if (Validator.isNotNull(layoutSetPrototypeUuid)) {
+			if (Validator.isNotNull(importedLayoutSetPrototypeUuid)) {
 				try {
 					existingLayoutSetPrototype =
 						LayoutSetPrototypeLocalServiceUtil.
-							getLayoutSetPrototypeByUuid(layoutSetPrototypeUuid);
+							getLayoutSetPrototypeByUuid(importedLayoutSetPrototypeUuid);
 				}
-				catch(NoSuchLayoutSetPrototypeException nslspe) {
+				catch (NoSuchLayoutSetPrototypeException nslspe) {
 				}
 			}
 
 			if (existingLayoutSetPrototype == null) {
-				layoutSetPrototype.setUuid(layoutSetPrototypeUuid);
+				layoutSetPrototype.setUuid(importedLayoutSetPrototypeUuid);
 
 				LayoutSetPrototypeLocalServiceUtil.updateLayoutSetPrototype(
 					layoutSetPrototype);
 			}
 		}
-
-		String layoutSetPrototypeUuid = layoutsElement.attributeValue(
-			"layout-set-prototype-uuid");
+		else if (larType.equals("layout-set-prototype")) {
+			layoutSetPrototypeUuid = GetterUtil.getString(
+				headerElement.attributeValue("type-uuid"));
+		}
 
 		ServiceContext serviceContext =
 			ServiceContextThreadLocal.getServiceContext();
