@@ -618,7 +618,7 @@ public class LangBuilder {
 
 			if (cause instanceof MicrosoftTranslatorException) {
 				System.out.println(
-					cause.getClass().getName() + " - " + cause.getMessage());
+					cause.getClass().getName() + ": " + cause.getMessage());
 			}
 			else {
 				e.printStackTrace();
