@@ -269,9 +269,8 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 			!layoutPrototypeLinkEnabled) {
 
 			LayoutPrototype layoutPrototype =
-				layoutPrototypeLocalService.
-					getLayoutPrototypeByUuidAndCompanyId(
-						layoutPrototypeUuid, layout.getCompanyId());
+				layoutPrototypeLocalService.getLayoutPrototypeByUuid(
+					layoutPrototypeUuid);
 
 			try {
 				SitesUtil.applyLayoutPrototype(
