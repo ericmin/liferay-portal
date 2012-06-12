@@ -1190,6 +1190,14 @@ public class PortalUtil {
 		return getPortal().getSystemSiteRoles();
 	}
 
+	public static String getUniqueId(HttpServletRequest request, String id) {
+		return getPortal().getUniqueId(request, id);
+	}
+
+	public static String getUniqueId(PortletRequest request, String id) {
+		return getPortal().getUniqueId(request, id);
+	}
+
 	public static UploadPortletRequest getUploadPortletRequest(
 		PortletRequest portletRequest) {
 
