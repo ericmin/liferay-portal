@@ -585,7 +585,7 @@ public class JournalArticleFinderImpl
 				sql = StringUtil.replace(sql, _TYPE_SQL, StringPool.BLANK);
 			}
 
-			if (isArrayNull(structureIds)) {
+			if (isNullArray(structureIds)) {
 				sql = StringUtil.replace(
 					sql, _STRUCTURE_ID_SQL, StringPool.BLANK);
 			}
@@ -594,7 +594,7 @@ public class JournalArticleFinderImpl
 					sql, "structureId", StringPool.LIKE, false, structureIds);
 			}
 
-			if (isArrayNull(templateIds)) {
+			if (isNullArray(templateIds)) {
 				sql = StringUtil.replace(
 					sql, _TEMPLATE_ID_SQL, StringPool.BLANK);
 			}
@@ -668,11 +668,11 @@ public class JournalArticleFinderImpl
 				qPos.add(type);
 			}
 
-			if (!isArrayNull(structureIds)) {
+			if (!isNullArray(structureIds)) {
 				qPos.add(structureIds, 2);
 			}
 
-			if (!isArrayNull(templateIds)) {
+			if (!isNullArray(templateIds)) {
 				qPos.add(templateIds, 2);
 			}
 
@@ -752,7 +752,7 @@ public class JournalArticleFinderImpl
 				sql = StringUtil.replace(sql, _TYPE_SQL, StringPool.BLANK);
 			}
 
-			if (isArrayNull(structureIds)) {
+			if (isNullArray(structureIds)) {
 				sql = StringUtil.replace(
 					sql, _STRUCTURE_ID_SQL, StringPool.BLANK);
 			}
@@ -761,7 +761,7 @@ public class JournalArticleFinderImpl
 					sql, "structureId", StringPool.LIKE, false, structureIds);
 			}
 
-			if (isArrayNull(templateIds)) {
+			if (isNullArray(templateIds)) {
 				sql = StringUtil.replace(
 					sql, _TEMPLATE_ID_SQL, StringPool.BLANK);
 			}
@@ -837,11 +837,11 @@ public class JournalArticleFinderImpl
 				qPos.add(type);
 			}
 
-			if (!isArrayNull(structureIds)) {
+			if (!isNullArray(structureIds)) {
 				qPos.add(structureIds, 2);
 			}
 
-			if (!isArrayNull(templateIds)) {
+			if (!isNullArray(templateIds)) {
 				qPos.add(templateIds, 2);
 			}
 
@@ -879,8 +879,8 @@ public class JournalArticleFinderImpl
 		return articles.get(0);
 	}
 
-	protected boolean isArrayNull(Object[] array) {
-		if (Validator.isNull(array)) {
+	protected boolean isNullArray(Object[] array) {
+		if ((array == null) || (array.length == 0)) {
 			return true;
 		}
 
