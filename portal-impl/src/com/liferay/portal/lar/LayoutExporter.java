@@ -634,7 +634,7 @@ public class LayoutExporter {
 		Element dlRepositoriesElement = layoutElement.addElement(
 			"dl-repositories");
 		Element dlRepositoryEntriesElement = layoutElement.addElement(
-	        "dl-repository-entries");
+			"dl-repository-entries");
 
 		JournalPortletDataHandlerImpl.exportArticle(
 			portletDataContext, layoutElement, layoutElement, layoutElement,

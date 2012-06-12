@@ -118,9 +118,9 @@ import javax.portlet.PortletPreferences;
  * @author Karthik Sudarshan
  * @author Wesley Gong
  * @author Hugo Huijser
- * @see    com.liferay.portal.kernel.lar.PortletDataHandler
- * @see    com.liferay.portlet.journal.lar.JournalContentPortletDataHandlerImpl
- * @see    com.liferay.portlet.journal.lar.JournalCreationStrategy
+ * @see	com.liferay.portal.kernel.lar.PortletDataHandler
+ * @see	com.liferay.portlet.journal.lar.JournalContentPortletDataHandlerImpl
+ * @see	com.liferay.portlet.journal.lar.JournalCreationStrategy
  */
 public class JournalPortletDataHandlerImpl extends BasePortletDataHandler {
 
@@ -947,6 +947,7 @@ public class JournalPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		Element dlRepositoriesElement = entityElement.element(
 			"dl-repositories");
+
 		List<Element> dlRepositoryElements = Collections.emptyList();
 
 		if (dlRepositoriesElement != null) {
@@ -960,6 +961,7 @@ public class JournalPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		Element dlRepositoryEntriesElement = entityElement.element(
 			"dl-repository-entries");
+
 		List<Element> dlRepositoryEntryElements = Collections.emptyList();
 
 		if (dlRepositoryEntriesElement != null) {
@@ -1556,11 +1558,15 @@ public class JournalPortletDataHandlerImpl extends BasePortletDataHandler {
 				DLPortletDataHandlerImpl.exportFileEntry(
 					portletDataContext, dlFileEntryTypesElement,
 					dlFoldersElement, dlFileEntriesElement, dlFileRanksElement,
-					dlRepositoriesElement, dlRepositoryEntriesElement, fileEntry,
-					checkDateRange);
+					dlRepositoriesElement, dlRepositoryEntriesElement,
+					fileEntry, checkDateRange);
 
 				Element dlReferenceElement = entityElement.addElement(
 					"dl-reference");
+
+				dlReferenceElement.addAttribute(
+					"default-repository",
+					String.valueOf(fileEntry.isDefaultRepository()));
 
 				String path = null;
 
@@ -1573,10 +1579,6 @@ public class JournalPortletDataHandlerImpl extends BasePortletDataHandler {
 					path = DLPortletDataHandlerImpl.getRepositoryEntryPath(
 						portletDataContext, fileEntry.getFileEntryId());
 				}
-
-				dlReferenceElement.addAttribute(
-					"default-repository",
-					String.valueOf(fileEntry.isDefaultRepository()));
 
 				dlReferenceElement.addAttribute("path", path);
 
@@ -2052,9 +2054,7 @@ public class JournalPortletDataHandlerImpl extends BasePortletDataHandler {
 
 				if (zipEntryObject == null) {
 					if (_log.isWarnEnabled()) {
-						_log.warn(
-							"Unable to object referenced entry: " +
-								dlReferencePath);
+						_log.warn("Unable to reference " + dlReferencePath);
 					}
 
 					continue;
@@ -2070,7 +2070,7 @@ public class JournalPortletDataHandlerImpl extends BasePortletDataHandler {
 				}
 				else {
 					RepositoryEntry repositoryEntry =
-						(RepositoryEntry) zipEntryObject;
+						(RepositoryEntry)zipEntryObject;
 
 					fileEntryUUID = repositoryEntry.getUuid();
 				}
@@ -2260,7 +2260,7 @@ public class JournalPortletDataHandlerImpl extends BasePortletDataHandler {
 		Element dlRepositoriesElement = rootElement.addElement(
 			"dl-repositories");
 		Element dlRepositoryEntriesElement = rootElement.addElement(
-	        "dl-repository-entries");
+			"dl-repository-entries");
 
 		List<JournalTemplate> templates = JournalTemplateUtil.findByGroupId(
 			portletDataContext.getScopeGroupId());
