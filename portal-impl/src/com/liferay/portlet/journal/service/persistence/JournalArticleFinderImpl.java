@@ -587,7 +587,7 @@ public class JournalArticleFinderImpl
 
 			if (isArrayNull(structureIds)) {
 				sql = StringUtil.replace(
-					sql, _STRUCTUREID_SQL, StringPool.BLANK);
+					sql, _STRUCTURE_ID_SQL, StringPool.BLANK);
 			}
 			else {
 				sql = CustomSQLUtil.replaceKeywords(
@@ -596,7 +596,7 @@ public class JournalArticleFinderImpl
 
 			if (isArrayNull(templateIds)) {
 				sql = StringUtil.replace(
-					sql, _TEMPLATEID_SQL, StringPool.BLANK);
+					sql, _TEMPLATE_ID_SQL, StringPool.BLANK);
 			}
 			else {
 				sql = CustomSQLUtil.replaceKeywords(
@@ -754,7 +754,7 @@ public class JournalArticleFinderImpl
 
 			if (isArrayNull(structureIds)) {
 				sql = StringUtil.replace(
-					sql, _STRUCTUREID_SQL, StringPool.BLANK);
+					sql, _STRUCTURE_ID_SQL, StringPool.BLANK);
 			}
 			else {
 				sql = CustomSQLUtil.replaceKeywords(
@@ -763,7 +763,7 @@ public class JournalArticleFinderImpl
 
 			if (isArrayNull(templateIds)) {
 				sql = StringUtil.replace(
-					sql, _TEMPLATEID_SQL, StringPool.BLANK);
+					sql, _TEMPLATE_ID_SQL, StringPool.BLANK);
 			}
 			else {
 				sql = CustomSQLUtil.replaceKeywords(
@@ -893,10 +893,10 @@ public class JournalArticleFinderImpl
 		return true;
 	}
 
-	private static final String _STRUCTUREID_SQL =
+	private static final String _STRUCTURE_ID_SQL =
 		"(structureId LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]";
 
-	private static final String _TEMPLATEID_SQL =
+	private static final String _TEMPLATE_ID_SQL =
 		"(templateId LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]";
 
 	private static final String _TYPE_SQL =
