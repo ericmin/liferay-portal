@@ -419,7 +419,8 @@ public class LayoutImporter {
 				try {
 					existingLayoutSetPrototype =
 						LayoutSetPrototypeLocalServiceUtil.
-							getLayoutSetPrototypeByUuid(importedLayoutSetPrototypeUuid);
+							getLayoutSetPrototypeByUuid(
+								importedLayoutSetPrototypeUuid);
 				}
 				catch (NoSuchLayoutSetPrototypeException nslspe) {
 				}
