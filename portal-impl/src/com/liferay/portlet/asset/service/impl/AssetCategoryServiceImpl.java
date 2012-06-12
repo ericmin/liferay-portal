@@ -126,6 +126,20 @@ public class AssetCategoryServiceImpl extends AssetCategoryServiceBaseImpl {
 				parentCategoryId, start, end, obc));
 	}
 
+	/**
+	 * @deprecated
+	 */
+	public JSONArray getJSONSearch(
+			long groupId, String keywords, long vocabularyId, int start,
+			int end, OrderByComparator obc)
+		throws PortalException, SystemException {
+
+		List<AssetCategory> categories = getVocabularyCategories(
+			groupId, keywords, vocabularyId, start, end, obc);
+
+		return toJSONArray(categories);
+	}
+
 	public JSONArray getJSONSearch(
 			long groupId, String name, long[] vocabularyIds, int start, int end)
 		throws PortalException, SystemException {
