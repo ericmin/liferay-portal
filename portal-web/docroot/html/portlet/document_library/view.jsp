@@ -200,7 +200,8 @@ if (folder != null) {
 			namespace: '<portlet:namespace />',
 			portletId: '<%= portletId %>',
 			rowIds: '<%= RowChecker.ROW_IDS %>',
-			strutsAction: '/document_library/view'
+			strutsAction: '/document_library/view',
+			updateable: <%= DLFolderPermission.contains(permissionChecker, scopeGroupId, folderId, ActionKeys.UPDATE) %>
 		}
 	);
 </aui:script>

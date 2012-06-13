@@ -278,7 +278,9 @@ AUI.add(
 						instance._initHover();
 
 						if (themeDisplay.isSignedIn()) {
-							instance._initDragDrop();
+							if (config.updateable) {
+								instance._initDragDrop();
+							}
 
 							instance._initSelectAllCheckbox();
 
@@ -298,7 +300,12 @@ AUI.add(
 						instance._entryPaginator.destroy();
 						instance._folderPaginator.destroy();
 						instance._listView.destroy();
-						instance._ddHandler.destroy();
+
+						var ddHandler = instance._ddHandler;
+
+						if (ddHandler) {
+							ddHandler.destroy();
+						}
 
 						A.Array.invoke(instance._eventHandles, 'detach');
 
