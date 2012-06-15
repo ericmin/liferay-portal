@@ -249,8 +249,6 @@ public class LayoutImporter {
 			layoutSetPrototypeLinkEnabled = false;
 		}
 
-		boolean globalScopeImport = group.isCompany();
-
 		//boolean publishToRemote = MapUtil.getBoolean(
 		//	parameterMap, PortletDataHandlerKeys.PUBLISH_TO_REMOTE);
 		String layoutsImportMode = MapUtil.getString(
@@ -533,7 +531,7 @@ public class LayoutImporter {
 			_permissionImporter.readPortletDataPermissions(portletDataContext);
 		}
 
-		if (importCategories || globalScopeImport) {
+		if (importCategories || group.isCompany()) {
 			_portletImporter.readAssetCategories(portletDataContext);
 		}
 
@@ -661,7 +659,7 @@ public class LayoutImporter {
 
 			layout = LayoutUtil.fetchByPrimaryKey(plid);
 
-			if ((layout == null) && !globalScopeImport) {
+			if ((layout == null) && !group.isCompany()) {
 				continue;
 			}
 
@@ -681,21 +679,21 @@ public class LayoutImporter {
 			_portletImporter.setPortletScope(
 				portletDataContext, portletElement);
 
-			long prefsGroupId = groupId;
+			long portletPreferencesGroupId = groupId;
 
 			try {
 
-				if ((layout != null) && !globalScopeImport) {
-					prefsGroupId = layout.getGroupId();
+				if ((layout != null) && !group.isCompany()) {
+					portletPreferencesGroupId = layout.getGroupId();
 				}
 
 				// Portlet preferences
 
 				_portletImporter.importPortletPreferences(
-					portletDataContext, layoutSet.getCompanyId(), prefsGroupId,
-					layout, null, portletElement, importPortletSetup,
-					importPortletArchivedSetups, importPortletUserPreferences,
-					false);
+					portletDataContext, layoutSet.getCompanyId(),
+					portletPreferencesGroupId, layout, null, portletElement,
+					importPortletSetup, importPortletArchivedSetups,
+					importPortletUserPreferences, false);
 
 				// Portlet data
 
@@ -710,7 +708,7 @@ public class LayoutImporter {
 			}
 			finally {
 				_portletImporter.resetPortletScope(
-					portletDataContext, prefsGroupId);
+					portletDataContext, portletPreferencesGroupId);
 			}
 
 			// Portlet permissions

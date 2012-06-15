@@ -748,13 +748,12 @@ public class PortletExporter {
 			boolean exportUserPermissions)
 		throws Exception {
 
-		long layoutId = LayoutConstants.DEFAULT_PARENT_LAYOUT_ID;
 		long plid = PortletKeys.PREFS_OWNER_ID_DEFAULT;
+		long layoutId = LayoutConstants.DEFAULT_PARENT_LAYOUT_ID;
 
 		if (layout != null) {
-			layoutId = layout.getLayoutId();
-
 			plid = layout.getPlid();
+			layoutId = layout.getLayoutId();
 		}
 
 		Portlet portlet = PortletLocalServiceUtil.getPortletById(
