@@ -587,6 +587,7 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 		if (isNew || !LayoutModelImpl.COLUMN_BITMASK_ENABLED) {
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
+
 		else {
 			if ((layoutModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID.getColumnBitmask()) != 0) {
@@ -771,6 +772,7 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
+
 				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G, args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
@@ -787,6 +789,7 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_ICONIMAGEID,
 					args);
+
 				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_ICONIMAGEID,
 					args);
 
@@ -804,6 +807,7 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_P_L, args);
+
 				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_P_L, args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_P_L,
@@ -824,6 +828,7 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_P_F, args);
+
 				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_P_F, args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_P_F,
@@ -845,6 +850,7 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_P_SPLU, args);
+
 				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_P_SPLU, args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_P_SPLU,
