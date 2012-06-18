@@ -151,8 +151,7 @@
 				DLFileEntry
 			WHERE
 				(DLFileEntry.groupId = ?) AND
-				[$FOLDER_ID$] AND
-				[$MIME_TYPE$]
+				[$FOLDER_ID$]
 		]]>
 	</sql>
 	<sql id="com.liferay.portlet.documentlibrary.service.persistence.DLFileEntryFinder.findByG_U_F">
@@ -162,7 +161,7 @@
 			FROM
 				(
 					SELECT
-						DISTINCT DLFileVersion.fileEntryId AS tempFileEntryId 
+						DISTINCT DLFileVersion.fileEntryId AS tempFileEntryId
 					FROM
 						DLFileVersion
 					WHERE
@@ -173,8 +172,7 @@
 					DLFileEntry ON
 						(TEMP_TABLE.tempFileEntryId = DLFileEntry.fileEntryId)
 			WHERE
-				[$FOLDER_ID$] AND
-				[$MIME_TYPE$]
+				[$FOLDER_ID$]
 		]]>
 	</sql>
 	<sql id="com.liferay.portlet.documentlibrary.service.persistence.DLFileEntryFinder.findByG_F_S">
@@ -184,7 +182,7 @@
 			FROM
 				(
 					SELECT
-						DISTINCT DLFileVersion.fileEntryId AS tempFileEntryId 
+						DISTINCT DLFileVersion.fileEntryId AS tempFileEntryId
 					FROM
 						DLFileVersion
 					WHERE
@@ -206,7 +204,7 @@
 			FROM
 				(
 					SELECT
-						DISTINCT DLFileVersion.fileEntryId AS tempFileEntryId 
+						DISTINCT DLFileVersion.fileEntryId AS tempFileEntryId
 					FROM
 						DLFileVersion
 					WHERE

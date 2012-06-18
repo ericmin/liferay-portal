@@ -394,7 +394,7 @@ public class DLFileEntryFinderImpl
 				}
 			}
 
-			StringBundler sb = new StringBundler(3);
+			StringBundler sb = new StringBundler();
 
 			if (folderIds.size() > 0) {
 				sb.append(StringPool.OPEN_PARENTHESIS);
@@ -402,17 +402,14 @@ public class DLFileEntryFinderImpl
 				sb.append(StringPool.CLOSE_PARENTHESIS);
 			}
 
-			sql = StringUtil.replace(sql, "[$FOLDER_ID$]", sb.toString());
-
-			sb = new StringBundler(3);
-
 			if ((mimeTypes != null) && (mimeTypes.length > 0)) {
+				sb.append(WHERE_AND);
 				sb.append(StringPool.OPEN_PARENTHESIS);
-				sb.append(getMimeTypes(mimeTypes, DLFileEntryImpl.TABLE_NAME));
+				sb.append(getMimeTypes(mimeTypes, table));
 				sb.append(StringPool.CLOSE_PARENTHESIS);
 			}
 
-			sql = StringUtil.replace(sql, "[$MIME_TYPE$]", sb.toString());
+			sql = StringUtil.replace(sql, "[$FOLDER_ID$]", sb.toString());
 			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
 
 			SQLQuery q = session.createSQLQuery(sql);
