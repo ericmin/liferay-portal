@@ -55,6 +55,7 @@ import com.liferay.portal.util.PropsValues;
 import com.liferay.portlet.documentlibrary.lar.DLPortletDataHandlerImpl;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.util.DLUtil;
+import com.liferay.portlet.journal.ArticleContentException;
 import com.liferay.portlet.journal.FeedTargetLayoutFriendlyUrlException;
 import com.liferay.portlet.journal.NoSuchArticleException;
 import com.liferay.portlet.journal.NoSuchStructureException;
@@ -229,6 +230,10 @@ public class JournalPortletDataHandlerImpl extends BasePortletDataHandler {
 						articleImage.getArticleImageId());
 				}
 				catch (NoSuchImageException nsie) {
+					continue;
+				}
+
+				if (image.getTextObj() == null) {
 					continue;
 				}
 
@@ -1588,7 +1593,7 @@ public class JournalPortletDataHandlerImpl extends BasePortletDataHandler {
 			}
 			catch (Exception e) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(e);
+					_log.warn(e.getMessage());
 				}
 			}
 
@@ -1822,8 +1827,8 @@ public class JournalPortletDataHandlerImpl extends BasePortletDataHandler {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						"Unable to get layout with id " + layoutId +
-							" in group " + portletDataContext.getScopeGroupId(),
-						e);
+							" in group " +
+							portletDataContext.getScopeGroupId());
 				}
 			}
 		}
@@ -2077,7 +2082,7 @@ public class JournalPortletDataHandlerImpl extends BasePortletDataHandler {
 			}
 			catch (Exception e) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(e);
+					_log.warn(e.getMessage());
 				}
 			}
 
@@ -2355,7 +2360,16 @@ public class JournalPortletDataHandlerImpl extends BasePortletDataHandler {
 			List<Element> articleElements = articlesElement.elements("article");
 
 			for (Element articleElement : articleElements) {
-				importArticle(portletDataContext, articleElement);
+				try {
+					importArticle(portletDataContext, articleElement);
+				}
+				catch (ArticleContentException ace) {
+					if (_log.isWarnEnabled()) {
+						_log.warn("Skipping article with path " +
+							articleElement.attributeValue("path") +
+							" due to improper content.");
+					}
+				}
 			}
 		}
 
