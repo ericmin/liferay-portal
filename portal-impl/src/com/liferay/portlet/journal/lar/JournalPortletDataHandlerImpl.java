@@ -1595,6 +1595,9 @@ public class JournalPortletDataHandlerImpl extends BasePortletDataHandler {
 				if (_log.isWarnEnabled()) {
 					_log.warn(e.getMessage());
 				}
+				else if (_log.isDebugEnabled()) {
+					_log.debug(e, e);
+				}
 			}
 
 			beginPos--;
@@ -1824,11 +1827,17 @@ public class JournalPortletDataHandlerImpl extends BasePortletDataHandler {
 				newLinksToLayout.add(newLinkToLayout);
 			}
 			catch (Exception e) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(
-						"Unable to get layout with id " + layoutId +
-							" in group " +
-							portletDataContext.getScopeGroupId());
+				if (_log.isWarnEnabled() || _log.isDebugEnabled()) {
+					String message = "Unable to get layout with id " +
+						layoutId + " in group " +
+						portletDataContext.getScopeGroupId();
+
+					if (_log.isWarnEnabled()) {
+						_log.warn(message);
+					}
+					else {
+						_log.debug(message, e);
+					}
 				}
 			}
 		}
@@ -2083,6 +2092,9 @@ public class JournalPortletDataHandlerImpl extends BasePortletDataHandler {
 			catch (Exception e) {
 				if (_log.isWarnEnabled()) {
 					_log.warn(e.getMessage());
+				}
+				else if (_log.isDebugEnabled()) {
+					_log.debug(e, e);
 				}
 			}
 
