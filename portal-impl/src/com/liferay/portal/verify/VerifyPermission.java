@@ -56,8 +56,8 @@ import java.util.List;
  * @author Matthew Kong
  * @author Raymond Augé
  */
-public class VerifyPermission extends VerifyProcess
-	implements ResourceConstants {
+public class VerifyPermission
+	extends VerifyProcess implements ResourceConstants {
 
 	protected void checkPermissions() throws Exception {
 		List<String> modelNames = ResourceActionsUtil.getModelNames();
@@ -185,8 +185,8 @@ public class VerifyPermission extends VerifyProcess
 		}
 
 		checkPermissions();
-		fixOrganizationRolePermissions();
 		fixLayoutRolePermissions();
+		fixOrganizationRolePermissions();
 	}
 
 	protected void fixLayoutRolePermissions() throws Exception {
@@ -200,14 +200,14 @@ public class VerifyPermission extends VerifyProcess
 	}
 
 	/**
-	 * Fixes missing owner role permissions for Layout entity. Issue can occur
-	 * when upgrading from permission algorithms less then 5 to algorithm 6.
-	 * Method will check for presence of owner role's resource permission for
-	 * Layout. If resource permission doesn't exist it will be created.
-	 * For both existing or newly created resource permission
-	 * default actionIds for owner role are checked. If owner permissions
-	 * for default actionId is missing, permission is given to owner.
-	 * @throws Exception
+	 * Fixes the case where layouts are missing the required owner role
+	 * permissions. This can happen when upgrading from permission algorithms 1,
+	 * 2, 3, and 4 to algorithm 6. This method will check for the presence of
+	 * the owner role's resource permission for all layouts. The resource
+	 * permission will be created if it does not exist. Both existing or newly
+	 * created resource permission default action IDs for owner role are
+	 * checked. If owner permissions for default action ID is missing, then the
+	 * permission is given to the owner. See LPS-26191.
 	 */
 	protected void fixLayoutRolePermissions_6() throws Exception {
 		List<String> actionIds = ResourceActionsUtil.getModelResourceActions(
@@ -218,8 +218,7 @@ public class VerifyPermission extends VerifyProcess
 
 		dynamicQuery.add(
 			RestrictionsFactoryUtil.eq("name", Layout.class.getName()));
-		dynamicQuery.add(
-			RestrictionsFactoryUtil.ne("scope", SCOPE_INDIVIDUAL));
+		dynamicQuery.add(RestrictionsFactoryUtil.ne("scope", SCOPE_INDIVIDUAL));
 
 		List<ResourcePermission> resourcePermissions =
 			ResourcePermissionLocalServiceUtil.dynamicQuery(dynamicQuery);
@@ -248,14 +247,6 @@ public class VerifyPermission extends VerifyProcess
 					primKey, ownerRoleId);
 			}
 
-			// In cases I tested this will not make any changes to DB
-
-			if (_log.isInfoEnabled()) {
-				_log.info(
-					"Checking permissions for owner. Total " +
-						actionIds.size() + " permissions");
-			}
-
 			for (String actionId : actionIds) {
 				if (ResourcePermissionLocalServiceUtil.hasResourcePermission(
 						companyId, Layout.class.getName(), SCOPE_INDIVIDUAL,
@@ -269,19 +260,21 @@ public class VerifyPermission extends VerifyProcess
 								actionId);
 					}
 					catch (Exception e) {
-						StringBundler sb = new StringBundler();
+						if (_log.isWarnEnabled()) {
+							StringBundler sb = new StringBundler(9);
 
-						sb.append("Can't add resource permission on Layout ");
-						sb.append("for {role=Owner, scope=individual, ");
-						sb.append("companyId=");
-						sb.append(companyId);
-						sb.append(", primKey=");
-						sb.append(primKey);
-						sb.append(", actionId=");
-						sb.append(actionId);
-						sb.append("}");
+							sb.append("Cannot add resource permission on ");
+							sb.append("Layout for {actionId=");
+							sb.append(actionId);
+							sb.append(", companyId=");
+							sb.append(companyId);
+							sb.append(", role=Owner, scope=individual, ");
+							sb.append("primKey=");
+							sb.append(primKey);
+							sb.append("}");
 
-						_log.warn(sb);
+							_log.warn(sb);
+						}
 					}
 				}
 			}
