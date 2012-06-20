@@ -1074,7 +1074,9 @@ if (themeDisplay.isStatePopUp()) {
 		<aui:script use="aui-base">
 			var dialog = Liferay.Util.getWindow();
 
-			dialog.detach('<portlet:namespace />hideRefreshDialog|*');
+			var hideDialogSignature = '<portlet:namespace />hideRefreshDialog|*';
+
+			dialog.detach(hideDialogSignature);
 
 			dialog.on(
 				'<portlet:namespace />hideRefreshDialog|visibleChange',
@@ -1096,6 +1098,9 @@ if (themeDisplay.isStatePopUp()) {
 						);
 
 						refreshWindow.location.href = '<%= closeRedirect %>';
+					}
+					else {
+						dialog.detach(hideDialogSignature);
 					}
 				}
 			);
