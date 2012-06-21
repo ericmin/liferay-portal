@@ -109,8 +109,8 @@ if (Validator.isNotNull(className)) {
 					labelNode: '#<%= namespace %>assetCategoriesLabel_<%= vocabulary.getVocabularyId() %>',
 					portalModelResource: <%= Validator.isNotNull(className) && (ResourceActionsUtil.isPortalModelResource(className) || className.equals(Group.class.getName())) %>,
 					singleSelect: <%= !vocabulary.isMultiValued() %>,
-					vocabularyGroupIds: '<%= scopeGroupId %>',
-					vocabularyIds: '<%= ListUtil.toString(vocabularies, "vocabularyId") %>'
+					vocabularyGroupIds: '<%= vocabulary.getGroupId() %>',
+					vocabularyIds: '<%= String.valueOf(vocabulary.getVocabularyId()) %>'
 				}
 			).render();
 		</aui:script>
@@ -141,7 +141,9 @@ else {
 				curEntryIds: '<%= categoryIdsTitles[0] %>',
 				hiddenInput: '#<%= namespace + hiddenInput %>',
 				instanceVar: '<%= namespace + randomNamespace %>',
-				portalModelResource: <%= Validator.isNotNull(className) && (ResourceActionsUtil.isPortalModelResource(className) || className.equals(Group.class.getName())) %>
+				portalModelResource: <%= Validator.isNotNull(className) && (ResourceActionsUtil.isPortalModelResource(className) || className.equals(Group.class.getName())) %>,
+				vocabularyGroupIds: '<%= scopeGroupId %>',
+				vocabularyIds: '<%= ListUtil.toString(vocabularies, "vocabularyId") %>'
 			}
 		).render();
 	</aui:script>
