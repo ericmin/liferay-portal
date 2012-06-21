@@ -187,10 +187,11 @@ public class LuceneHelperImpl implements LuceneHelper {
 
 		Analyzer analyzer = getAnalyzer();
 
-		if (analyzer instanceof PerFieldAnalyzer) {
-			PerFieldAnalyzer perFieldAnalyzer = (PerFieldAnalyzer)analyzer;
+		if (analyzer instanceof PerFieldAnalyzerWrapper) {
+			PerFieldAnalyzerWrapper perFieldAnalyzerWrapper =
+				(PerFieldAnalyzerWrapper)analyzer;
 
-			Analyzer fieldAnalyzer = perFieldAnalyzer.getAnalyzer(field);
+			Analyzer fieldAnalyzer = perFieldAnalyzerWrapper.getAnalyzer(field);
 
 			if (fieldAnalyzer instanceof LikeKeywordAnalyzer) {
 				like = true;
