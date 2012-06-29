@@ -76,23 +76,23 @@ public class DLFileEntryFinderImpl
 	public static final String FIND_BY_G_F =
 		DLFileEntryFinder.class.getName() + ".findByG_F";
 
-	public static final String FIND_BY_G_F_M =
-		DLFileEntryFinder.class.getName() + ".findByG_F_M";
-
 	public static final String FIND_BY_G_U_F =
 		DLFileEntryFinder.class.getName() + ".findByG_U_F";
 
-	public static final String FIND_BY_G_U_F_M =
-		DLFileEntryFinder.class.getName() + ".findByG_U_F_M";
+	public static final String FIND_BY_G_F_M =
+		DLFileEntryFinder.class.getName() + ".findByG_F_M";
 
 	public static final String FIND_BY_G_F_S =
 		DLFileEntryFinder.class.getName() + ".findByG_F_S";
 
-	public static final String FIND_BY_G_F_S_M =
-		DLFileEntryFinder.class.getName() + ".findByG_F_S_M";
+	public static final String FIND_BY_G_U_F_M =
+		DLFileEntryFinder.class.getName() + ".findByG_U_F_M";
 
 	public static final String FIND_BY_G_U_F_S =
 		DLFileEntryFinder.class.getName() + ".findByG_U_F_S";
+
+	public static final String FIND_BY_G_F_S_M =
+		DLFileEntryFinder.class.getName() + ".findByG_F_S_M";
 
 	public static final String FIND_BY_G_U_F_S_M =
 		DLFileEntryFinder.class.getName() + ".findByG_U_F_S_M";
