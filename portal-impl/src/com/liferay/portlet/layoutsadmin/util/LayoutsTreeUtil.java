@@ -90,25 +90,25 @@ public class LayoutsTreeUtil {
 			layoutAncestors = selLayout.getAncestors();
 
 			layoutAncestors.add(selLayout);
+		}
 
-			String treeId = _getScopedPaginationTreeId(request);
+		String treeId = _getScopedPaginationTreeId(request);
 
-			String paginationJSON = SessionClicks.get(
-				session, treeId, StringPool.BLANK);
+		String paginationJSON = SessionClicks.get(
+			session, treeId, StringPool.BLANK);
 
-			if (Validator.isNotNull(paginationJSON) && (end >= 0)) {
-				JSONObject paginationJSONObject =
-					JSONFactoryUtil.createJSONObject(
-						HtmlUtil.unescape(paginationJSON));
+		if (Validator.isNotNull(paginationJSON) && (end >= 0)) {
+			JSONObject paginationJSONObject =
+				JSONFactoryUtil.createJSONObject(
+					HtmlUtil.unescape(paginationJSON));
 
-				String key = String.valueOf(parentLayoutId);
+			String key = String.valueOf(parentLayoutId);
 
-				if (paginationJSONObject.has(key)) {
-					int paginationEnd = paginationJSONObject.getInt(key);
+			if (paginationJSONObject.has(key)) {
+				int paginationEnd = paginationJSONObject.getInt(key);
 
-					if (paginationEnd > end) {
-						end = paginationEnd;
-					}
+				if (paginationEnd > end) {
+					end = paginationEnd;
 				}
 			}
 		}
