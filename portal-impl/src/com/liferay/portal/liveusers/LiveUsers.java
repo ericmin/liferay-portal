@@ -1,15 +1,15 @@
 /**
  * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
- * This library is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
- * any later version.
+ * The contents of this file are subject to the terms of the Liferay Enterprise
+ * Subscription License ("License"). You may not use this file except in
+ * compliance with the License. You can obtain a copy of the License by
+ * contacting Liferay, Inc. See the License for the specific language governing
+ * permissions and limitations under the License, including but not limited to
+ * distribution rights of the Software.
  *
- * This library is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
- * details.
+ *
+ *
  */
 
 package com.liferay.portal.liveusers;
@@ -436,7 +436,17 @@ public class LiveUsers {
 
 		Map<String, UserTracker> sessionUsers = _getSessionUsers(companyId);
 
-		UserTracker userTracker = sessionUsers.get(sessionId);
+		UserTracker userTracker  = sessionUsers.get(sessionId);
+
+		Set<String> sessionIds = _userIds.get(userId);
+
+		if (sessionIds == null) {
+			sessionIds = new ConcurrentHashSet<String>();
+
+			_userIds.put(userId, sessionIds);
+		}
+
+		sessionIds.add(sessionId);
 
 		if ((userTracker == null) &&
 			PropsValues.SESSION_TRACKER_MEMORY_ENABLED) {
@@ -471,7 +481,21 @@ public class LiveUsers {
 
 		Map<String, UserTracker> sessionUsers = _getSessionUsers(companyId);
 
-		UserTracker userTracker = sessionUsers.remove(sessionId);
+		UserTracker userTracker  = sessionUsers.remove(sessionId);
+
+		Set<String> sessionIds = _userIds.get(userId);
+
+		if (sessionIds == null) {
+			sessionIds = new ConcurrentHashSet<String>();
+
+			_userIds.put(userId, sessionIds);
+		}
+
+		sessionIds.remove(sessionId);
+
+		if (sessionIds.isEmpty()) {
+			_userIds.remove(userId);
+		}
 
 		if (userTracker == null) {
 			return;
@@ -535,7 +559,13 @@ public class LiveUsers {
 
 	private static Log _log = LogFactoryUtil.getLog(LiveUsers.class);
 
-	private static LiveUsers _instance = new LiveUsers();
+	private static LiveUsers _instance =  new LiveUsers();
+
+	private static Map<Long, Set<String>> _userIds = new ConcurrentHashMap<Long, Set<String>>();
+
+	public static long getUserIdsCount() {
+		return _userIds.size();
+	}
 
 	private Map<String, Map<Long, Map<Long, Set<String>>>> _clusterUsers =
 		new ConcurrentHashMap<String, Map<Long, Map<Long, Set<String>>>>();

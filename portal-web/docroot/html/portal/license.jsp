@@ -2,15 +2,15 @@
 /**
  * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
- * This library is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
- * any later version.
+ * The contents of this file are subject to the terms of the Liferay Enterprise
+ * Subscription License ("License"). You may not use this file except in
+ * compliance with the License. You can obtain a copy of the License by
+ * contacting Liferay, Inc. See the License for the specific language governing
+ * permissions and limitations under the License, including but not limited to
+ * distribution rights of the Software.
  *
- * This library is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
- * details.
+ *
+ *
  */
 --%>
 
@@ -95,7 +95,66 @@ dateFormatDateTime.setTimeZone(timeZone);
 
 		Map<String, String> serverInfo = LicenseUtil.getServerInfo();
 
-		List<Map<String, String>> licenseProperties = LicenseManagerUtil.getLicenseProperties();
+		List<Map<String, String>> licenseProperties =  LicenseManagerUtil.getLicenseProperties();
+
+		int portalLicenseState = 0;
+		String portalLicenseType = StringPool.BLANK;
+
+		if ((licenseProperties != null) && (licenseProperties.size() > 0)) {
+			Map<String, String> portalLicenseProperties = licenseProperties.get(0);
+
+			String productId = GetterUtil.getString(portalLicenseProperties.get("productId"));
+
+			if (productId.equals("Portal")) {
+				portalLicenseState = GetterUtil.getInteger(portalLicenseProperties.get("licenseState"));
+				portalLicenseType = portalLicenseProperties.get("type");
+			}
+		}
+
+		if (portalLicenseState <= 0) {
+			portalLicenseState = 1;
+		}
+		%>
+
+		<c:choose>
+			<c:when test="<%= portalLicenseState == 1 %>">
+				<div class="portlet-msg-error">
+					This server is not registered.
+				</div>
+			</c:when>
+			<c:when test="<%= portalLicenseState == 2 %>">
+				<div class="portlet-msg-error">
+					Your license key has expired. Please update your license key to continue using Liferay Portal Enterprise Edition.
+				</div>
+			</c:when>
+			<c:when test="<%= portalLicenseState == 4 %>">
+				<div class="portlet-msg-error">
+					Your license key has been deactivated.
+				</div>
+			</c:when>
+			<c:when test="<%= portalLicenseState == 5 %>">
+				<div class="portlet-msg-error">
+					Your license key is not valid for this server.
+				</div>
+			</c:when>
+			<c:when test="<%= portalLicenseState == 6 %>">
+				<div class="portlet-msg-error">
+					<c:choose>
+						<c:when test='<%= portalLicenseType.equals("limited") || portalLicenseType.equals("production") %>'>
+							Your license is currently in use by another instance.
+						</c:when>
+						<c:when test='<%= portalLicenseType.equals("per-user") %>'>
+							Your server has exceeded the maximum number of users.
+						</c:when>
+						<c:otherwise>
+							You have exceeded the developer license connection limit.
+						</c:otherwise>
+					</c:choose>
+				</div>
+			</c:when>
+		</c:choose>
+
+		<%
 		%>
 
 		<c:if test="<%= Validator.isNotNull(successMessage) %>">
@@ -584,7 +643,7 @@ dateFormatDateTime.setTimeZone(timeZone);
 
 <br />
 
-<strong>Register Your Application</strong>
+<strong>Register Your Server or Application</strong>
 
 <table class="lfr-table">
 <tr>

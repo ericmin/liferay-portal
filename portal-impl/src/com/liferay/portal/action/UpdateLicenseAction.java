@@ -1,15 +1,15 @@
 /**
  * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
- * This library is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
- * any later version.
+ * The contents of this file are subject to the terms of the Liferay Enterprise
+ * Subscription License ("License"). You may not use this file except in
+ * compliance with the License. You can obtain a copy of the License by
+ * contacting Liferay, Inc. See the License for the specific language governing
+ * permissions and limitations under the License, including but not limited to
+ * distribution rights of the Software.
  *
- * This library is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
- * details.
+ *
+ *
  */
 
 package com.liferay.portal.action;
@@ -50,7 +50,13 @@ public class UpdateLicenseAction extends Action {
 			HttpServletResponse response)
 		throws Exception {
 
-		if (_isValidRequest(request)) {
+		if (ParamUtil.getString(request, Constants.CMD).equals("validateState")) {
+			com.liferay.portal.license.LicenseManager.writeKey(request, response);
+
+			return null;
+		}
+
+		if (_isValidRequest (request)) {
 			String cmd = ParamUtil.getString(request, Constants.CMD);
 
 			String clusterNodeId = ParamUtil.getString(
@@ -141,7 +147,21 @@ public class UpdateLicenseAction extends Action {
 	}
 
 	private boolean _isValidRequest(HttpServletRequest request) {
-		if (_isOmniAdmin(request)) {
+		int licenseState = com.liferay.portal.license.LicenseManager.getLicenseState(request);
+
+		if (licenseState != com.liferay.portal.license.LicenseManager.STATE_GOOD) {
+			LicenseUtil.registerOrder(request);
+
+			licenseState = com.liferay.portal.license.LicenseManager.getLicenseState(request);
+
+			if (licenseState != com.liferay.portal.license.LicenseManager.STATE_GOOD) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else if (_isOmniAdmin (request)) {
 			LicenseUtil.registerOrder(request);
 
 			return true;
