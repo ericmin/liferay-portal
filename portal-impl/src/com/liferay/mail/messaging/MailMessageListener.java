@@ -78,6 +78,11 @@ public class MailMessageListener extends BaseMessageListener {
 
 		mailMessage.setBCC(bcc);
 
+		InternetAddress[] replyTo = filterInternetAddresses(
+			mailMessage.getReplyTo());
+
+		mailMessage.setReplyTo(replyTo);
+
 		InternetAddress[] bulkAddresses = filterInternetAddresses(
 			mailMessage.getBulkAddresses());
 
