@@ -24,7 +24,6 @@ import java.util.List;
 
 /**
  * @author Manuel de la Peña
- * @author José Manuel Navarro
  */
 public class MailServiceTestUtil {
 
